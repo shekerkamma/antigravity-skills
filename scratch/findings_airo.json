@@ -1,0 +1,68 @@
+{
+  "headline": "The Omnichannel AI Revenue Operator",
+  "company": "Airo RevOps Systems",
+  "domain": "airo-revops.ai",
+  "executive_read": "Traditional B2B cold email and unmonitored RPA bots have reached their systemic limits due to Google/Yahoo's 0.3% spam rules, declining conversions, and compliance penalties (SOX/GDPR). We present 'Airo'\u2014a Quiet AI digital revenue operator integrated natively into enterprise CRM workflows. Airo bridges REST data waterfalls, deep context-isolated memory, and margin preservation architecture to convert passive contacts into high-performing pipeline accounts.",
+  "key_findings": [
+    "Quiet AI Background Processing: Headless APEX and Node.js integrations replace fragile screen-scraping bots (which had 30-50% failure rates).",
+    "Deliverability & Bounce Gates: Multi-provider waterfalls (Clay) and in-line verification (ZeroBounce) keep email bounce rates safely below 2%.",
+    "PII & SOX Risk Management: Local anonymization proxies isolate customer data, while staged CRM writes maintain immutable SOX Section 404 audit logs.",
+    "Margin Protection (Quality-Adjusted TCO): Semantic caching (Redis) and model classifiers (RouteLLM) achieve up to 86% API cost savings."
+  ],
+  "slides": [
+    {
+      "type": "split",
+      "title": "Modules A & B: Data Waterfalls & CRM Memory",
+      "left_title": "Data Waterfall & Verification",
+      "left_bullets": [
+        "Clay-style multi-provider data cascade.",
+        "In-line ZeroBounce verification check.",
+        "Automates cleanup of CRM data decay (30% annual).",
+        "Programmatic REST APIs override UI scraping."
+      ],
+      "right_title": "Context-Isolated Memory",
+      "right_bullets": [
+        "Ingests previous email threads and Salesforce history.",
+        "Prevents generic AI templates that trigger spam filters.",
+        "Personalization raises reply rates from <1% to 18%.",
+        "Maintains account-level institutional context."
+      ]
+    },
+    {
+      "type": "split",
+      "title": "Modules C & D: Compliance Gates & Social Warmup",
+      "left_title": "Pre-Flight & Compliance Gateway",
+      "left_bullets": [
+        "Locks daily outbound volume to 30-50 per inbox.",
+        "Checks spam likelihood against Postmaster rules.",
+        "Filters PII locally to satisfy GDPR Article 44 rules.",
+        "Stages updates in CRM to maintain SOX 404 logs."
+      ],
+      "right_title": "Omnichannel Social Warmup",
+      "right_bullets": [
+        "Scrapes public post activities of target prospects.",
+        "Monitors connection invite limit caps (~100/week).",
+        "Triggers paced social comment warming.",
+        "Discovers proximity path routes for warm intros."
+      ]
+    },
+    {
+      "type": "split",
+      "title": "Module E & TCO: Cost Caching & Pricing Models",
+      "left_title": "Token-Budget Optimization",
+      "left_bullets": [
+        "Uses semantic caching for repeat context (Redis).",
+        "Cuts LLM costs by 86% with 40-70% hit rates.",
+        "RouteLLM routes simple queries to Flash models.",
+        "LLMLingua prompt compression prunes inputs 2x-20x."
+      ],
+      "right_title": "B2B Monetization Tiers",
+      "right_bullets": [
+        "Hybrid SaaS Model: Metered usage credit pricing.",
+        "Productized Service: Outbound audit setup at $4,500/mo.",
+        "Digital Blueprint: Deliverability setup manual package.",
+        "Maintains target gross margins at 80% (BVP)."
+      ]
+    }
+  ]
+}
