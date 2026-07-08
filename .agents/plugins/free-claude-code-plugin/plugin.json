@@ -1,0 +1,5 @@
+{
+  "name": "free-claude-code-plugin",
+  "description": "Manage, configure, launch, and troubleshoot the Free Claude Code proxy for Claude Code and Codex.",
+  "version": "1.0.0"
+}
