@@ -32,5 +32,15 @@ Date: 2026-07-08 · Goal: Design a reusable agent skill/plugin for configuring, 
     * Benefit: Standardizes this setup. Allows us to easily bundle other tools, scripts, or custom subagents under the same plugin namespace in the future.
 * **Final Choice:** Overwhelmingly **Option B (Plugin)**. Standardizing it as a plugin is cleaner and provides future-proof modularity.
 
+### 5. Fine-Tuning Decisions (Grill-Me Self Answers)
+* **Q1: Auto-Compacting Context Window:** Should we adjust the default `CLAUDE_CODE_AUTO_COMPACT_WINDOW` dynamically?
+  * *Self-Answer:* Yes. For models with high-context capacities (like Gemini 3.5 Flash), future agents should run `fcc-claude` with `CLAUDE_CODE_AUTO_COMPACT_WINDOW=900000` to preserve context. For smaller model bounds (GLM, DeepSeek), keep the default `190000`.
+* **Q2: Voice Input Support:** How should agents handle voice transcription commands?
+  * *Self-Answer:* Since the proxy supports local Whisper transcription, agents should instruct the user to run the server with `--voice-local` if voice inputs are desired on chat wrappers.
+* **Q3: IDE Integration (VS Code / Cursor):** How should agents configure IDE extensions to use the proxy?
+  * *Self-Answer:* In VS Code or Cursor, set the API base URL of the OpenAI extension to `http://localhost:8082/v1` and set the auth token to the proxy key.
+* **Q4: Low-Latency Codex Default:** What model should Codex fall back to for fast, interactive file edits?
+  * *Self-Answer:* Default to `gateway/gemini/models/gemini-3.5-flash` using the `-m` CLI option when low-latency responses are desired.
+
 ## Open flags
 *None.*
