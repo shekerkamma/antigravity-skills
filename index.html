@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Executive portfolio of 20 source-bounded AI-agent startup opportunities across 15 markets.">
+  <title>AI-Agent Opportunity Portfolio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%234d8dff'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Arial' font-size='13' fill='white'%3E20%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07111f;
+      --bg-elevated: #0b1728;
+      --bg-soft: #0f1d31;
+      --surface: #12223a;
+      --surface-hover: #162a47;
+      --ink: #f5f8fc;
+      --muted: #a9b6c8;
+      --quiet: #75859b;
+      --line: #243753;
+      --line-strong: #355074;
+      --accent: #4d8dff;
+      --accent-bright: #86b1ff;
+      --accent-soft: #102f5f;
+      --success: #6fd2a6;
+      --warning: #f3c66b;
+      --max: 1440px;
+      --font: "Aptos", "Segoe UI Variable Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      --mono: "Cascadia Code", "Cascadia Mono", Consolas, "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.55;
+      text-rendering: optimizeLegibility;
+    }
+    button, input, select { font: inherit; }
+    a { color: inherit; }
+    :focus-visible { outline: 2px solid var(--accent-bright); outline-offset: 3px; }
+    .skip-link { position: fixed; left: 16px; top: -80px; z-index: 99; background: var(--ink); color: var(--bg); padding: 12px 16px; }
+    .skip-link:focus { top: 16px; }
+    .shell { width: min(calc(100% - 48px), var(--max)); margin: 0 auto; }
+    .eyebrow { margin: 0 0 12px; color: var(--accent-bright); font: 500 12px/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .masthead { position: sticky; top: 0; z-index: 30; border-bottom: 1px solid var(--line); background: rgba(7, 17, 31, .96); backdrop-filter: blur(16px); }
+    .masthead-inner { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-weight: 500; letter-spacing: -.01em; }
+    .brand-mark { width: 24px; height: 24px; display: grid; place-items: center; background: var(--accent); color: #fff; font: 500 12px var(--mono); }
+    .nav { display: flex; align-items: center; gap: 4px; }
+    .nav a, .print-btn { min-height: 44px; display: inline-flex; align-items: center; padding: 0 14px; border: 0; background: transparent; color: var(--muted); text-decoration: none; cursor: pointer; }
+    .nav a:hover, .print-btn:hover { color: var(--ink); background: var(--bg-soft); }
+    .hero { border-bottom: 1px solid var(--line); background: linear-gradient(90deg, var(--bg) 0 68%, var(--bg-elevated) 68%); }
+    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.8fr) minmax(320px, .8fr); }
+    .hero-main { padding: 72px 72px 52px 0; display: flex; flex-direction: column; justify-content: space-between; }
+    .hero h1 { max-width: 880px; margin: 0; font-size: clamp(46px, 5.4vw, 78px); font-weight: 300; line-height: 1; letter-spacing: -.048em; text-wrap: balance; }
+    .hero h1 em { color: var(--accent-bright); font-style: normal; }
+    .hero-lede { max-width: 760px; margin: 28px 0 0; color: var(--muted); font-size: clamp(18px, 1.6vw, 22px); line-height: 1.45; text-wrap: pretty; }
+    .hero-actions { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { min-height: 52px; display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; padding: 0 18px; border: 1px solid var(--accent); background: var(--accent); color: #fff; text-decoration: none; font-weight: 500; }
+    .button:hover { background: #3378ee; border-color: #3378ee; }
+    .button.secondary { background: transparent; color: var(--accent-bright); }
+    .button.secondary:hover { background: var(--accent-soft); }
+    .hero-proof { margin-top: 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+    .proof { padding: 20px 24px 0 0; }
+    .proof + .proof { padding-left: 24px; border-left: 1px solid var(--line); }
+    .proof strong { display: block; font-size: 24px; font-weight: 400; }
+    .proof span { color: var(--quiet); font-size: 13px; }
+    .hero-brief { padding: 72px 0 52px 40px; border-left: 1px solid var(--line); }
+    .brief-title { margin: 0 0 28px; font-size: 20px; font-weight: 500; }
+    .brief-list { margin: 0; padding: 0; list-style: none; }
+    .brief-list li { padding: 20px 0; border-top: 1px solid var(--line); }
+    .brief-list strong { display: block; margin-bottom: 4px; font-weight: 500; }
+    .brief-list span { color: var(--muted); font-size: 14px; }
+    .section { padding: 68px 0; border-bottom: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 32px; }
+    .section h2 { margin: 0; max-width: 720px; font-size: clamp(34px, 3.7vw, 56px); font-weight: 300; line-height: 1.08; letter-spacing: -.035em; }
+    .section-intro { margin: 20px 0 0; max-width: 760px; color: var(--muted); font-size: 17px; }
+    .section-note { align-self: end; max-width: 560px; margin: 0; color: var(--muted); }
+    .priority-layout { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .priority-lead { grid-column: 1 / -1; padding: 32px 36px; background: var(--accent); color: #fff; display: grid; grid-template-columns: 1fr 1.3fr auto; gap: 36px; align-items: start; }
+    .priority-rank { font: 500 13px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .priority-lead h3 { margin: 20px 0 14px; font-size: clamp(42px, 4.5vw, 66px); font-weight: 300; line-height: 1; letter-spacing: -.045em; }
+    .priority-lead p { max-width: 700px; margin: 0; font-size: 18px; line-height: 1.45; }
+    .priority-facts { border-top: 1px solid rgba(255,255,255,.36); }
+    .priority-fact { display: grid; grid-template-columns: 110px 1fr; gap: 20px; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,.24); }
+    .priority-fact span { font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; opacity: .75; }
+    .priority-fact strong { font-weight: 500; }
+    .priority-score { min-height: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: end; padding-left: 28px; border-left: 1px solid rgba(255,255,255,.36); text-align: right; }
+    .priority-score strong { font: 400 48px/1 var(--mono); }
+    .priority-stack { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .priority-item { padding: 22px 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-elevated); text-decoration: none; transition: background .2s ease; }
+    .priority-item:hover { background: var(--surface-hover); }
+    .priority-item-top { display: flex; justify-content: space-between; gap: 20px; }
+    .priority-item h3 { margin: 6px 0; font-size: 23px; font-weight: 400; }
+    .priority-item p { margin: 0; color: var(--muted); font-size: 13px; }
+    .priority-item .priority-buyer { display: block; margin-top: 8px; color: var(--ink); font-size: 12px; }
+    .priority-item .score { color: var(--accent-bright); font: 500 16px var(--mono); }
+    .theme-board { border: 1px solid var(--line); background: var(--bg-elevated); }
+    .theme-head, .theme-row { display: grid; grid-template-columns: 120px 1.1fr 1.2fr 1fr; }
+    .theme-head { background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+    .theme-head span { padding: 14px 20px; color: var(--quiet); font: 500 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .theme-head span + span { border-left: 1px solid var(--line); }
+    .theme-grid { display: contents; }
+    .theme-row { grid-column: 1 / -1; transition: background .2s ease; }
+    .theme-row + .theme-row { border-top: 1px solid var(--line); }
+    .theme-row:hover { background: var(--surface-hover); }
+    .theme-cell { min-width: 0; padding: 24px 20px; }
+    .theme-cell + .theme-cell { border-left: 1px solid var(--line); }
+    .theme-index { display: flex; flex-direction: column; justify-content: space-between; gap: 28px; background: rgba(78,140,255,.06); }
+    .theme-index > span { color: var(--accent-bright); font: 500 12px var(--mono); letter-spacing: .08em; }
+    .theme-index strong { color: var(--ink); font: 400 22px var(--mono); }
+    .theme-index small { display: block; margin-top: 3px; color: var(--quiet); font: 500 9px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .theme-row h3 { margin: 0 0 10px; font-size: 23px; font-weight: 500; }
+    .theme-row p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .theme-label { display: block; margin-bottom: 9px; color: var(--quiet); font: 500 9px var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .theme-examples { color: var(--ink) !important; }
+    .theme-question { position: relative; padding-left: 36px; color: var(--ink) !important; }
+    .theme-question::before { content: '?'; position: absolute; left: 0; top: -3px; width: 23px; height: 23px; display: grid; place-items: center; border: 1px solid var(--accent); color: var(--accent-bright); font: 500 12px var(--mono); }
+    .portfolio-section { background: var(--bg-elevated); }
+    .toolbar { position: sticky; top: 64px; z-index: 20; display: grid; grid-template-columns: 1.5fr 1fr 1fr auto; gap: 1px; margin-bottom: 24px; border: 1px solid var(--line); background: var(--line); }
+    .control { min-height: 64px; position: relative; background: var(--bg-soft); }
+    .control label { position: absolute; left: 16px; top: 8px; color: var(--quiet); font: 500 10px var(--mono); letter-spacing: .1em; text-transform: uppercase; pointer-events: none; }
+    .control input, .control select { width: 100%; height: 64px; padding: 24px 44px 8px 16px; border: 0; border-bottom: 2px solid transparent; border-radius: 0; appearance: none; background: transparent; color: var(--ink); }
+    .control select { cursor: pointer; }
+    .control input:focus, .control select:focus { outline: 0; border-bottom-color: var(--accent); }
+    .control input::placeholder { color: var(--quiet); }
+    .reset { min-width: 112px; min-height: 64px; border: 0; background: var(--surface); color: var(--ink); cursor: pointer; }
+    .reset:hover { background: var(--surface-hover); }
+    .results-meta { display: flex; justify-content: space-between; gap: 24px; margin: 0 0 24px; color: var(--muted); font-size: 14px; }
+    .results-meta strong { color: var(--ink); font-weight: 500; }
+    .cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .idea-card { min-width: 0; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg); }
+    .idea-card.top-five { background: #0a1930; }
+    .card-main { padding: 28px; display: flex; flex-direction: column; }
+    .card-meta { display: flex; justify-content: space-between; gap: 16px; color: var(--quiet); font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .card-meta .rank { color: var(--accent-bright); }
+    .idea-card h3 { margin: 24px 0 14px; font-size: clamp(28px, 2.8vw, 40px); font-weight: 300; line-height: 1.05; letter-spacing: -.03em; }
+    .pain { margin: 0 0 22px; max-width: 660px; color: var(--muted); font-size: 15px; line-height: 1.5; }
+    .card-facts { margin: 0; border-top: 1px solid var(--line); }
+    .card-fact { display: grid; grid-template-columns: 96px 1fr; gap: 16px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+    .card-fact dt { color: var(--quiet); font: 500 10px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .card-fact dd { margin: 0; color: var(--ink); font-size: 13px; line-height: 1.4; }
+    .scoreline { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; margin-top: 18px; }
+    .scoreline > strong { font: 500 14px var(--mono); }
+    .bar { height: 3px; overflow: hidden; background: var(--line); }
+    .bar span { display: block; height: 100%; background: var(--accent); }
+    .expand { width: 100%; min-height: 56px; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border: 0; border-top: 1px solid var(--line); background: transparent; color: var(--accent-bright); cursor: pointer; text-align: left; }
+    .expand:hover { background: var(--bg-soft); }
+    .expand span:last-child { font: 500 20px var(--mono); transition: transform .2s ease; }
+    .expand[aria-expanded="true"] span:last-child { transform: rotate(45deg); }
+    .details { padding: 8px 32px 32px; border-top: 1px solid var(--line); background: var(--bg-soft); }
+    .details[hidden] { display: none; }
+    .detail-row { display: grid; grid-template-columns: 144px 1fr; gap: 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+    .detail-row:last-child { border-bottom: 0; }
+    .detail-row dt { color: var(--quiet); font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .detail-row dd { margin: 0; color: var(--muted); font-size: 14px; }
+    .score-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .score-grid div { padding: 12px; background: var(--bg-elevated); }
+    .score-grid span { display: block; color: var(--quiet); font: 500 10px var(--mono); text-transform: uppercase; }
+    .score-grid strong { font: 400 22px var(--mono); }
+    .empty { grid-column: 1 / -1; padding: 80px 32px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-align: center; color: var(--muted); }
+    .method-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 72px; }
+    .method-grid h3 { margin: 0 0 18px; font-size: 26px; font-weight: 400; }
+    .method-grid p { color: var(--muted); }
+    .discovery-steps { margin: 26px 0 30px; border-top: 1px solid var(--line); }
+    .discovery-step { display: grid; grid-template-columns: 34px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+    .discovery-step > span { color: var(--accent-bright); font: 500 13px var(--mono); }
+    .discovery-step strong { display: block; margin-bottom: 3px; font-weight: 500; }
+    .discovery-step p { margin: 0; font-size: 14px; }
+    .criteria { border-top: 1px solid var(--line); }
+    .criterion { display: grid; grid-template-columns: 150px 1fr; gap: 32px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+    .criterion strong { font-weight: 500; }
+    .criterion span { color: var(--muted); }
+    .disclaimer { padding: 40px; border: 1px solid var(--line); background: var(--bg-elevated); }
+    .disclaimer h3 { margin: 0 0 12px; font-size: 22px; font-weight: 400; }
+    .disclaimer p { margin: 0; color: var(--muted); }
+    footer { padding: 40px 0 64px; color: var(--quiet); font-size: 13px; }
+    .footer-grid { display: flex; justify-content: space-between; gap: 32px; }
+    .source-code { font-family: var(--mono); color: var(--muted); }
+    @media (max-width: 1056px) {
+      .hero { background: var(--bg); }
+      .hero-grid, .section-head, .method-grid { grid-template-columns: 1fr; }
+      .hero-main { padding-right: 0; }
+      .hero-brief { padding: 48px 0 72px; border-top: 1px solid var(--line); border-left: 0; }
+      .priority-layout { grid-template-columns: 1fr; }
+      .priority-stack { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .priority-lead { grid-template-columns: 1fr 1.3fr; }
+      .priority-score { grid-column: 1 / -1; min-height: 0; flex-direction: row; align-items: end; padding: 18px 0 0; border-left: 0; border-top: 1px solid rgba(255,255,255,.36); text-align: left; }
+      .theme-head { display: none; }
+      .theme-row { grid-template-columns: 90px 1fr 1fr; }
+      .theme-cell:nth-child(4) { grid-column: 2 / -1; border-top: 1px solid var(--line); }
+      .toolbar { grid-template-columns: 1fr 1fr; }
+      .cards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      .shell { width: min(calc(100% - 32px), var(--max)); }
+      .nav a { display: none; }
+      .masthead-inner { min-height: 56px; }
+      .brand { font-size: 14px; }
+      .hero-main { min-height: auto; padding: 72px 0 56px; }
+      .hero-grid { min-height: 0; }
+      .hero h1 { font-size: clamp(46px, 14vw, 66px); }
+      .hero-lede { font-size: 18px; }
+      .hero-proof { grid-template-columns: 1fr; }
+      .proof { padding: 16px 0; border-bottom: 1px solid var(--line); }
+      .proof + .proof { padding-left: 0; border-left: 0; }
+      .section { padding: 52px 0; }
+      .section-head { gap: 24px; }
+      .priority-lead { display: block; padding: 28px; }
+      .priority-facts { margin-top: 24px; }
+      .priority-fact { grid-template-columns: 1fr; gap: 5px; }
+      .priority-score { margin-top: 22px; }
+      .priority-stack { grid-template-columns: 1fr; }
+      .theme-row { grid-template-columns: 72px 1fr; }
+      .theme-cell { padding: 20px 16px; }
+      .theme-cell:nth-child(3), .theme-cell:nth-child(4) { grid-column: 2; border-top: 1px solid var(--line); }
+      .toolbar { position: static; grid-template-columns: 1fr; }
+      .control, .control input, .control select, .reset { min-height: 58px; height: 58px; }
+      .card-main { min-height: 0; padding: 24px; }
+      .idea-card h3 { margin-top: 28px; }
+      .card-fact { grid-template-columns: 82px 1fr; }
+      .expand { padding: 0 24px; }
+      .details { padding: 8px 24px 24px; }
+      .detail-row { grid-template-columns: 1fr; gap: 8px; }
+      .score-grid { grid-template-columns: repeat(2, 1fr); }
+      .criterion { grid-template-columns: 1fr; gap: 6px; }
+      .footer-grid { display: grid; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+    @media print {
+      :root { color-scheme: light; --bg: #fff; --bg-elevated: #f4f4f4; --bg-soft: #fff; --surface: #e5e5e5; --ink: #111; --muted: #444; --quiet: #666; --line: #bbb; --accent: #0f62fe; --accent-bright: #0043ce; }
+      .masthead, .hero-actions, .toolbar, .expand, .print-btn { display: none !important; }
+      .hero-grid { min-height: 0; display: block; }
+      .hero-main { padding: 40px 0; }
+      .hero-brief { padding: 24px 0; border-left: 0; }
+      .section { padding: 36px 0; }
+      .priority-layout, .cards { display: block; border: 0; }
+      .priority-lead, .priority-item, .idea-card { break-inside: avoid; border: 1px solid #bbb; margin-bottom: 12px; color: #111; }
+      .priority-lead { min-height: 0; background: #edf5ff; }
+      .details[hidden] { display: block; }
+      .cards .idea-card { page-break-inside: avoid; }
+      .card-main { min-height: 0; }
+      .theme-row { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="masthead">
+    <div class="shell masthead-inner">
+      <a class="brand" href="#top" aria-label="AI-Agent Opportunity Portfolio home"><span class="brand-mark">20</span><span>Agent Opportunity Portfolio</span></a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#priorities">Top five</a><a href="#portfolio">Portfolio</a><a href="#method">Method</a>
+        <button class="print-btn" type="button" id="printButton">Print / PDF</button>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="shell hero-grid">
+        <div class="hero-main">
+          <div>
+            <p class="eyebrow">Executive opportunity brief · 2026</p>
+            <h1>Where autonomous agents can create <em>defensible business value.</em></h1>
+            <p class="hero-lede">Twenty source-bounded startup theses across industrial operations, regulated workflows, enterprise infrastructure, human escalation, and consumer action agents.</p>
+            <div class="hero-actions">
+              <a class="button" href="#priorities"><span>Review priority opportunities</span><span aria-hidden="true">↓</span></a>
+              <a class="button secondary" href="#portfolio"><span>Explore all 20 ideas</span><span aria-hidden="true">→</span></a>
+            </div>
+          </div>
+          <div class="hero-proof" aria-label="Portfolio summary">
+            <div class="proof"><strong>20</strong><span>Distinct startup theses</span></div>
+            <div class="proof"><strong>15</strong><span>Opportunity areas</span></div>
+            <div class="proof"><strong>24/25</strong><span>Highest ideation score</span></div>
+          </div>
+        </div>
+        <aside class="hero-brief" aria-label="Executive takeaways">
+          <p class="eyebrow">Executive takeaways</p>
+          <h2 class="brief-title">Three patterns worth testing first</h2>
+          <ol class="brief-list">
+            <li><strong>Control the transaction boundary</strong><span>Governance products become harder to remove when every autonomous action passes through them.</span></li>
+            <li><strong>Enter through a narrow integration wedge</strong><span>Translate one painful document or system change before attempting end-to-end transformation.</span></li>
+            <li><strong>Own the exception workflow</strong><span>High-value agents coordinate evidence, deterministic checks, and human approval—not just content generation.</span></li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="priorities">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="eyebrow">Priority opportunities</p><h2>Five concepts to take into customer discovery.</h2></div>
+          <p class="section-note">These concepts combine painful jobs, identifiable buyers, credible starting wedges, integration or data moats, and room to expand. Scores are comparative ideation judgments—not market validation.</p>
+        </div>
+        <div class="priority-layout" id="priorityLayout"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="eyebrow">Portfolio thesis board</p><h2>Where the portfolio concentrates—and what to validate first.</h2></div>
+          <p class="section-note">Twenty opportunities collapse into five distinct buying motions. Each row connects a commercial thesis to named plays and the question that should determine whether discovery continues.</p>
+        </div>
+        <div class="theme-board">
+          <div class="theme-head" aria-hidden="true"><span>Thesis</span><span>Commercial logic</span><span>Representative plays</span><span>Go / no-go test</span></div>
+          <div class="theme-grid" id="themeMap" aria-label="Strategic opportunity themes"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section portfolio-section" id="portfolio">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="eyebrow">Full portfolio</p><h2>Search, compare, and open the business case.</h2><p class="section-intro">Start with the pain and wedge. Expand a card only when you need the operating model, defensibility, risks, assumptions, and score anatomy.</p></div>
+        </div>
+        <div class="toolbar" role="search" aria-label="Portfolio filters">
+          <div class="control"><label for="searchInput">Search</label><input id="searchInput" type="search" placeholder="Idea, buyer, pain, or workflow"></div>
+          <div class="control"><label for="areaSelect">Opportunity area</label><select id="areaSelect"><option value="all">All areas</option></select></div>
+          <div class="control"><label for="sortSelect">Sort</label><select id="sortSelect"><option value="rank">Priority rank</option><option value="score">Highest score</option><option value="pilot">Fastest pilot</option><option value="name">Name A–Z</option></select></div>
+          <button class="reset" type="button" id="resetButton">Reset</button>
+        </div>
+        <div class="results-meta" aria-live="polite"><span><strong id="resultCount">20</strong> opportunities shown</span><span id="activeContext">Sorted by priority rank</span></div>
+        <div class="cards" id="ideaGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="method">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="eyebrow">Decision framework</p><h2>Transparent scoring, explicit assumptions.</h2></div>
+          <p class="section-note">Each idea is scored from 1–5 across five consistent criteria. A high score earns a discovery conversation, not an investment decision.</p>
+        </div>
+        <div class="method-grid">
+          <div>
+            <h3>How to use this portfolio</h3>
+            <p>Choose a priority concept, interview the named buyer, test whether the painful job is urgent and funded, and prototype only the narrow wedge. Re-score after customer evidence replaces assumptions.</p>
+            <div class="discovery-steps" aria-label="Recommended discovery sequence">
+              <div class="discovery-step"><span>01</span><div><strong>Confirm the costly exception</strong><p>Ask for the last real failure, delay, manual escalation, or audit issue—not a hypothetical use case.</p></div></div>
+              <div class="discovery-step"><span>02</span><div><strong>Locate budget and authority</strong><p>Identify who owns the outcome, who controls system access, and who can approve a pilot.</p></div></div>
+              <div class="discovery-step"><span>03</span><div><strong>Test the narrow wedge</strong><p>Prototype one bounded artifact or transaction with explicit human approval and measurable acceptance criteria.</p></div></div>
+            </div>
+            <div class="disclaimer">
+              <h3>Important evidence boundary</h3>
+              <p>These are hypotheses inspired by Open Design and an AI Engineering Use Cases Framework. Pricing, demand, ROI, regulatory acceptance, model performance, and integration feasibility remain unvalidated.</p>
+            </div>
+          </div>
+          <div class="criteria">
+            <div class="criterion"><strong>Pain severity</strong><span>How costly, risky, frequent, or operationally urgent is the job?</span></div>
+            <div class="criterion"><strong>Buyer clarity</strong><span>Can a specific role own the problem and fund a solution?</span></div>
+            <div class="criterion"><strong>Time to pilot</strong><span>Can the initial wedge demonstrate value without transforming the whole workflow?</span></div>
+            <div class="criterion"><strong>Integration moat</strong><span>Do data, adapters, policies, feedback, or workflow position improve defensibility?</span></div>
+            <div class="criterion"><strong>Expansion path</strong><span>Can the wedge grow into a broader operating layer, network, or system of record?</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="shell footer-grid"><span>AI-Agent Opportunity Portfolio</span><span class="source-code">Source IDs: OD1–OD12 · PDF1–PDF10</span></div>
+  </footer>
+
+  <script id="portfolioData" type="application/json">[{"name": "AuditProxy Financial", "opportunity_area": "agent_governance_evaluation", "target_customer": "Financial firms deploying autonomous purchasing or trading agents", "painful_job": "Ensuring independent purchasing agents do not exceed budget limits, execute double transactions, or authorize non-compliant contracts.", "agent_workflow": "Serves as a sandboxed proxy server between planning agents and web APIs, checking transaction requests against financial rules, evaluating contract clauses, and generating audit logs.", "wedge_mvp": "A local web proxy that monitors agent outbound API requests and intercepts calls exceeding predefined transaction spending limits.", "business_model": "Subscription pricing based on the count of API requests audited by the proxy.", "defensibility": "Database of corporate policy compliance checkers and cryptographically signed audit trail logs.", "key_risk": "Adding processing latency to time-sensitive agent transaction pathways.", "source_connections": ["OD3", "OD7"], "assumptions": ["Assumes enterprises will route agent transactional API traffic through an external validator proxy", "Assumes corporate purchasing policies can be translated into formal validation schemas", "Assumes transaction audit logs are sufficient to resolve liability disputes with vendor networks"], "why_distinct": "Evaluates financial and transaction risk at the API boundary, distinct from database command safety (TrustBound) or code verification.", "scores": {"pain": 5, "buyer": 5, "pilot": 4, "moat": 5, "expansion": 5}, "total": 24, "rank": 1, "topFive": true}, {"name": "MESbridge", "opportunity_area": "enterprise_integration", "target_customer": "Mid-sized electronics contract manufacturers", "painful_job": "Translating complex OEM engineering design change orders (ECOs) into active Manufacturing Execution System (MES) routing instructions takes days.", "agent_workflow": "Enterprise integration daemon intercepts engineering design files (BOMs/CAD), executes an ECO routing skill, maps adjustments to MES database tables, and outputs change-validation reports for review.", "wedge_mvp": "CLI tool that compares two BOM files and outputs a formatted list of suggested MES routing changes.", "business_model": "Annual software license per active MES database connection.", "defensibility": "Deep library of proprietary adapters for legacy MES databases (e.g., older Plex, Camstar, or custom SQL databases).", "key_risk": "Auto-generated MES routing changes causing manufacturing errors if design details are misinterpreted.", "source_connections": ["OD7", "OD8", "OD9", "PDF2"], "assumptions": ["Engineering change orders can be parsed automatically without losing critical assembly tolerances", "Factory IT teams will grant write access to their core MES databases for AI agents", "The time to map ECOs to MES routing can be reduced from 5 days to under 1 hour", "A validation report is sufficient to prevent incorrect routing deployments"], "why_distinct": "Automates the translation of complex design changes (CAD/BOM) into low-level execution instructions (MES database routing).", "scores": {"pain": 4, "buyer": 5, "pilot": 4, "moat": 5, "expansion": 5}, "total": 23, "rank": 2, "topFive": true}, {"name": "VerifyOps", "opportunity_area": "agent_governance_evaluation", "target_customer": "Healthtech compliance officers managing patient data parsing agents", "painful_job": "Validating that medical report summary agents do not omit critical diagnostic indicators or introduce silent clinical errors during data extraction.", "agent_workflow": "An independent critic agent reviews clinical outputs against raw input PDFs, flags discrepancies, tracks historical accuracy rates, and prevents delivery of low-confidence summaries.", "wedge_mvp": "A standalone verification engine that takes input-output pairs and outputs a detailed critique report with direct citations.", "business_model": "API usage-based pricing per evaluated document pair.", "defensibility": "Proprietary clinical critique rubrics built in collaboration with medical boards.", "key_risk": "Critic agents experiencing similar hallucinations or missing subtle clinical omissions.", "source_connections": ["OD7", "PDF9"], "assumptions": ["Healthcare organizations will trust a second LLM to validate the outputs of a primary LLM.", "Independent criticism reduces validation error rates down to acceptable clinical safety levels.", "Compliance rules allow using API-based evaluation engines on de-identified patient summaries."], "why_distinct": "Applies dual-agent adversarial criticism specifically to clinical document accuracy rather than general software testing.", "scores": {"pain": 5, "buyer": 5, "pilot": 4, "moat": 4, "expansion": 5}, "total": 23, "rank": 3, "topFive": true}, {"name": "SiteCoord", "opportunity_area": "human_agent_coordination", "target_customer": "Construction project managers and site superintendents.", "painful_job": "Tracking daily subcontractor progress reports and physical site photos against the master schedule, and resolving scheduling conflicts between active trades.", "agent_workflow": "A construction coordination agent ingests daily logs and mobile site photos submitted by subcontractors. The agent extracts progress metrics, overlays physical photos with CAD plans, and reconciles schedules. If a delay is detected, the agent drafts schedule revisions and sends interactive choice checklists to the project manager to approve new subcontractor dispatch orders.", "wedge_mvp": "A messaging agent that collects daily text updates from subcontractors, parses progress, and compiles a daily PDF summary.", "business_model": "Monthly per-project licensing fee with standard subcontractor onboarding accelerators.", "defensibility": "Integrations with major construction ERPs (Procore, Autodesk Build) and site schedule databases.", "key_risk": "Discrepancies between subcontractor-reported progress and actual physical site conditions.", "source_connections": ["OD11", "OD12", "PDF1", "PDF6", "PDF8"], "assumptions": ["Subcontractors are willing to submit regular daily photo updates via mobile", "Computer vision can reliably confirm construction milestones from unstructured site photos", "Project managers will actively review schedules through mobile checklist widgets"], "why_distinct": "Designed for construction trade sequencing and physical site coordination, distinct from office-bound software project tracking.", "scores": {"pain": 4, "buyer": 5, "pilot": 5, "moat": 4, "expansion": 5}, "total": 23, "rank": 4, "topFive": true}, {"name": "RevContract", "opportunity_area": "revenue_customer_ops", "target_customer": "Customer success and revenue operations teams at B2B enterprise software companies.", "painful_job": "Tracking customized contract terms, service level agreement (SLA) triggers, and expansion milestones across thousands of custom enterprise software agreements.", "agent_workflow": "A revenue assurance agent checks contract repositories for newly signed enterprise agreements. The agent parses specific payment milestones, custom pricing schedules, and SLA penalty terms. It generates structured revenue schedule metrics and writes automated monitoring triggers directly to CRM and billing platforms. The agent reports exceptions to the accounts receivable team.", "wedge_mvp": "A local script that parses enterprise contract PDFs and populates billing milestones in an Excel sheet or billing portal.", "business_model": "Monthly base platform fee plus a percentage of recovered revenue from identified SLA anomalies.", "defensibility": "Custom integration adapters for bespoke enterprise contract management systems and proprietary billing schema mappings.", "key_risk": "Misinterpreting legal verbiage regarding software deployment definitions, causing false billing triggers.", "source_connections": ["OD5", "PDF2", "PDF6", "PDF7"], "assumptions": ["Revenue operations teams will trust automated extraction of complex legal billing terms", "Enterprise software contracts can be parsed with high accuracy using isolated text models", "CRM databases are clean enough to accept contract trigger writing without data corruption"], "why_distinct": "Focuses strictly on post-signature enterprise contract billing milestone extraction and SLA triggers, distinct from pre-signature contract review.", "scores": {"pain": 4, "buyer": 5, "pilot": 4, "moat": 5, "expansion": 5}, "total": 23, "rank": 5, "topFive": true}, {"name": "CargoClear", "opportunity_area": "regulated_document_ops", "target_customer": "Maritime freight forwarders and customs brokers.", "painful_job": "Cross-checking complex commercial invoices, ocean bills of lading, and packaging lists against country-specific import tariff schedules to assign Harmonized System (HS) codes.", "agent_workflow": "A customs compliance agent ingests multimodal documents via a local daemon. The agent extracts line-item descriptions, normalizes weights and units, and evaluates them against target country customs import tariffs using an expert ruleset library. The agent outputs a structured customs declaration package detailing suggested HS code classifications and the specific rules applied.", "wedge_mvp": "A web dashboard where customs clerks drag-and-drop shipping documents to receive recommended HS codes with confidence ratings.", "business_model": "Transactional pricing per processed shipping container documentation set.", "defensibility": "Historical database of customs inspection feedback, broker validation edits, and complex custom rulesets.", "key_risk": "HS classification errors leading to customs audits, cargo delays, or severe regulatory fines.", "source_connections": ["OD8", "OD10", "OD12", "PDF6", "PDF7"], "assumptions": ["Brokers are willing to bear the liability of verifying agent-suggested HS classifications", "Optical character recognition (OCR) of low-quality shipping invoices is accurate enough for line-item matching", "Customs authorities will accept standard formatted declarations generated by our pipeline"], "why_distinct": "Built around maritime logistics trade documentation and HS tariff code lookup logic, distinct from general e-commerce invoice scanning.", "scores": {"pain": 4, "buyer": 5, "pilot": 5, "moat": 4, "expansion": 5}, "total": 23, "rank": 6, "topFive": false}, {"name": "LingoVerify Network", "opportunity_area": "human_agent_coordination", "target_customer": "Global brands publishing automated product listings", "painful_job": "Preventing idiomatic translation errors in automated localization pipelines that cause brand damage and low conversion.", "agent_workflow": "Automated translation agent runs content, evaluates linguistic confidence score, redirects low-confidence outputs to on-call paid human translators, compiles corrections, and updates listing templates.", "wedge_mvp": "An automated translation script that detects phrases with low confidence scores and routes them to a Slack channel for human reviewer verification.", "business_model": "Transaction fee per character parsed plus markup on human translator labor costs.", "defensibility": "Routing model that matches low-confidence language structures with human translators certified in specific idioms.", "key_risk": "Delays in human responses causing e-commerce content queues to stall.", "source_connections": ["PDF9", "OD11"], "assumptions": ["Assumes brands are willing to pay for human validation over cheap, fully automated solutions", "Assumes on-call translators are available globally to meet operational SLA demands", "Assumes machine confidence scores can accurately pinpoint idiomatic translation failures"], "why_distinct": "It coordinates paid on-call human translation verification dynamically based on real-time confidence thresholds, avoiding static human workflows.", "scores": {"pain": 4, "buyer": 5, "pilot": 5, "moat": 4, "expansion": 5}, "total": 23, "rank": 7, "topFive": false}, {"name": "HangarOps", "opportunity_area": "vertical_workflow_service", "target_customer": "Part 145 Aircraft Maintenance, Repair, and Overhaul (MRO) facilities.", "painful_job": "Reconciling disparate engine maintenance logs and visual inspection photos to compile FAA-compliant major repair blueprints and work cards.", "agent_workflow": "An autonomous MRO engineer agent orchestrates the ingestion of aircraft engine inspection logs and borescope images. The agent evaluates the data against specific engine-type repair limits stored in an expert skill library. It produces structured maintenance work packages detailing step-by-step repair tasks, parts list, and required tools. A master mechanic conducts a human-in-the-loop audit before submitting to the hangar's main scheduling system.", "wedge_mvp": "A desktop utility that accepts borescope image uploads and logs, then automatically populates a drafted work card matching the aircraft's serial number.", "business_model": "Software-as-a-service tier plus usage-based fees per generated aircraft maintenance work pack.", "defensibility": "Specialized engine model adapter layers and custom linting rules that grow more refined with each localized MRO hangar's historical approvals.", "key_risk": "Incorrect extraction of structural damage metrics from visual records, potentially bypassing safety limits.", "source_connections": ["OD10", "OD11", "PDF1", "PDF5", "PDF7"], "assumptions": ["MRO technicians will trust AI-generated repair blueprints", "FAA inspectors will accept digital MRO work card compilation templates generated by an agent", "Borescope photo resolutions are sufficient for automatic wear-and-tear classification"], "why_distinct": "Addresses aircraft maintenance-specific regulatory thresholds and visual-structural logs, differentiating it from general asset management or fleet tracking.", "scores": {"pain": 5, "buyer": 5, "pilot": 3, "moat": 5, "expansion": 4}, "total": 22, "rank": 8, "topFive": false}, {"name": "PharmaPub", "opportunity_area": "regulated_document_ops", "target_customer": "Clinical trial sponsors and regulatory affairs directors at mid-sized biotech companies.", "painful_job": "Reformatting raw clinical trial statistical analyses and researcher notes into FDA-compliant Clinical Study Reports (CSR) Section 14 tables and narratives.", "agent_workflow": "A regulatory medical writing agent ingests raw CSV tables and study protocols. The agent references a pre-configured FDA CSR design contract and linting rules to compile compliant medical text and statistical summaries. The output is structured as a rich, auditable clinical document artifact, displaying precise source mapping to raw data files, which is then routed to a principal medical writer for review.", "wedge_mvp": "A local command-line utility that converts raw SAS export files into draft CSR Section 14 table descriptions.", "business_model": "Annual subscription per active drug development program with professional service setup modules.", "defensibility": "A proprietary library of FDA validation rule sheets and custom CSR linting modules built over historical submissions.", "key_risk": "Hallucinating or misinterpreting safety data trends, which requires strict verification protocols.", "source_connections": ["OD3", "OD5", "OD7", "OD10", "OD11", "PDF9"], "assumptions": ["Regulatory medical writers will adopt a CLI/local-first tool for initial drafts", "FDA submission criteria are structured enough for deterministic agent validation", "Biotech companies will allow processing clinical trial datasets through isolated local runtime adapters"], "why_distinct": "Focuses specifically on Section 14 CSR formatting and SAS dataset alignment, differentiating it from generalized legal document writers.", "scores": {"pain": 5, "buyer": 5, "pilot": 3, "moat": 5, "expansion": 4}, "total": 22, "rank": 9, "topFive": false}, {"name": "SupplyLink", "opportunity_area": "cross_org_agent_networks", "target_customer": "Automotive tier-1 suppliers and OEMs", "painful_job": "Coordinating part delivery schedules, custom fitment variations, and lead times across independent corporate supply chains without exposing internal ERP databases.", "agent_workflow": "OEM agents query supplier agents via secure, sandboxed message protocols, negotiating shipping dates and part availability without sharing full production schedules.", "wedge_mvp": "A secure agent communications proxy that handles lead-time queries from partner companies and returns verified dates.", "business_model": "Per-message or transaction fee for cross-company automated bookings.", "defensibility": "Network effects as more tier-1 and tier-2 suppliers connect their localized inventory agents.", "key_risk": "Supplier inventory agents leaking sensitive price or inventory capacity signals through repeated queries.", "source_connections": ["OD1", "PDF2", "PDF6"], "assumptions": ["Supply chain partners will trust agents to negotiate schedules on their behalf.", "Standardized communication protocols can prevent database leakage.", "Automating inventory queries can reduce logistics planning overhead."], "why_distinct": "Enables autonomous agent negotiation across company boundaries without a centralized database platform.", "scores": {"pain": 5, "buyer": 5, "pilot": 2, "moat": 5, "expansion": 5}, "total": 22, "rank": 10, "topFive": false}, {"name": "WorkspaceX", "opportunity_area": "local_private_agent_infra", "target_customer": "DevOps and Site Reliability Engineering teams", "painful_job": "Providing ephemeral, secure, and clean workspaces with precise directory locking and dependency management for automation agents.", "agent_workflow": "An orchestration engine provisions an isolated local container workspace, loads specified directory structures, executes agent runs, monitors directory bounds (freeze), and cleanly tears down the workspace.", "wedge_mvp": "A command-line tool that spins up sandboxed directory containers with predefined system packages for agent execution.", "business_model": "Usage-based pricing for enterprise cluster management of virtual workspace environments.", "defensibility": "Patented local directory-monitoring technology that prevents code changes outside execution zones.", "key_risk": "High resource overhead of spinup/teardown cycles in high-throughput pipelines.", "source_connections": ["OD1", "OD11", "PDF2"], "assumptions": ["Infrastructure teams prefer dedicated containerized directories over standard virtual machines.", "Execution constraints can prevent all forms of escape attempts by malicious or buggy agents.", "Workspace provisioning speed is a primary bottleneck for scaling agent workflows."], "why_distinct": "Focuses on local workspace isolation and safety bounds management rather than model execution or scheduling.", "scores": {"pain": 4, "buyer": 5, "pilot": 4, "moat": 4, "expansion": 5}, "total": 22, "rank": 11, "topFive": false}, {"name": "FactoryFlow", "opportunity_area": "multimodal_artifact_ops", "target_customer": "Factory floor training and operations managers", "painful_job": "Creating visual, step-by-step Standard Operating Procedure (SOP) manuals and video training clips when production assembly lines are updated.", "agent_workflow": "An agent analyzes updated CAD models and tool parameters, drafts standard text instructions, generates annotated mechanical drawings, and outputs a print-ready training manual and HTML guide.", "wedge_mvp": "A software application that takes CAD assembly files and generates step-by-step visual assembly instruction cards.", "business_model": "Tiered subscription based on the number of manufacturing lines documented.", "defensibility": "Direct integrations with major CAD systems (SolidWorks, Autodesk) and custom visual template pipelines.", "key_risk": "Inaccuracies in translating 3D CAD dimensions into safe, human-readable step-by-step directions.", "source_connections": ["OD5", "OD12", "PDF5", "PDF7"], "assumptions": ["Factory managers are willing to trust AI-generated SOPs for safety-critical assembly steps.", "Visual step extraction from CAD models can be automated without heavy manual adjustment.", "Manufacturing operations will pay a premium to reduce training document creation cycles from weeks to hours."], "why_distinct": "Generates physical-operational manuals and instructional layouts from spatial data, rather than software code or general text.", "scores": {"pain": 4, "buyer": 5, "pilot": 3, "moat": 5, "expansion": 5}, "total": 22, "rank": 12, "topFive": false}, {"name": "BidResponse", "opportunity_area": "revenue_customer_ops", "target_customer": "Bid managers at industrial construction and engineering firms.", "painful_job": "Parsing thousands of pages of municipal Request for Proposal (RFP) documents to compile localized cost estimation tables and outline technical draft compliance matrices.", "agent_workflow": "An RFP response agent scans newly released municipal bidding files. The agent extracts technical requirements, site constraints, and material specs. It compiles a preliminary compliance matrix artifact showing technical alignment, and cross-references historical company bids to draft price estimates. The agent outputs the draft proposal package directly to the local project workspace for estimation team reviews.", "wedge_mvp": "A local file parser that extracts the technical compliance checklist from PDF RFPs and maps them to previous corporate proposal templates.", "business_model": "Monthly subscription covering active pipeline bids with reusable proposal accelerators.", "defensibility": "Proprietary historical bidding library database and custom bid-scoring algorithms trained on the firm's private wins/losses.", "key_risk": "Missing an obscure requirement hidden deep in a multi-hundred-page municipal PDF, resulting in bid disqualification.", "source_connections": ["OD5", "OD12", "PDF1", "PDF8"], "assumptions": ["Engineering firms will store historical bids in an accessible local database", "Municipal RFP guidelines remain stable enough for pattern-matching extraction", "Bidding teams can reduce response compilation times by 40% with drafted matrices"], "why_distinct": "Tailored specifically to construction technical compliance matrices and engineering estimate structures, unlike simple marketing proposal drafts.", "scores": {"pain": 4, "buyer": 5, "pilot": 5, "moat": 4, "expansion": 4}, "total": 22, "rank": 13, "topFive": false}, {"name": "FurnacePulse", "opportunity_area": "predictive_operations", "target_customer": "Steel casting foundries", "painful_job": "Electric arc furnace refractory lining degradation is hard to measure, risking molten metal breakouts or premature, expensive lining replacements.", "agent_workflow": "Agent uses thermal sensors and electrical consumption anomalies to run diagnostic skills, predicts remaining lining thickness, and compiles structured Refractory Maintenance Directives for the next shutdown.", "wedge_mvp": "Web dashboard analyzing thermal shell photos to identify localized refractory hot spots.", "business_model": "Recurring annual subscription based on the number of active furnaces.", "defensibility": "Data moat combining electrical harmonics and shell temperatures with historical refractory wear profiles.", "key_risk": "High sensor failure rates due to extreme electromagnetic noise and dust near electric arc furnaces.", "source_connections": ["OD2", "OD5", "PDF5", "PDF9"], "assumptions": ["Electromagnetic noise from arc furnaces will not corrupt sensor data", "Refractory wear can be accurately predicted within 5% error using external thermal and electrical data", "Foundry managers will delay lining replacement based on AI predictions", "A breakout event can be prevented 100% of the time by the monitoring system"], "why_distinct": "Uses non-contact physical proxies (harmonics and thermal shell data) to estimate internal solid degradation under extreme environments.", "scores": {"pain": 5, "buyer": 5, "pilot": 2, "moat": 5, "expansion": 4}, "total": 21, "rank": 14, "topFive": false}, {"name": "LockoutGuard", "opportunity_area": "worker_safety_compliance", "target_customer": "Chemical processing plants", "painful_job": "Workers failing to execute Lockout-Tagout (LOTO) steps correctly during machinery maintenance, leading to fatal re-energization accidents.", "agent_workflow": "An agent orchestrates smart padlock status, digital log sheets, and worker camera feeds; runs safety compliance checks against specific equipment SOP documents; and flags active unsafe energy states.", "wedge_mvp": "Mobile app that verifies LOTO padlock placement photos against a checklist before permitting maintenance sign-off.", "business_model": "Monthly subscription per active maintenance worker license.", "defensibility": "Integration moat with physical smart-padlock APIs and internal corporate safety permission databases.", "key_risk": "Spotty cellular or Wi-Fi coverage inside heavily shielded industrial processing units.", "source_connections": ["OD2", "OD7", "OD11", "PDF5"], "assumptions": ["Smart padlocks are reliable and do not experience mechanical or electronic lockups in chemical environments", "Maintenance personnel will consistently use the app during LOTO routines", "Photo verification is secure against worker spoofing or reuse of old photos", "Insurance companies will discount plant premiums if LockoutGuard is implemented"], "why_distinct": "Focuses specifically on procedural safety lock-state verification and human-in-the-loop validation of physical energy isolation.", "scores": {"pain": 5, "buyer": 5, "pilot": 3, "moat": 4, "expansion": 4}, "total": 21, "rank": 15, "topFive": false}, {"name": "BatchChain AI", "opportunity_area": "traceability_recall", "target_customer": "High-end organic cosmetics brands and contract manufacturers", "painful_job": "Contaminated raw botanical batches force full product line recalls because brands cannot prove which specific retail bottles contain the bad batch.", "agent_workflow": "Traceability agent parses supplier PDFs, MES batch records, and filler log files, builds a graph linking raw ingredient lot numbers to finished retail bottle serial numbers, and outputs interactive recall containment maps.", "wedge_mvp": "Desktop tool that searches uploaded PDF batch records to generate a clean CSV mapping raw lots to final bottle ranges.", "business_model": "Per-batch traced fee with a baseline monthly platform subscription.", "defensibility": "Proprietary ingestion adapters that normalize messy handwritten or scanned factory batch logs.", "key_risk": "Suppliers refusing to share upstream raw batch PDFs due to trade secret concerns.", "source_connections": ["OD2", "OD5", "PDF6", "PDF7"], "assumptions": ["Scanned batch records can be parsed with 99.99% accuracy to prevent untraced product leakage", "Suppliers will cooperate with ingredient-level tracking requests from brands", "Recalls can be narrowed by 80% through item-level batch mapping", "Cosmetic brands will pay a premium for proactive recall mapping before an event occurs"], "why_distinct": "Focuses on complex multi-tier ingredient-to-serial mapping from unstructured batch data to shrink the scope of retail recalls.", "scores": {"pain": 4, "buyer": 4, "pilot": 4, "moat": 4, "expansion": 5}, "total": 21, "rank": 16, "topFive": false}, {"name": "AdapterHub", "opportunity_area": "agent_skill_marketplace", "target_customer": "Industrial automation teams connecting MES systems to LLM orchestrators", "painful_job": "Writing custom wrappers and API translations to connect heterogeneous SCADA, MQTT, and SAP endpoints to modern LLM agents.", "agent_workflow": "An agent detects physical machinery telemetry endpoints, queries a directory of normalized hardware adapters, generates a proxy daemon, and streams clean JSON events to planning agents.", "wedge_mvp": "A marketplace of standardized, sandboxed, and verified protocol adapters that translate legacy factory systems into standard MCP (Model Context Protocol) servers.", "business_model": "Flat-rate fee per active adapter tunnel per month + setup accelerator fees.", "defensibility": "Proprietary integration adapters that handle rare or custom protocols for legacy manufacturing systems.", "key_risk": "High latency or connection dropouts in standardizing legacy systems through unified MCP wrappers.", "source_connections": ["OD8", "OD9", "PDF2", "PDF6"], "assumptions": ["Factory operations are willing to expose legacy control systems to an MCP-based agent gateway.", "MCP servers can handle real-time MQTT telemetry rates without dropping frames.", "Industrial buyers prefer buying standardized adapters over writing bespoke scripts."], "why_distinct": "Focuses on legacy protocol adapter normalization specifically for MCP connections, rather than code libraries or prompt engineering.", "scores": {"pain": 4, "buyer": 4, "pilot": 3, "moat": 5, "expansion": 5}, "total": 21, "rank": 17, "topFive": false}, {"name": "HealthClaim Advocate", "opportunity_area": "consumer_personal_agents", "target_customer": "Individual consumers with high out-of-pocket medical bills", "painful_job": "Auditing complex explanation of benefits statements for billing errors and submitting formal medical billing appeals to insurance companies.", "agent_workflow": "Runs on a local private daemon to parse scanned medical bill and explanation of benefits PDFs, matches charging codes against standard medical databases, drafts appeals referencing carrier guidelines, and tracks response status.", "wedge_mvp": "A local CLI tool that parses a single medical bill and explanation of benefits PDF, outputs a list of coding errors, and generates a pre-formatted appeal letter.", "business_model": "Success-fee model charging a percentage of the financial savings achieved on corrected bills.", "defensibility": "Amassed database of carrier-specific dispute submission pathways and historical billing code error mappings.", "key_risk": "Insurance companies altering submission formats or refusing to recognize automated appeal letters.", "source_connections": ["OD5", "OD8"], "assumptions": ["Assumes consumers will trust a local-first application with sensitive health data", "Assumes medical billing data and carrier guidelines are accessible via local adapters without high licensing fees", "Assumes contingency-based success fee models are compliant with state-level consumer protection regulations"], "why_distinct": "It is a consumer-focused, local-first billing auditor generating custom appeal letters rather than an enterprise payer-provider reconciliation network.", "scores": {"pain": 5, "buyer": 3, "pilot": 4, "moat": 4, "expansion": 4}, "total": 20, "rank": 18, "topFive": false}, {"name": "WeldMind AI", "opportunity_area": "industrial_vision_quality", "target_customer": "Heavy machinery structural welding shops", "painful_job": "Post-weld ultrasonic and visual inspection is slow, bottlenecking the production line and delaying structural certifications.", "agent_workflow": "An autonomous agent coordinates thermal and visual camera feeds during the welding process, executing real-time welding-run quality checks, flagging slag inclusions or porosity, and generating a compliant Weld Quality Certification PDF.", "wedge_mvp": "Command-line tool and simple GUI that analyzes post-weld photos to detect surface porosity on T-joints.", "business_model": "Pay-per-weld-inspected API fee with a minimum monthly volume retainer.", "defensibility": "Proprietary database linking thermal weld signatures to real-time structural weld integrity.", "key_risk": "Electro-magnetic interference and high heat damaging camera equipment or disrupting local edge processing.", "source_connections": ["OD5", "OD8", "PDF5", "PDF7"], "assumptions": ["Real-time thermal imaging can reliably predict internal weld porosity before cooling", "Fabricators will trust AI-generated quality certifications for regulatory compliance", "Welders will not reject real-time monitoring devices installed on their torches", "Defect detection rate of 98% is achievable with off-the-shelf thermal sensors"], "why_distinct": "Operates during the active physical process using multi-sensor inputs to generate certification artifacts, rather than post-process structural inspection.", "scores": {"pain": 5, "buyer": 4, "pilot": 2, "moat": 4, "expansion": 4}, "total": 19, "rank": 19, "topFive": false}, {"name": "SubsCancel Agent", "opportunity_area": "consumer_personal_agents", "target_customer": "Consumers seeking to optimize monthly subscription and utility spending", "painful_job": "Identifying duplicate subscriptions, tracking renewal deadlines, and completing tedious online cancellation or pricing negotiation steps.", "agent_workflow": "Local agent analyzes user-provided email receipts, creates a household subscription timeline, flags upcoming renewals, and executes cancellation paths or retention negotiations via sandboxed browser automation.", "wedge_mvp": "A browser extension that identifies subscription charges in email receipts and generates customized negotiation and cancellation script templates.", "business_model": "Percentage of verified subscription savings over a twelve-month period.", "defensibility": "Proprietary database of dynamic negotiation pathways and retention offers across major online services.", "key_risk": "Web service providers deploying anti-bot protections to block automated cancellation actions.", "source_connections": ["OD11", "OD12"], "assumptions": ["Assumes users will grant localized permission to parse transaction confirmation emails", "Assumes browser automation scripts can consistently navigate dynamic cancellation pages", "Assumes that savings-share pricing model generates enough revenue to cover execution costs"], "why_distinct": "Unlike enterprise SaaS optimization tools, this is built for consumer household use, using local browser automation to execute cancellation transactions directly.", "scores": {"pain": 3, "buyer": 3, "pilot": 5, "moat": 3, "expansion": 4}, "total": 18, "rank": 20, "topFive": false}]</script>
+  <script>
+    (() => {
+      'use strict';
+      const ideas = JSON.parse(document.getElementById('portfolioData').textContent);
+      const areaLabels = {
+        industrial_vision_quality: 'Industrial vision & quality', predictive_operations: 'Predictive operations',
+        worker_safety_compliance: 'Worker safety & compliance', traceability_recall: 'Traceability & recall',
+        enterprise_integration: 'Enterprise integration', vertical_workflow_service: 'Vertical workflow service',
+        regulated_document_ops: 'Regulated document operations', revenue_customer_ops: 'Revenue & customer operations',
+        human_agent_coordination: 'Human-agent coordination', agent_skill_marketplace: 'Agent skill marketplace',
+        agent_governance_evaluation: 'Agent governance & evaluation', local_private_agent_infra: 'Local/private agent infrastructure',
+        multimodal_artifact_ops: 'Multimodal artifact operations', cross_org_agent_networks: 'Cross-organization agent networks',
+        consumer_personal_agents: 'Consumer personal agents'
+      };
+      const discoveryReasons = {
+        'AuditProxy Financial': 'Control point for autonomous transactions, with policy enforcement and signed audit trails.',
+        'MESbridge': 'A narrow ECO-to-routing wedge with deep integration defensibility and manufacturing expansion.',
+        'VerifyOps': 'Independent verification for high-consequence clinical outputs and silent omission risk.',
+        'SiteCoord': 'Accessible messaging and PDF wedge with a broad path into construction coordination.',
+        'RevContract': 'Direct linkage to revenue leakage, billing milestones, and durable enterprise systems.'
+      };
+      const strategicThemes = [
+        { count: 6, name: 'Industrial execution', thesis: 'Sell into quality, maintenance, safety, traceability, engineering change, and frontline enablement.', examples: 'WeldMind AI · FurnacePulse · LockoutGuard · BatchChain AI · MESbridge · FactoryFlow', question: 'Which exception already stops production or requires mandatory sign-off?' },
+        { count: 4, name: 'Regulated workflow deliverables', thesis: 'Own the evidence-to-artifact path where accuracy, traceability, and review readiness matter.', examples: 'HangarOps · PharmaPub · CargoClear · BidResponse', question: 'Which deliverable delays revenue, creates rework, or risks rejection?' },
+        { count: 3, name: 'Revenue and coordination operations', thesis: 'Turn unstructured contracts, project updates, and language exceptions into approved operating actions.', examples: 'RevContract · SiteCoord · LingoVerify Network', question: 'Where do missed handoffs or interpretation gaps create measurable leakage?' },
+        { count: 4, name: 'Agent control plane', thesis: 'Provide the adapters, verification, isolation, and policy gates required for agents to act safely.', examples: 'AdapterHub · VerifyOps · WorkspaceX · AuditProxy Financial', question: 'What must be connected, verified, isolated, or blocked before an agent may act?' },
+        { count: 3, name: 'Networked and personal action agents', thesis: 'Coordinate cross-party data and complete bounded transactions without replacing every system involved.', examples: 'SupplyLink · HealthClaim Advocate · SubsCancel Agent', question: 'Can the agent complete a measurable transaction while preserving human control?' }
+      ];
+      const escapeHtml = (value) => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+      const formatArea = area => areaLabels[area] || area.replaceAll('_', ' ');
+      const detailRow = (label, value) => `<div class="detail-row"><dt>${escapeHtml(label)}</dt><dd>${value}</dd></div>`;
+
+      const top = ideas.filter(idea => idea.topFive).sort((a,b) => a.rank - b.rank);
+      document.getElementById('priorityLayout').innerHTML = `
+        <article class="priority-lead">
+          <div><span class="priority-rank">Priority 01 · ${escapeHtml(formatArea(top[0].opportunity_area))}</span><h3>${escapeHtml(top[0].name)}</h3><p>${escapeHtml(discoveryReasons[top[0].name])}</p></div>
+          <div class="priority-facts">
+            <div class="priority-fact"><span>Buyer</span><strong>${escapeHtml(top[0].target_customer)}</strong></div>
+            <div class="priority-fact"><span>First sale</span><strong>${escapeHtml(top[0].wedge_mvp)}</strong></div>
+            <div class="priority-fact"><span>Model</span><strong>${escapeHtml(top[0].business_model)}</strong></div>
+          </div>
+          <div class="priority-score"><span>Ideation score</span><strong>${top[0].total}<small>/25</small></strong></div>
+        </article>
+        <div class="priority-stack">${top.slice(1).map(idea => `<a class="priority-item" href="#idea-${idea.rank}"><div class="priority-item-top"><span class="priority-rank">Priority 0${idea.rank}</span><span class="score">${idea.total}/25</span></div><h3>${escapeHtml(idea.name)}</h3><p>${escapeHtml(discoveryReasons[idea.name])}</p><span class="priority-buyer">Buyer: ${escapeHtml(idea.target_customer)}</span></a>`).join('')}</div>`;
+
+      const areaCounts = ideas.reduce((counts, idea) => (counts[idea.opportunity_area] = (counts[idea.opportunity_area] || 0) + 1, counts), {});
+      document.getElementById('themeMap').innerHTML = strategicThemes.map((theme, index) => `<article class="theme-row"><div class="theme-cell theme-index"><span>0${index + 1}</span><div><strong>${theme.count}</strong><small>ideas</small></div></div><div class="theme-cell"><h3>${escapeHtml(theme.name)}</h3><p>${escapeHtml(theme.thesis)}</p></div><div class="theme-cell"><span class="theme-label">Representative plays</span><p class="theme-examples">${escapeHtml(theme.examples)}</p></div><div class="theme-cell"><span class="theme-label">Go / no-go test</span><p class="theme-question">${escapeHtml(theme.question)}</p></div></article>`).join('');
+
+      const areaSelect = document.getElementById('areaSelect');
+      Object.keys(areaCounts).sort((a,b) => formatArea(a).localeCompare(formatArea(b))).forEach(area => {
+        const option = document.createElement('option'); option.value = area; option.textContent = formatArea(area); areaSelect.appendChild(option);
+      });
+
+      const grid = document.getElementById('ideaGrid');
+      const searchInput = document.getElementById('searchInput');
+      const sortSelect = document.getElementById('sortSelect');
+      const resultCount = document.getElementById('resultCount');
+      const activeContext = document.getElementById('activeContext');
+
+      function card(idea) {
+        const scoreCells = Object.entries(idea.scores).map(([label,score]) => `<div><span>${escapeHtml(label)}</span><strong>${score}</strong></div>`).join('');
+        const assumptions = `<ul>${idea.assumptions.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+        return `<article class="idea-card ${idea.topFive ? 'top-five' : ''}" id="idea-${idea.rank}">
+          <div class="card-main">
+            <div class="card-meta"><span class="rank">Rank ${String(idea.rank).padStart(2,'0')}${idea.topFive ? ' · Priority' : ''}</span><span>${escapeHtml(formatArea(idea.opportunity_area))}</span></div>
+            <h3>${escapeHtml(idea.name)}</h3>
+            <p class="pain">${escapeHtml(idea.painful_job)}</p>
+            <dl class="card-facts">
+              <div class="card-fact"><dt>Buyer</dt><dd>${escapeHtml(idea.target_customer)}</dd></div>
+              <div class="card-fact"><dt>First sale</dt><dd>${escapeHtml(idea.wedge_mvp)}</dd></div>
+              <div class="card-fact"><dt>Model</dt><dd>${escapeHtml(idea.business_model)}</dd></div>
+            </dl>
+            <div class="scoreline"><strong>${idea.total}/25</strong><div class="bar" aria-hidden="true"><span style="width:${idea.total/25*100}%"></span></div><span>Score</span></div>
+          </div>
+          <button class="expand" type="button" aria-expanded="false" aria-controls="detail-${idea.rank}"><span>Open business case</span><span aria-hidden="true">+</span></button>
+          <div class="details" id="detail-${idea.rank}" hidden><dl>
+            ${detailRow('Agent workflow', escapeHtml(idea.agent_workflow))}
+            ${detailRow('Business model', escapeHtml(idea.business_model))}
+            ${detailRow('Defensibility', escapeHtml(idea.defensibility))}
+            ${detailRow('Key risk', escapeHtml(idea.key_risk))}
+            ${detailRow('Assumptions', assumptions)}
+            ${detailRow('Why distinct', escapeHtml(idea.why_distinct))}
+            ${detailRow('Source IDs', `<span class="source-code">${idea.source_connections.map(escapeHtml).join(' · ')}</span>`)}
+            ${detailRow('Score anatomy', `<div class="score-grid">${scoreCells}</div>`)}
+          </dl></div>
+        </article>`;
+      }
+
+      function render() {
+        const term = searchInput.value.trim().toLowerCase();
+        const area = areaSelect.value;
+        const sort = sortSelect.value;
+        let filtered = ideas.filter(idea => {
+          const haystack = [idea.name, idea.target_customer, idea.painful_job, idea.agent_workflow, idea.wedge_mvp, formatArea(idea.opportunity_area)].join(' ').toLowerCase();
+          return (!term || haystack.includes(term)) && (area === 'all' || idea.opportunity_area === area);
+        });
+        filtered.sort((a,b) => sort === 'score' ? b.total - a.total || a.rank - b.rank : sort === 'pilot' ? b.scores.pilot - a.scores.pilot || a.rank - b.rank : sort === 'name' ? a.name.localeCompare(b.name) : a.rank - b.rank);
+        grid.innerHTML = filtered.length ? filtered.map(card).join('') : `<div class="empty"><strong>No opportunities match these filters.</strong><br>Reset or broaden your search.</div>`;
+        resultCount.textContent = filtered.length;
+        const labels = {rank:'priority rank', score:'highest score', pilot:'fastest pilot', name:'name'};
+        activeContext.textContent = `${area === 'all' ? 'All areas' : formatArea(area)} · Sorted by ${labels[sort]}`;
+        grid.querySelectorAll('.expand').forEach(button => button.addEventListener('click', () => {
+          const panel = document.getElementById(button.getAttribute('aria-controls'));
+          const expanded = button.getAttribute('aria-expanded') === 'true';
+          button.setAttribute('aria-expanded', String(!expanded));
+          button.firstElementChild.textContent = expanded ? 'Open business case' : 'Close business case';
+          panel.hidden = expanded;
+        }));
+      }
+
+      searchInput.addEventListener('input', render);
+      areaSelect.addEventListener('change', render);
+      sortSelect.addEventListener('change', render);
+      document.getElementById('resetButton').addEventListener('click', () => { searchInput.value=''; areaSelect.value='all'; sortSelect.value='rank'; render(); searchInput.focus(); });
+      document.getElementById('printButton').addEventListener('click', () => window.print());
+      render();
+    })();
+  </script>
+</body>
+</html>
