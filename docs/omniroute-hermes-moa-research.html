@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes + OmniRoute + MoA Integration Research</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1, h2, h3 { color: #2c3e50; }
+        .timestamp { color: #7f8c8d; font-size: 0.9em; margin-top: 20px; }
+        .section { margin-bottom: 30px; padding: 15px; border-left: 4px solid #3498db; background-color: #f8f9fa; }
+        .decision-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .decision-table th, .decision-table td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        .decision-table th { background-color: #f2f2f2; }
+        .phase { background-color: #e8f4fc; padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .risk { background-color: #fdf2e9; padding: 10px; margin: 10px 0; border-radius: 4px; border-left: 4px solid #e67e22; }
+        .warning { background-color: #fadbd8; padding: 10px; margin: 10px 0; border-radius: 4px; border-left: 4px solid #e74c3c; }
+        .success { background-color: #d5f5e3; padding: 10px; margin: 10px 0; border-radius: 4px; border-left: 4px solid #2ecc71; }
+        code { background-color: #f4f4f4; padding: 2px 4px; border-radius: 3px; font-family: 'Courier New', monospace; }
+        .links { margin-top: 10px; }
+        .links a { color: #3498db; text-decoration: none; }
+        .links a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>Hermes + OmniRoute + MoA Integration Research</h1>
+    <p class="timestamp">Generated using Hermes MoA free-local. Timestamp: 2026-07-09</p>
+
+    <div class="section">
+        <h2>Executive Summary</h2>
+        <p>
+            This document evaluates whether and how to integrate <a href="https://github.com/diegosouzapw/OmniRoute" target="_blank">OmniRoute</a> 
+            into an existing Hermes Desktop/CLI setup, focusing on multi-model capabilities, free/subscription model routing, 
+            and avoiding paid unapproved paid providers credits unless explicitly requested.
+        </p>
+        <p>
+            Current Hermes environment includes a working <code>moa</code> provider with preset <code>free-local</code> 
+            (verified via <code>hermes -z "Reply exactly: MOA_FIXED" --provider moa -m free-local</code>).
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Key Findings from OmniRoute Research</h2>
+        <ul>
+            <li>OmniRoute is a local-first AI gateway offering:</li>
+            <ul>
+                <li>OpenAI-compatible endpoint (<code>http://localhost:20128/v1</code>)</li>
+                <li>237 providers (90+ free tiers)</li>
+                <li>~1.6B documented free tokens/month (steady), up to ~2.1B first month with signup credits</li>
+                <li>17 routing strategies (priority, weighted, round-robin, cost-optimized, headroom, reset-aware, context-optimized, lkgp, fusion, auto, etc.)</li>
+                <li>RTK + Caveman compression (15-95% token savings)</li>
+                <li>Built-in MCP server (stdio, SSE, streamable-HTTP transports)</li>
+                <li>A2A protocol support</li>
+                <li>Dashboard for observability, quota tracking, and provider management</li>
+                <li>Auto-fallback across providers</li>
+            </ul>
+            <li>OmniRoute requires Node.js >=22.0.0 (or compatible newer versions) and is installable via npm.</li>
+            <li>OmniRoute’s own MCP server exposes 87 tools across routing, cache, compression, memory, skills, etc.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Recommended Architecture</h2>
+        <p>
+            Keep Hermes as the primary agent. Use Hermes native MoA for simple panel synthesis. 
+            Build custom skills and MCP tools for NVIDIA/Gemini multimodal routing first. 
+            Add OmniRoute later as an optional external gateway, not an immediate replacement.
+        </p>
+        <div class="phase">
+            <h3>Layer 1: Hermes Native (with MoA free-local)</h3>
+            <p>
+                Use for simple multi-advisor aggregation. Current <code>free-local</code> preset:
+            </p>
+            <pre>
+moa:
+  default_preset: free-local
+  presets:
+    free-local:
+      enabled: true
+      reference_models:
+        - provider: openai-codex
+          model: gpt-5.5
+        - provider: nvidia
+          model: nvidia/nemotron-nano-12b-v2-vl
+        - provider: nvidia
+          model: mistralai/mistral-small-4-119b-2603
+      aggregator:
+        provider: nvidia
+        model: nvidia/nemotron-3-super-120b-a12b
+      reference_max_tokens: 512
+      max_tokens: 2048
+      fanout: user_turn
+            </pre>
+        </div>
+        <div class="phase">
+            <h3>Layer 2: Custom Skills</h3>
+            <p>
+                Example: <code>multimodal-free-model-router</code> skill that encodes routing logic:
+            </p>
+            <ul>
+                <li>Coding → Codex / Mistral Nemotron</li>
+                <li>Vision → NVIDIA VL / Mistral Small 4 VLM</li>
+                <li>Deep reasoning → MoA free-local</li>
+                <li>Image generation → Gemini/Nano Banana only when credits work</li>
+                <li>Fallback → NVIDIA before unapproved paid providers</li>
+            </ul>
+        </div>
+        <div class="phase">
+            <h3>Layer 3: Custom MCP</h3>
+            <p>
+                Example: <code>nvidia-multimodal-router</code> MCP server with tools:
+            </p>
+            <ul>
+                <li><code>list_nvidia_models</code></li>
+                <li><code>test_nvidia_model</code></li>
+                <li><code>analyze_image_nvidia</code></li>
+                <li><code>route_vision_task</code></li>
+                <li><code>check_gemini_credits</code></li>
+            </ul>
+            <p>
+                Provides explicit tool access to multimodal models independent of Desktop model picker.
+            </p>
+        </div>
+        <div class="phase">
+            <h3>Layer 4: Optional OmniRoute Gateway</h3>
+            <p>
+                Add only if we need:
+            </p>
+            <ul>
+                <li>Multi-provider free-tier aggregation</li>
+                <li>Automatic fallback chains</li>
+                <li>Quota-aware routing and monitoring</li>
+                <li>OpenAI-compatible unified endpoint</li>
+                <li>MCP/A2A integration</li>
+                <li>Dashboard/observability/compression</li>
+                <li>Fusion strategy (panel of models + judge)</li>
+            </ul>
+            <p>
+                Integration options:
+            </p>
+            <ul>
+                <li>Hermes → native providers directly (current)</li>
+                <li>Hermes → custom MCP tools (recommended next)</li>
+                <li>Hermes → OmniRoute OpenAI-compatible gateway (<code>http://localhost:20128/v1</code>)</li>
+                <li>Hermes → OmniRoute MCP (via stdio or HTTP)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Phased Implementation Plan</h2>
+        <div class="phase">
+            <h3>Phase 1: Stabilize Hermes MoA free-local</h3>
+            <ul>
+                <li>Verify <code>hermes -z "Reply exactly: MOA_OK" --provider moa -m free-local</code> works.</li>
+                <li>Ensure no unapproved paid providers credentials are required in the preset.</li>
+            </ul>
+        </div>
+        <div class="phase">
+            <h3>Phase 2: Build <code>multimodal-free-model-router</code> skill</h3>
+            <ul>
+                <li>Create skill guiding model selection and fallback.</li>
+                <li>Encode preferences for free/subscription/free-credit providers.</li>
+                <li>Avoid unapproved paid providers unless explicitly allowed.</li>
+            </ul>
+        </div>
+        <div class="phase">
+            <h3>Phase 3: Build <code>nvidia-multimodal-router</code> MCP</h3>
+            <ul>
+                <li>Expose tools for NVIDIA multimodal model interaction.</li>
+                <li>Include vision, reasoning, and credit-check capabilities.</li>
+            </ul>
+        </div>
+        <div class="phase">
+            <h3>Phase 4: Pilot OmniRoute locally</h3>
+            <ul>
+                <li>Install via <code>npm install -g omniroute</code>.</li>
+                <li>Run <code>omniroute setup</code> to configure first provider (e.g., NVIDIA NIM).</li>
+                <li>Test OpenAI-compatible endpoint: <code>curl -H "Authorization: Bearer $OMNIROUTE_KEY" http://localhost:20128/v1/models</code>.</li>
+                <li>Test MCP: <code>omniroute --mcp</code>.</li>
+            </ul>
+        </div>
+        <div class="phase">
+            <h3>Phase 5: Gradual adoption</h3>
+            <ul>
+                <li>Route low-risk, non-POC workloads via OmniRoute.</li>
+                <li>Monitor quota usage, ToS compliance, and performance.</li>
+                <li>Use OmniRoute as fallback for Hermes-native calls when needed.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Decision Matrix</h2>
+        <table class="decision-table">
+            <thead>
+                <tr>
+                    <th>Option</th>
+                    <th>Pros</th>
+                    <th>Cons</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hermes native provider config</td>
+                    <td>Direct, no extra layer, lowest latency</td>
+                    <td>Limited to statically configured models, no auto-fallback or quota awareness</td>
+                </tr>
+                <tr>
+                    <td>Hermes MoA</td>
+                    <td>Panel synthesis, uses multiple advisors for better reasoning</td>
+                    <td>Still limited to preset models, no dynamic fallback based on quotas/errors</td>
+                </tr>
+                <tr>
+                    <td>Custom skill</td>
+                    <td>Encapsulates reusable routing logic, zero extra runtime</td>
+                    <td>Does not perform actual model calls; only advises the main model</td>
+                </tr>
+                <tr>
+                    <td>Custom MCP</td>
+                    <td>Performs actual tool calls (e.g., image analysis), decouples routing logic</td>
+                    <td>Requires MCP client, another layer to maintain</td>
+                </tr>
+                <tr>
+                    <td>OmniRoute OpenAI-compatible gateway</td>
+                    <td>Unified endpoint, auto-fallback, quota-aware, access to 237 providers, dashboard</td>
+                    <td>Extra service (Node runtime), potential config complexity, another auth layer</td>
+                </tr>
+                <tr>
+                    <td>OmniRoute MCP</td>
+                    <td>Direct tool access to routing, cache, compression, memory, skills, etc.</td>
+                    <td>Requires MCP setup, another endpoint to manage</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Risks and Mitigations</h2>
+        <div class="risk">
+            <h3>Free-tier claims are estimates</h3>
+            <p>
+                OmniRoute’s free-token numbers are upper-bound estimates from documented free tiers. 
+                Many providers have ToS caveats, and some are “uncapped but not quantifiable.”
+            </p>
+            <p><strong>Mitigation:</strong> Treat as estimates, validate per provider before relying in POCs.</p>
+        </div>
+        <div class="risk">
+            <h3>Terms of Service (ToS) restrictions</h3>
+            <p>
+                Some free tiers prohibit proxy/resale use (e.g., Google Antigravity, Kiro, etc.). 
+                Using OmniRoute to route requests may violate ToS if not for personal use.
+            </p>
+            <p><strong>Mitigation:</strong> Review each provider’s ToS; limit use to personal, non-commercial POCs.</p>
+        </div>
+        <div class="risk">
+            <h3>Secrets and authentication</h3>
+            <p>
+                Hardcoding API keys in config or scripts risks exposure. OmniRoute requires its own API key/Bearer.
+            </p>
+            <p><strong>Mitigation:</strong> Use Hermes auth store or environment variables; never commit keys.</p>
+        </div>
+        <div class="risk">
+            <h3>Extra failure layer</h3>
+            <p>
+                Adding OmniRoute introduces another service that can fail, increasing complexity.</p>
+            <p><strong>Mitigation:</strong> Use circuit breakers, health checks, and monitoring; keep Hermes-native as primary.</p>
+        </div>
+        <div class="risk">
+            <h3>Node/runtime complexity</h3>
+            <p>
+                OmniRoute requires Node.js >=22.0.0, adding a runtime dependency if not already present.</p>
+            <p><strong>Mitigation:</strong> Only install if proceeding with OmniRoute integration; otherwise, rely on native/custom MCP.</p>
+        </div>
+        <div class="risk">
+            <h3>Auth header issues (401 Missing Authentication)</h3>
+            <p>
+                If the selected provider/gateway lacks a valid Bearer token, OmniRoute or Hermes will return 401.</p>
+            <p><strong>Mitigation:</strong> For OmniRoute, ensure <code>OMNIROUTE_API_KEY</code> is set via dashboard or <code>omniroute setup</code>. 
+                For Hermes, verify provider config (e.g., <code>nvidia</code>) has valid <code>NVIDIA_API_KEY</code>.</p>
+        </div>
+        <div class="risk">
+            <h3>Model selector limitations in Hermes Desktop</h3>
+            <p>
+                The built-in provider/model selector may not dynamically reflect all NVIDIA models.</p>
+            <p><strong>Mitigation:</strong> Bypass via skills/MCP or direct config (<code>hermes config set</code>) rather than relying on selector.</p>
+        </div>
+        <div class="risk">
+            <h3>Quota exhaustion</h3>
+            <p>
+                Free-tier quotas can be depleted unexpectedly, causing failures.</p>
+            <p><strong>Mitigation:</strong> Use fallback chains, monitor usage with OmniRoute dashboard or custom tools, set budget guards.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Concrete Next Actions and Validation Commands</h2>
+        <ol>
+            <li>
+                <strong>Confirm MoA preset is working:</strong><br>
+                <code>hermes -z "Reply exactly: MOA_OK" --provider moa -m free-local</code>
+                <p>Expected output: <code>MOA_OK</code></p>
+            </li>
+            <li>
+                <strong>Check Node.js availability (if considering OmniRoute):</strong><br>
+                <code>node --version</code>
+                <p>Expected: v22.x.x or compatible newer version.</p>
+            </li>
+            <li>
+                <strong>Inspect OmniRoute package (if considering install):</strong><br>
+                <code>npm view omniroute version description bin engines</code>
+                <p>Check version, description, binaries, and Node engine requirements.</p>
+            </li>
+            <li>
+                <strong>Later, if installing OmniRoute:</strong><br>
+                <code>npm install -g omniroute</code><br>
+                <code>omniroute setup --non-interactive --password "$OMNIROUTE_PASSWORD"</code><br>
+                <code>omniroute setup --non-interactive --add-provider --provider nvidia --api-key "$NVIDIA_API_KEY"</code><br>
+                <code>omniroute providers test nvidia</code>
+            </li>
+            <li>
+                <strong>Validate custom skill and MCP:</strong><br>
+                <code>hermes skills list</code><br>
+                <code>hermes mcp list</code>
+            </li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2>Sources</h2>
+        <div class="links">
+            <p>
+                <a href="https://github.com/diegosouzapw/OmniRoute" target="_blank">OmniRoute GitHub Repository</a><br>
+                <a href="https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/README.md" target="_blank">OmniRoute README</a><br>
+                <a href="https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/docs/guides/SETUP_GUIDE.md" target="_blank">OmniRoute Setup Guide</a><br>
+                <a href="https://raw.githubusercontent.com/diegosouzapw/OmniRoute/main/docs/reference/FREE_TIERS.md" target="_blank">OmniRoute Free Tiers & Free-Token Budget</a><br>
+                <a href="https://github.com/diegosouzapw/OmniRoute/wiki/MCP-Server" target="_blank">OmniRoute MCP Server Documentation</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Verdict</h2>
+        <div class="success">
+            <p>
+                OmniRoute is highly relevant as a research/integration candidate for advanced routing, 
+                free-tier aggregation, quota awareness, and MCP/A2A capabilities. 
+                However, do <strong>not</strong> replace Hermes’ native provider/MoA layer immediately. 
+                Instead, build custom skills and MCP tools for NVIDIA/Gemini multimodal routing first, 
+                then pilot OmniRoute as an optional external gateway.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

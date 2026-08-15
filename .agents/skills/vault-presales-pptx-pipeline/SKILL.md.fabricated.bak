@@ -1,0 +1,56 @@
+---
+name: vault-presales-pptx-pipeline
+description: Build executive, client-ready PowerPoint (.pptx) decks for presales pitches, situation assessments, and use-case realizations using Kimi K3 / OpenAI endpoints for content synthesis and image routing. Triggers on "vault-presales-pptx-pipeline", "presales pptx pipeline", "rebuild the DeepGrid IM client-ready", "use-case realization deck from UC-08", "solution-on-a-page".
+---
+
+# Vault Presales PPTX Pipeline (Kimi K3 Powered)
+
+Orchestrates the creation of client-ready PowerPoint (`.pptx`) decks for enterprise AI pitches, situation assessments, and solution-on-a-page realization decks by leveraging Kimi K3 / OpenAI-compatible API endpoints for rapid structured findings synthesis and visual routing.
+
+## 1. Trigger Scenarios
+- "Run vault-presales-pptx-pipeline for TMNA plant ops"
+- "Rebuild the DeepGrid IM client-ready presentation"
+- "Generate use-case realization deck from UC-08"
+- "Solution-on-a-page for executive review"
+
+## 2. Architecture & Pipeline Stages
+
+```
+┌───────────────────────────┐    ┌───────────────────────────┐    ┌───────────────────────────┐
+│ 1. Fact & Dossier Intake  │───>│ 2. Kimi K3 Synthesis      │───>│ 3. PPTX Compiler          │
+│ (OSINT / Strategy Specs)  │    │ (https://api.kimi.com/...)│    │ (compile.py / python-pptx)│
+└───────────────────────────┘    └───────────────────────────┘    └───────────────────────────┘
+```
+
+### Stage 1: Fact & Dossier Intake
+- Ingest context from target account files (`accounts/<ACCOUNT>/`), strategy dossiers, or raw text input.
+- Extract the core value proposition, problem statements, and key ROI metrics.
+
+### Stage 2: Kimi K3 Synthesis & Visual Routing
+- Connect to Kimi K3 via OpenAI-compatible endpoints (`https://api.kimi.com/coding/v1` or configured OpenRouter `moonshotai/kimi-k3-free`).
+- Structure findings into strict `findings.json` schema adhering to the Genspark Master Design Spec:
+  - **Executive Summary / BLUF**
+  - **Split Views & Metrics Tables**
+  - **Quotes Grid & Solution-on-a-Page Layouts**
+- Resolve visual asset prompts for dynamic graphics/diagrams.
+
+### Stage 3: Branded PPTX Compilation & QA
+- Pass `findings.json` into the local `compile.py` compiler.
+- Render against the 24-slide corporate template (`template-branded.pptx`).
+- Execute `preview_pptx.py` to generate visual contact sheets and verify line overflow / shadow XML hygiene.
+
+## 3. Execution Commands
+
+```bash
+# 1. Run synthesis via Kimi K3 / OpenAI endpoint
+python -c "
+import urllib.request, json
+# Request structured findings JSON from Kimi K3 API
+"
+
+# 2. Compile into branded PPTX
+python "D:\New folder\Antigravity-test\antigravity-skills\.agents\skills\branded-pptx-deck\scripts\compile.py" findings.json template-branded.pptx Output_Deck.pptx
+
+# 3. Generate QA preview contact sheets
+python "C:\Users\sheke\.gemini\config\skills\branded-pptx-deck\scripts\preview_pptx.py" Output_Deck.pptx previews/
+```

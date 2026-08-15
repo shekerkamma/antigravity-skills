@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>NVIDIA Multimodal Router — Practical MCP Test</title>
+<style>
+  :root {
+    color-scheme: dark;
+    --bg: #0b1020;
+    --card: #121a33;
+    --text: #edf2ff;
+    --muted: #aebbe0;
+    --ok: #4ade80;
+    --warn: #facc15;
+    --line: #26345f;
+  }
+  body {
+    margin: 0;
+    font: 15px/1.55 system-ui, -apple-system, Segoe UI, sans-serif;
+    background: radial-gradient(circle at top left, #1b2a55, var(--bg) 42%);
+    color: var(--text);
+  }
+  main { max-width: 1040px; margin: 0 auto; padding: 32px; }
+  h1 { margin-bottom: 8px; }
+  h2 { margin-top: 0; }
+  .muted { color: var(--muted); }
+  .badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(250, 204, 21, .14);
+    color: var(--warn);
+    border: 1px solid rgba(250, 204, 21, .35);
+    font-weight: 700;
+  }
+  .ok {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(74, 222, 128, .14);
+    color: var(--ok);
+    border: 1px solid rgba(74, 222, 128, .35);
+    font-weight: 700;
+  }
+  .card {
+    background: rgba(18, 26, 51, .88);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 20px;
+    margin: 18px 0;
+    box-shadow: 0 18px 60px rgba(0,0,0,.25);
+  }
+  pre {
+    overflow-x: auto;
+    background: #07101f;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 14px;
+    color: #dbeafe;
+  }
+  code { color: #bfdbfe; }
+  a { color: #93c5fd; }
+</style>
+</head>
+<body>
+<main>
+  <h1>NVIDIA Multimodal Router — Practical MCP Test</h1>
+  <p class="muted">Generated: 2026-07-09T14:34:56.252901+00:00</p>
+  <p><span class="ok">AD-HOC PRACTICAL VERIFY OK</span> <span class="badge">Dry-run router: no external NVIDIA API call was made</span></p>
+
+  <section class="card">
+    <h2>Artifacts</h2>
+    <ul>
+      <li>HTML: <code>D:\New folder\Antigravity-test\antigravity-skills\docs\reports\nvidia-multimodal-router-practical-test.html</code></li>
+      <li>JSON: <code>D:\New folder\Antigravity-test\antigravity-skills\docs\reports\nvidia-multimodal-router-practical-test.json</code></li>
+      <li>MCP: <code>D:\New folder\Antigravity-test\antigravity-skills\mcp\nvidia_multimodal_router.py</code></li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>MCP Server</h2>
+    <p><strong>Server:</strong> nvidia-multimodal-router</p>
+    <p><strong>Tools:</strong> check_router_health, list_free_multimodal_models, recommend_model_for_task</p>
+    <h3>Health response</h3>
+    <pre>{
+  &quot;status&quot;: &quot;ok&quot;,
+  &quot;server&quot;: &quot;nvidia-multimodal-router&quot;,
+  &quot;version&quot;: &quot;0.1.0&quot;,
+  &quot;time&quot;: &quot;2026-07-09T14:34:56.251888+00:00&quot;,
+  &quot;mode&quot;: &quot;dry-run router; no external API calls&quot;
+}</pre>
+  </section>
+
+  
+      <section class="card">
+        <h2>Screenshot crash triage</h2>
+        <p><strong>Practical task:</strong> Analyze a screenshot of a crashed Windows application showing an error dialog and recommend the best model route.</p>
+        <p><strong>Expected practical outcome:</strong> Route to a fast NVIDIA vision model for screenshot understanding.</p>
+        <h3>Tool arguments</h3>
+        <pre>{
+  &quot;task&quot;: &quot;analyze a screenshot of a crashed Windows app showing an error dialog&quot;,
+  &quot;has_image&quot;: true
+}</pre>
+        <h3>MCP recommendation</h3>
+        <pre>{
+  &quot;recommended_model&quot;: &quot;mistralai/mistral-small-4-119b-2603&quot;,
+  &quot;reason&quot;: &quot;Selected from approved NVIDIA/Codex routing policy.&quot;,
+  &quot;note&quot;: &quot;Dry-run recommendation only; no provider call was made.&quot;
+}</pre>
+      </section>
+    
+      <section class="card">
+        <h2>Python MCP refactor</h2>
+        <p><strong>Practical task:</strong> Refactor a Python MCP server and add focused tests.</p>
+        <p><strong>Expected practical outcome:</strong> Route to Codex/code-specialized model guidance.</p>
+        <h3>Tool arguments</h3>
+        <pre>{
+  &quot;task&quot;: &quot;refactor a Python MCP server and add focused tests&quot;,
+  &quot;has_image&quot;: false
+}</pre>
+        <h3>MCP recommendation</h3>
+        <pre>{
+  &quot;recommended_model&quot;: &quot;openai-codex/gpt-5.5&quot;,
+  &quot;reason&quot;: &quot;Selected from approved NVIDIA/Codex routing policy.&quot;,
+  &quot;note&quot;: &quot;Dry-run recommendation only; no provider call was made.&quot;
+}</pre>
+      </section>
+    
+      <section class="card">
+        <h2>Research comparison</h2>
+        <p><strong>Practical task:</strong> Compare multimodal routing options for a short architecture report.</p>
+        <p><strong>Expected practical outcome:</strong> Route to deeper reasoning / aggregation guidance.</p>
+        <h3>Tool arguments</h3>
+        <pre>{
+  &quot;task&quot;: &quot;compare multimodal routing options for a research report&quot;,
+  &quot;has_image&quot;: false
+}</pre>
+        <h3>MCP recommendation</h3>
+        <pre>{
+  &quot;recommended_model&quot;: &quot;openai-codex/gpt-5.5&quot;,
+  &quot;reason&quot;: &quot;Selected from approved NVIDIA/Codex routing policy.&quot;,
+  &quot;note&quot;: &quot;Dry-run recommendation only; no provider call was made.&quot;
+}</pre>
+      </section>
+    
+
+  <section class="card">
+    <h2>Raw tools/list</h2>
+    <pre>{
+  &quot;jsonrpc&quot;: &quot;2.0&quot;,
+  &quot;id&quot;: 2,
+  &quot;result&quot;: {
+    &quot;tools&quot;: [
+      {
+        &quot;name&quot;: &quot;check_router_health&quot;,
+        &quot;description&quot;: &quot;Check whether the NVIDIA multimodal router MCP is alive.&quot;,
+        &quot;inputSchema&quot;: {
+          &quot;type&quot;: &quot;object&quot;,
+          &quot;properties&quot;: {},
+          &quot;required&quot;: []
+        }
+      },
+      {
+        &quot;name&quot;: &quot;list_free_multimodal_models&quot;,
+        &quot;description&quot;: &quot;List approved free/subscription-friendly models for multimodal routing.&quot;,
+        &quot;inputSchema&quot;: {
+          &quot;type&quot;: &quot;object&quot;,
+          &quot;properties&quot;: {},
+          &quot;required&quot;: []
+        }
+      },
+      {
+        &quot;name&quot;: &quot;recommend_model_for_task&quot;,
+        &quot;description&quot;: &quot;Recommend a model for a text/code/vision/audio/video task.&quot;,
+        &quot;inputSchema&quot;: {
+          &quot;type&quot;: &quot;object&quot;,
+          &quot;properties&quot;: {
+            &quot;task&quot;: {
+              &quot;type&quot;: &quot;string&quot;
+            },
+            &quot;has_image&quot;: {
+              &quot;type&quot;: &quot;boolean&quot;,
+              &quot;default&quot;: false
+            },
+            &quot;has_audio&quot;: {
+              &quot;type&quot;: &quot;boolean&quot;,
+              &quot;default&quot;: false
+            },
+            &quot;has_video&quot;: {
+              &quot;type&quot;: &quot;boolean&quot;,
+              &quot;default&quot;: false
+            }
+          },
+          &quot;required&quot;: [
+            &quot;task&quot;
+          ]
+        }
+      }
+    ]
+  }
+}</pre>
+  </section>
+</main>
+</body>
+</html>

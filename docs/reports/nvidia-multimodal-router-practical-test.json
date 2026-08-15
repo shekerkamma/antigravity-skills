@@ -1,0 +1,167 @@
+{
+  "artifact_type": "ad_hoc_practical_mcp_test",
+  "created_at": "2026-07-09T14:34:56.252901+00:00",
+  "mcp": "D:\\New folder\\Antigravity-test\\antigravity-skills\\mcp\\nvidia_multimodal_router.py",
+  "mode": "dry-run router; no external NVIDIA API calls",
+  "initialize": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "protocolVersion": "2024-11-05",
+      "capabilities": {
+        "tools": {}
+      },
+      "serverInfo": {
+        "name": "nvidia-multimodal-router",
+        "version": "0.1.0"
+      }
+    }
+  },
+  "tools": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+      "tools": [
+        {
+          "name": "check_router_health",
+          "description": "Check whether the NVIDIA multimodal router MCP is alive.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "list_free_multimodal_models",
+          "description": "List approved free/subscription-friendly models for multimodal routing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "recommend_model_for_task",
+          "description": "Recommend a model for a text/code/vision/audio/video task.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string"
+              },
+              "has_image": {
+                "type": "boolean",
+                "default": false
+              },
+              "has_audio": {
+                "type": "boolean",
+                "default": false
+              },
+              "has_video": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            "required": [
+              "task"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "health": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"status\": \"ok\",\n  \"server\": \"nvidia-multimodal-router\",\n  \"version\": \"0.1.0\",\n  \"time\": \"2026-07-09T14:34:56.251888+00:00\",\n  \"mode\": \"dry-run router; no external API calls\"\n}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "models": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "result": {
+      "content": [
+        {
+          "type": "text",
+          "text": "{\n  \"models\": [\n    {\n      \"id\": \"nvidia/nemotron-nano-12b-v2-vl\",\n      \"provider\": \"nvidia\",\n      \"modalities\": [\n        \"text\",\n        \"image\"\n      ],\n      \"best_for\": [\n        \"screenshots\",\n        \"image question answering\",\n        \"fast vision\"\n      ]\n    },\n    {\n      \"id\": \"mistralai/mistral-small-4-119b-2603\",\n      \"provider\": \"nvidia\",\n      \"modalities\": [\n        \"text\",\n        \"image\"\n      ],\n      \"best_for\": [\n        \"general multimodal analysis\",\n        \"document/image reasoning\"\n      ]\n    },\n    {\n      \"id\": \"nvidia/nemotron-3-nano-omni-30b-a3b-reasoning\",\n      \"provider\": \"nvidia\",\n      \"modalities\": [\n        \"text\",\n        \"image\",\n        \"audio\",\n        \"video\"\n      ],\n      \"best_for\": [\n        \"complex multimodal reasoning\"\n      ]\n    },\n    {\n      \"id\": \"nvidia/nemotron-3-super-120b-a12b\",\n      \"provider\": \"nvidia\",\n      \"modalities\": [\n        \"text\"\n      ],\n      \"best_for\": [\n        \"aggregation\",\n        \"deep reasoning\"\n      ]\n    },\n    {\n      \"id\": \"openai-codex/gpt-5.5\",\n      \"provider\": \"openai-codex\",\n      \"modalities\": [\n        \"text\",\n        \"code\"\n      ],\n      \"best_for\": [\n        \"coding\",\n        \"repo edits\",\n        \"software engineering\"\n      ]\n    }\n  ]\n}"
+        }
+      ],
+      "isError": false
+    }
+  },
+  "scenarios": [
+    {
+      "name": "Screenshot crash triage",
+      "task": "Analyze a screenshot of a crashed Windows application showing an error dialog and recommend the best model route.",
+      "arguments": {
+        "task": "analyze a screenshot of a crashed Windows app showing an error dialog",
+        "has_image": true
+      },
+      "expected": "Route to a fast NVIDIA vision model for screenshot understanding.",
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 5,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"recommended_model\": \"mistralai/mistral-small-4-119b-2603\",\n  \"reason\": \"Selected from approved NVIDIA/Codex routing policy.\",\n  \"note\": \"Dry-run recommendation only; no provider call was made.\"\n}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "name": "Python MCP refactor",
+      "task": "Refactor a Python MCP server and add focused tests.",
+      "arguments": {
+        "task": "refactor a Python MCP server and add focused tests",
+        "has_image": false
+      },
+      "expected": "Route to Codex/code-specialized model guidance.",
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 6,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"recommended_model\": \"openai-codex/gpt-5.5\",\n  \"reason\": \"Selected from approved NVIDIA/Codex routing policy.\",\n  \"note\": \"Dry-run recommendation only; no provider call was made.\"\n}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    },
+    {
+      "name": "Research comparison",
+      "task": "Compare multimodal routing options for a short architecture report.",
+      "arguments": {
+        "task": "compare multimodal routing options for a research report",
+        "has_image": false
+      },
+      "expected": "Route to deeper reasoning / aggregation guidance.",
+      "response": {
+        "jsonrpc": "2.0",
+        "id": 7,
+        "result": {
+          "content": [
+            {
+              "type": "text",
+              "text": "{\n  \"recommended_model\": \"openai-codex/gpt-5.5\",\n  \"reason\": \"Selected from approved NVIDIA/Codex routing policy.\",\n  \"note\": \"Dry-run recommendation only; no provider call was made.\"\n}"
+            }
+          ],
+          "isError": false
+        }
+      }
+    }
+  ]
+}

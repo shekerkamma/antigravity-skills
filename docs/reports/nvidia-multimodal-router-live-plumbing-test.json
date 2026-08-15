@@ -1,0 +1,188 @@
+{
+  "artifact_type": "ad_hoc_live_plumbing_test",
+  "created_at": 1783613157.5224655,
+  "mcp_path": "D:\\New folder\\Antigravity-test\\antigravity-skills\\mcp\\nvidia_multimodal_router.py",
+  "skill_path": "D:\\New folder\\Antigravity-test\\antigravity-skills\\.hermes\\skills\\multimodal-free-model-router\\SKILL.md",
+  "svg_path": "D:\\New folder\\Antigravity-test\\antigravity-skills\\docs\\reports\\nvidia-multimodal-router-live-plumbing-input.svg",
+  "initialize": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "protocolVersion": "2024-11-05",
+      "capabilities": {
+        "tools": {}
+      },
+      "serverInfo": {
+        "name": "nvidia-multimodal-router",
+        "version": "0.1.0"
+      }
+    }
+  },
+  "tools": {
+    "jsonrpc": "2.0",
+    "id": 2,
+    "result": {
+      "tools": [
+        {
+          "name": "check_router_health",
+          "description": "Check whether the NVIDIA multimodal router MCP is alive.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "list_free_multimodal_models",
+          "description": "List approved free/subscription-friendly models for multimodal routing.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {},
+            "required": []
+          }
+        },
+        {
+          "name": "recommend_model_for_task",
+          "description": "Recommend a model for a text/code/vision/audio/video task (dry-run routing).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string"
+              },
+              "has_image": {
+                "type": "boolean",
+                "default": false
+              },
+              "has_audio": {
+                "type": "boolean",
+                "default": false
+              },
+              "has_video": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            "required": [
+              "task"
+            ]
+          }
+        },
+        {
+          "name": "analyze_image_nvidia",
+          "description": "Analyze an image using a live NVIDIA NIM model (requires NVIDIA_API_KEY).",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "prompt": {
+                "type": "string",
+                "description": "Text prompt to accompany the image"
+              },
+              "image_path": {
+                "type": "string",
+                "description": "Local path to an image file"
+              },
+              "image_url": {
+                "type": "string",
+                "description": "URL of an image (if not using local file)"
+              },
+              "model": {
+                "type": "string",
+                "default": "nvidia/nemotron-nano-12b-v2-vl",
+                "description": "Model to use"
+              },
+              "max_tokens": {
+                "type": "integer",
+                "default": 512
+              },
+              "temperature": {
+                "type": "number",
+                "default": 0.2
+              }
+            },
+            "required": [
+              "prompt"
+            ]
+          }
+        },
+        {
+          "name": "route_vision_task",
+          "description": "Route a vision task; optionally execute live analysis if execute_live=true.",
+          "inputSchema": {
+            "type": "object",
+            "properties": {
+              "task": {
+                "type": "string",
+                "description": "Description of the vision task"
+              },
+              "image_path": {
+                "type": "string",
+                "description": "Local path to an image file"
+              },
+              "image_url": {
+                "type": "string",
+                "description": "URL of an image (if not using local file)"
+              },
+              "execute_live": {
+                "type": "boolean",
+                "default": false,
+                "description": "If true, perform live analysis; else just route"
+              }
+            },
+            "required": [
+              "task"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "health": {
+    "jsonrpc": "2.0",
+    "id": 3,
+    "error": {
+      "code": -32601,
+      "message": "Unknown method: check_router_health"
+    }
+  },
+  "list_free_multimodal_models": {
+    "jsonrpc": "2.0",
+    "id": 4,
+    "error": {
+      "code": -32601,
+      "message": "Unknown method: list_free_multimodal_models"
+    }
+  },
+  "recommend_model_for_task": {
+    "jsonrpc": "2.0",
+    "id": 5,
+    "error": {
+      "code": -32601,
+      "message": "Unknown method: recommend_model_for_task"
+    }
+  },
+  "analyze_image_nvidia": {
+    "jsonrpc": "2.0",
+    "id": 6,
+    "error": {
+      "code": -32601,
+      "message": "Unknown method: analyze_image_nvidia"
+    }
+  },
+  "route_vision_task_false": {
+    "jsonrpc": "2.0",
+    "id": 7,
+    "error": {
+      "code": -32601,
+      "message": "Unknown method: route_vision_task"
+    }
+  },
+  "route_vision_task_true": {
+    "jsonrpc": "2.0",
+    "id": 8,
+    "error": {
+      "code": -32601,
+      "message": "Unknown method: route_vision_task"
+    }
+  }
+}
