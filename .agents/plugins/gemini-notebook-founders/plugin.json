@@ -1,0 +1,19 @@
+{
+  "name": "gemini-notebook-founders",
+  "version": "1.0.0",
+  "description": "Official Gemini Notebook Playbook for Founders bundle (+ 10 Plug and Play Skills to turn research, data & documents into finished business work)",
+  "author": "Lian Lim / Antigravity Engineering",
+  "skills": [
+    "gemini-notebook-playbook",
+    "research-auditor",
+    "missing-research-finder",
+    "devils-advocate",
+    "business-data-analysis",
+    "powerpoint-builder",
+    "excel-model-generator",
+    "executive-report",
+    "sop-builder",
+    "sales-intelligence",
+    "full-project-workflow"
+  ]
+}
