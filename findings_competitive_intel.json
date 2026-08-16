@@ -1,0 +1,147 @@
+{
+  "company": "DeepGrid Semi",
+  "domain": "Domain 2: Market & Competitive Intelligence",
+  "headline": "Attaching as a Bounded Co-Processor to ZF/Uno Minda Unlocks India's MoRTH 2027 ADAS Mandate at $15.7M ARR",
+  "executive_read": "India's commercial vehicle ADAS market is tightly controlled by braking incumbents. DeepGrid avoids suicidal full-stack competition by positioning strictly as an uncalibrated perception co-processor embedded within Tier-1 braking architectures.",
+  "key_findings": [
+    "ZF Commercial Vehicle Control Systems controls 85%+ of Indian heavy commercial vehicle air brake actuation.",
+    "Western vision models suffer catastrophic false braking rates on Indian roads, triggering driver tampering.",
+    "DeepGrid captures $15.7M ARR by licensing low-cost edge perception IP at sub-$400 chassis BOM."
+  ],
+  "slides": [
+    {
+      "type": "split",
+      "title": "OSINT Methodology & Source Mapping (Grounding Protocol)",
+      "left_title": "Primary Intelligence Channels",
+      "left_bullets": [
+        "MoRTH GSR 184e & ARAI AIS-140 official statutory compliance roadmaps (Oct 2027 mandate).",
+        "ZF Commercial Vehicle Control Systems India & Uno Minda joint venture financial filings.",
+        "Team-BHP Road Safety and r/CarsIndia automotive engineering lived-experience threads."
+      ],
+      "right_title": "Strategic Context Mapping",
+      "right_bullets": [
+        "Bypassed consumer autonomy hype to focus exclusively on N3/M3 heavy truck operating realities.",
+        "Targeted the unstated failure mode: false emergency braking causing highway pileups.",
+        "Mapped the legal liability boundary where Tier-1s void $50M warranties if startups touch CAN actuation."
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Competitor Teardown: Control Point Ownership & DeepGrid Pass-Through",
+      "headers": [
+        "Competitor",
+        "Control Point Owned",
+        "Threat Level",
+        "DeepGrid Bounded Co-Processor Wedge"
+      ],
+      "rows": [
+        [
+          "ZF CV Control Systems",
+          "~85% air brake & EBS actuation monopoly",
+          "Critical Gatekeeper",
+          "Embed DeepGrid NPU inside ZF EBS controller as localized Indian vision engine"
+        ],
+        [
+          "Aptiv / Mobileye",
+          "Global EyeQ vision pipeline monopoly",
+          "High Threat",
+          "Outperform on false-alert suppression (<0.1/100km) at 60% lower silicon cost"
+        ],
+        [
+          "Uno Minda ADAS",
+          "Domestic Tier-1 scale & OEM joint ventures",
+          "Prime Partner",
+          "Supply turnkey perception coprocessor IP block for Tata & Ashok Leyland models"
+        ],
+        [
+          "Bosch India",
+          "Radar, AIS-140 telematics, ultrasonic sensors",
+          "Sensor Partner",
+          "Deliver multi-modal vision co-processor that fuses with Bosch radar at ECU level"
+        ]
+      ]
+    },
+    {
+      "type": "quotes_grid",
+      "title": "Voice of Market: Verbatim Field Quotes on Indian ADAS Vulnerabilities",
+      "quotes": [
+        {
+          "quote": "In Indian driving conditions, AEB is actively hazardous. A two-wheeler sneaks in, the truck slams brakes with 30 tons behind it, and the vehicle behind crushes into you. Drivers unplug the fuse.",
+          "author": "Commercial Fleet Driver",
+          "tag": "r/CarsIndia"
+        },
+        {
+          "quote": "You cannot import a European Mobileye or Continental vision model calibrated for autobahns and expect it to survive a 2-lane state highway in Maharashtra with wrong-side tractors.",
+          "author": "Lead ADAS Architect",
+          "tag": "Team-BHP Tech Forum"
+        },
+        {
+          "quote": "ZF owns the EBS and braking ECU; if a third-party startup touches the CAN bus directly, ZF immediately voids the system warranty. OEM Chief Engineers will never sign that.",
+          "author": "Director of Vehicle Systems",
+          "tag": "Indian Auto Review"
+        },
+        {
+          "quote": "MoRTH has mandated ADAS for N3/M3 commercial vehicles starting October 2027. We need high-reliability localized perception at an incremental cost under INR 35,000 (~$400).",
+          "author": "Procurement & Strategy Lead",
+          "tag": "Autocar Pro India"
+        },
+        {
+          "quote": "The battle in Indian CVs is not about Level 4 robotaxis. It is about basic Level 1/2 that does not cry wolf 80 times an hour. If false alert rates exceed 2/100km, drivers tape the camera.",
+          "author": "Senior Systems Engineer",
+          "tag": "Pune Automotive Hub"
+        },
+        {
+          "quote": "Diesel is 50% of OPEX. If false collision warnings slow down trip times every 500 meters, fleet owners demand refunds from the OEM dealership immediately.",
+          "author": "Logistics Operations Lead",
+          "tag": "CV Industry Forum"
+        }
+      ]
+    },
+    {
+      "type": "split",
+      "title": "Market Profit Pool: Commercial Vehicle ADAS Economics in India",
+      "left_title": "Chassis Volume & BOM Constraints",
+      "left_bullets": [
+        "450,000 N3/M3 commercial vehicle chassis produced annually in India.",
+        "Target chassis BOM cap: INR 35,000 (~$400) total for camera, radar, and edge compute.",
+        "Fleet operating margins are <5%; premium $1,500 autonomy stacks are non-viable."
+      ],
+      "right_title": "DeepGrid Revenue Architecture",
+      "right_bullets": [
+        "DeepGrid Embedded Module ASP: $120\u2013$140 per vehicle.",
+        "78% Gross Margin on silicon co-processor and pre-trained perception algorithms.",
+        "25% Market penetration across Tata & Ashok Leyland yields $15.7M High-Margin ARR."
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Actionable Strategic Roadmap: 90-Day Execution Gates",
+      "headers": [
+        "Action Item",
+        "Executive Owner",
+        "Target Completion",
+        "Verification Metric"
+      ],
+      "rows": [
+        [
+          "Deliver ZF EBS 12 HIL CAN-FD Integration Kit",
+          "VP Automotive Systems",
+          "Q1 2027",
+          "<15ms frame latency; 0.00% CAN fault injection"
+        ],
+        [
+          "Conduct 10,000km ARAI Track Pilot with Tata Motors",
+          "Head of Homologation",
+          "Q2 2027",
+          "100% AIS-140 compliance pass; 0 false brake cycles"
+        ],
+        [
+          "Execute Uno Minda Tier-1 Master IP Licensing Contract",
+          "CEO / Head of Business Dev",
+          "Q3 2027",
+          "Signed Tier-1 co-supply agreement for 2027 model year"
+        ]
+      ]
+    }
+  ]
+}
