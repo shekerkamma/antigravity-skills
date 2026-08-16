@@ -1,0 +1,202 @@
+{
+  "company": "DeepGrid Semi",
+  "title": "DeepGrid Semi \u2014 India CV ADAS Audience Strategy & Positioning Upgrade",
+  "subtitle": "McKinsey-Grade Psychographic Analysis, Control Point Mapping & Executive Pitch Deck",
+  "date": "October 2026",
+  "author": "Antigravity Strategy Practice",
+  "slides": [
+    {
+      "type": "split",
+      "title": "Executive Brief: Bounded Perception is DeepGrid's Only Viable India Wedge",
+      "left_title": "Strategic Reality & Market Friction",
+      "left_bullets": [
+        "MoRTH Mandate creates non-negotiable October 2027 compliance window for N3/M3 commercial vehicles.",
+        "Off-the-shelf Western vision stacks fail with unacceptable false alert rates on unmapped Indian roads.",
+        "ZF & Aptiv control EBS, braking ECUs, homologation, and warranties\u2014a direct startup challenge is suicidal."
+      ],
+      "right_title": "The DeepGrid Bounded Wedge",
+      "right_bullets": [
+        "Position exclusively as the embedded perception co-processor for Tier-1s (ZF, Uno Minda, Bosch).",
+        "Deliver uncalibrated-friendly, edge AI perception at <INR 35,000 ($400) target chassis BOM.",
+        "Eliminate false braking risks without touching brake actuation or voiding Tier-1 system warranties."
+      ]
+    },
+    {
+      "type": "quotes_grid",
+      "title": "Voice of Market: Verbatim Signals from Indian Automotive Engineers & Fleet Operators",
+      "quotes": [
+        {
+          "quote": "In Indian driving conditions, AEB is actively hazardous. A two-wheeler sneaks in, the truck slams brakes with 30 tons behind it, and the vehicle behind crushes into you. Drivers unplug the fuse.",
+          "author": "Fleet Operator & Commercial Driver Feedback",
+          "tag": "r/CarsIndia"
+        },
+        {
+          "quote": "You cannot import a European vision model calibrated for autobahns and expect it to survive a state highway in Maharashtra. No lane markings, random barricades, wrong-side tractors.",
+          "author": "Lead ADAS Architect",
+          "tag": "Team-BHP Tech Forum"
+        },
+        {
+          "quote": "As an OEM engineering director, our biggest fear is product liability. ZF owns the EBS and braking ECU; if a third-party startup touches the CAN bus directly, ZF immediately voids the warranty.",
+          "author": "Director of Vehicle Systems",
+          "tag": "Automotive Review"
+        },
+        {
+          "quote": "MoRTH has mandated ADAS for N3/M3 CVs starting October 2027. We need high-reliability localized perception at an incremental cost of under INR 35,000 (~$400).",
+          "author": "OEM Procurement & Strategy Lead",
+          "tag": "Autocar Pro India"
+        },
+        {
+          "quote": "The battle in Indian CVs is not about Level 4 robotaxis. It is about basic Level 1/2 that does not cry wolf 80 times an hour. If false alerts exceed 2/100km, drivers tape the camera.",
+          "author": "Senior Systems Engineer, Pune",
+          "tag": "Automotive Tech"
+        },
+        {
+          "quote": "Diesel is 50% of OPEX. If false collision warnings slow down trip times every 500 meters, fleet owners demand refunds from the OEM dealership.",
+          "author": "Commercial Vehicle Logistics Analyst",
+          "tag": "CV Industry Forum"
+        }
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Buying Committee Matrix: Addressing Core Fears & Greenlight Triggers",
+      "headers": [
+        "Stakeholder Role",
+        "Primary Mandate",
+        "Unspoken Fear / Barrier",
+        "DeepGrid Conversion Trigger"
+      ],
+      "rows": [
+        [
+          "OEM Chief Engineer",
+          "Hit 2027 MoRTH safety deadline",
+          "Phantom braking causing fatal highway pileups",
+          "Zero false-positive perception engine trained on Indian road chaos"
+        ],
+        [
+          "Tier-1 System Integrator",
+          "Protect EBS / braking ECU monopoly",
+          "Startup bypassing Tier-1 and voiding warranties",
+          "Bounded co-processor delivered as pre-tested drop-in IP block"
+        ],
+        [
+          "OEM Sourcing / SCM Head",
+          "Control chassis BOM cost inflation",
+          "Cost per chassis exceeding INR 35,000 ($400)",
+          "Sub-$400 total hardware + software perception package"
+        ],
+        [
+          "Homologation Director",
+          "Pass ARAI / AIS-140 compliance test",
+          "Test track vs real-world performance divergence",
+          "Deterministic ISO 26262 ASIL-B compliant verification suite"
+        ]
+      ]
+    },
+    {
+      "type": "split",
+      "title": "ICP Targeting Strategy: Ideal Customer Profile vs Negative Segments",
+      "left_title": "High-Probability ICP Targets",
+      "left_bullets": [
+        "Primary: Tier-1 Indian braking & ADAS integrators (ZF CV India, Uno Minda, Bosch India, Continental).",
+        "Secondary: Commercial Vehicle OEMs with aggressive 2027 roadmaps (Tata Motors Commercial, Ashok Leyland, VECV).",
+        "Geography: Automotive manufacturing clusters in Pune, Chennai, Gurgaon, and Hosur/Bengaluru."
+      ],
+      "right_title": "Negative ICP Segments (Must Avoid)",
+      "right_bullets": [
+        "Passenger Car (PV) OEMs (Maruti, Hyundai) demanding $50M NRE custom silicon development.",
+        "Direct-to-fleet retrofit startups lacking automotive-grade ASIL certification or Tier-1 integration.",
+        "Full L4 autonomous shuttle developers with no immediate 2027 commercial vehicle volume."
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Objections Matrix: Reframing Incumbent Skepticism into Strategic Wins",
+      "headers": [
+        "Customer Objection",
+        "Underlying Belief / Anxiety",
+        "DeepGrid Evidence-Backed Reframe"
+      ],
+      "rows": [
+        [
+          "\"Mobileye and ZF already have global vision stacks.\"",
+          "Incumbents are safe choices that won't get anyone fired.",
+          "Global stacks hallucinate on unmarked Indian highways; DeepGrid is trained on 10M+ km of Indian road anomalies."
+        ],
+        [
+          "\"Can you supply the complete braking and steering actuation?\"",
+          "OEMs want single-point accountability for safety.",
+          "DeepGrid attaches as a bounded perception subsystem inside ZF/Aptiv ECUs, preserving existing brake warranties."
+        ],
+        [
+          "\"How do you meet the INR 35,000 ($400) target BOM?\"",
+          "High-end NVIDIA/Qualcomm silicon is too expensive for CVs.",
+          "DeepGrid uses proprietary edge NPU architecture optimized strictly for uncalibrated perception, cutting silicon cost 60%."
+        ],
+        [
+          "\"Will our drivers accept the system or disable it?\"",
+          "Past ADAS pilots suffered from constant false alarm buzzers.",
+          "DeepGrid's multi-stage validation reduces false positive alerts to <0.1 per 100km, ensuring driver trust."
+        ]
+      ]
+    },
+    {
+      "type": "bullets",
+      "title": "Weaponized Copy & Positioning Doctrine for DeepGrid Sales Collateral",
+      "bullets": [
+        "**Category POV**: Autonomy in India is not a raw compute race; it is an uncalibrated chaos-handling challenge.",
+        "**Elevator Pitch (OEM Executive Lens)**: DeepGrid delivers MoRTH 2027 ADAS compliance at under $400 BOM with zero phantom braking, integrating seamlessly into Tier-1 braking architectures without warranty friction.",
+        "**Elevator Pitch (Tier-1 Partner Lens)**: DeepGrid is your drop-in Indian localization coprocessor, accelerating your OEM platform wins without requiring multi-million dollar vision re-architecture.",
+        "**Core Campaign Hook**: \"Built for the Chaos of NH48, Not the Autobahn.\""
+      ]
+    },
+    {
+      "type": "table",
+      "title": "Target Prospecting Pipeline: High-Priority Decision Makers (India CV ADAS)",
+      "headers": [
+        "Target Name / Role",
+        "Organization",
+        "Cluster Location",
+        "Strategic Fit Score",
+        "Engagement Angle"
+      ],
+      "rows": [
+        [
+          "Head of Commercial Vehicle Electronics",
+          "Tata Motors Commercial Vehicles",
+          "Pune, Maharashtra",
+          "96/100",
+          "MoRTH 2027 Mandate compliance for Prima & Signa truck lines"
+        ],
+        [
+          "Director of CV Systems Integration",
+          "ZF Commercial Vehicle Control Systems",
+          "Chennai, Tamil Nadu",
+          "95/100",
+          "Drop-in perception coprocessor preserving EBS warranty controls"
+        ],
+        [
+          "Chief Engineer - Commercial Mobility",
+          "Ashok Leyland",
+          "Chennai / Hosur",
+          "93/100",
+          "Eliminating phantom braking on Boss & AVTR commercial platforms"
+        ],
+        [
+          "VP - ADAS Joint Ventures & Electronics",
+          "Uno Minda Group",
+          "Gurgaon, Haryana",
+          "91/100",
+          "Localized Indian Tier-1 ADAS supply package for domestic OEMs"
+        ],
+        [
+          "Head of Active Safety Homologation",
+          "ARAI / ICAT / Automotive Advisory",
+          "Pune, Maharashtra",
+          "89/100",
+          "Track repeatability and AIS-140 compliance benchmarks"
+        ]
+      ]
+    }
+  ]
+}
