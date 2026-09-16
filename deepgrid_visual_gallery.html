@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepGrid Semi — Official SKU Architecture Sheets (Vector Native)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    body {
+      background-color: #0B0F19;
+      color: #E2E8F0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .sheet-card {
+      background: #FFFFFF;
+      color: #1E293B;
+      border-radius: 12px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    }
+    .chip-tab-active {
+      background: #3B82F6;
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body class="min-h-screen p-4 sm:p-8 space-y-6">
+
+  <!-- Header -->
+  <header class="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-[#141B2D] p-6 rounded-2xl border border-slate-700/60 shadow-xl">
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-0.5 bg-blue-500/20 text-blue-400 text-xs font-bold uppercase rounded-md border border-blue-500/30">Official Methodology Sheets</span>
+        <span class="text-xs text-slate-400 font-mono">DeepGrid Semi Pvt Ltd · Hyderabad</span>
+      </div>
+      <h1 class="text-2xl font-bold text-white mt-1">Authentic 1:1 Architecture Sheets (300+ DPI)</h1>
+      <p class="text-xs text-slate-400">Direct PostScript vector extraction preserving 100% of original waveforms, characteristic curves, and AXI bus topologies.</p>
+    </div>
+
+    <!-- SKU Selector Bar -->
+    <div class="flex flex-wrap items-center gap-2">
+      <button onclick="showSheet('sku1')" id="btn-sku1" class="chip-tab-active px-3 py-2 rounded-lg text-xs transition">
+        SKU 1: BLDC Motor (Fig 10)
+      </button>
+      <button onclick="showSheet('sku7')" id="btn-sku7" class="px-3 py-2 rounded-lg text-xs bg-slate-800 text-slate-300 hover:text-white transition">
+        SKU 7: 4D Radar (Fig 16)
+      </button>
+      <button onclick="showSheet('core')" id="btn-core" class="px-3 py-2 rounded-lg text-xs bg-slate-800 text-slate-300 hover:text-white transition">
+        DGridRiscV Core (Fig 9)
+      </button>
+      <button onclick="showSheet('sku3')" id="btn-sku3" class="px-3 py-2 rounded-lg text-xs bg-slate-800 text-slate-300 hover:text-white transition">
+        SKU 3: 28V PMIC (Fig 12)
+      </button>
+      <button onclick="showSheet('sku4')" id="btn-sku4" class="px-3 py-2 rounded-lg text-xs bg-slate-800 text-slate-300 hover:text-white transition">
+        SKU 4: Lockstep (Fig 13)
+      </button>
+      <button onclick="showSheet('sku9')" id="btn-sku9" class="px-3 py-2 rounded-lg text-xs bg-slate-800 text-slate-300 hover:text-white transition">
+        SKU 9: Zonal (Fig 18)
+      </button>
+      <a href="deepgrid_architecture_dashboard.html" class="px-3 py-2 rounded-lg text-xs bg-indigo-600 text-white font-bold hover:bg-indigo-500 transition flex items-center gap-1">
+        <i data-lucide="layers" class="w-3.5 h-3.5"></i> All 25 Sheets Suite
+      </a>
+    </div>
+  </header>
+
+  <!-- Content Container -->
+  <main class="max-w-7xl mx-auto space-y-6">
+
+    <!-- SKU 1: BLDC MOTOR CONTROLLER -->
+    <div id="sheet-sku1" class="sheet-container">
+      <div class="bg-[#141B2D] p-4 rounded-xl mb-3 flex items-center justify-between text-xs border border-slate-700/60">
+        <div>
+          <span class="font-bold text-white text-sm">Figure 10: BLDC Motor Controller (130 nm Monolithic Die)</span>
+          <p class="text-slate-400 text-[11px]">Direct 1:1 Vector Sheet extracted from Whitepaper Page 31. Preserves exact FOC math blocks, commutation waveforms, torque/efficiency curves, and India market volume data.</p>
+        </div>
+        <a href="assets/figures/fig10_bldc_motor_controller.png" target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold flex items-center gap-1.5 transition">
+          <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Full 300+ DPI
+        </a>
+      </div>
+      <div class="sheet-card p-3 sm:p-5 overflow-hidden">
+        <img src="assets/figures/fig10_bldc_motor_controller.png" alt="Figure 10 BLDC Motor Official Sheet" class="w-full h-auto rounded-lg shadow-inner">
+      </div>
+    </div>
+
+    <!-- SKU 7: 4D RADAR -->
+    <div id="sheet-sku7" class="sheet-container hidden">
+      <div class="bg-[#141B2D] p-4 rounded-xl mb-3 flex items-center justify-between text-xs border border-slate-700/60">
+        <div>
+          <span class="font-bold text-white text-sm">Figure 16: 4D 77 GHz / 24 GHz Radar (IHP SiGe + SkyWater CMOS)</span>
+          <p class="text-slate-400 text-[11px]">Direct 1:1 Vector Sheet extracted from Whitepaper Page 43. Preserves exact SiGe HBT RF front-end, FMCW frame timing, range/angular response curves, and defence radar use cases.</p>
+        </div>
+        <a href="assets/figures/fig16_4d_radar_77ghz.png" target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold flex items-center gap-1.5 transition">
+          <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Full 300+ DPI
+        </a>
+      </div>
+      <div class="sheet-card p-3 sm:p-5 overflow-hidden">
+        <img src="assets/figures/fig16_4d_radar_77ghz.png" alt="Figure 16 4D Radar Official Sheet" class="w-full h-auto rounded-lg shadow-inner">
+      </div>
+    </div>
+
+    <!-- DGRIDRISCV PROCESSOR CORE -->
+    <div id="sheet-core" class="sheet-container hidden">
+      <div class="bg-[#141B2D] p-4 rounded-xl mb-3 flex items-center justify-between text-xs border border-slate-700/60">
+        <div>
+          <span class="font-bold text-white text-sm">Figure 9: DGridRiscV Processor Core Microarchitecture</span>
+          <p class="text-slate-400 text-[11px]">Direct 1:1 Vector Sheet extracted from Whitepaper Page 27. Features the 8-stage pipeline, unrolled hardware multipliers, load return latency timing, and pink 'Deliberately Absent' panel.</p>
+        </div>
+        <a href="assets/figures/fig09_dgridriscv_core.png" target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold flex items-center gap-1.5 transition">
+          <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Full 300+ DPI
+        </a>
+      </div>
+      <div class="sheet-card p-3 sm:p-5 overflow-hidden">
+        <img src="assets/figures/fig09_dgridriscv_core.png" alt="Figure 9 DGridRiscV Official Sheet" class="w-full h-auto rounded-lg shadow-inner">
+      </div>
+    </div>
+
+    <!-- SKU 3: HIGH-REL 28V PMIC -->
+    <div id="sheet-sku3" class="sheet-container hidden">
+      <div class="bg-[#141B2D] p-4 rounded-xl mb-3 flex items-center justify-between text-xs border border-slate-700/60">
+        <div>
+          <span class="font-bold text-white text-sm">Figure 12: High-Reliability 28V Avionics Power Management IC</span>
+          <p class="text-slate-400 text-[11px]">Direct 1:1 Vector Sheet extracted from Whitepaper Page 35. DO-160 input conditioning, 4-rail sequencing timing, PSRR & load regulation curves, and SRIJAN/Make-II market badges.</p>
+        </div>
+        <a href="assets/figures/fig12_high_rel_pmic_28v.png" target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold flex items-center gap-1.5 transition">
+          <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Full 300+ DPI
+        </a>
+      </div>
+      <div class="sheet-card p-3 sm:p-5 overflow-hidden">
+        <img src="assets/figures/fig12_high_rel_pmic_28v.png" alt="Figure 12 PMIC Official Sheet" class="w-full h-auto rounded-lg shadow-inner">
+      </div>
+    </div>
+
+    <!-- SKU 4: LOCKSTEP ASIL-D MCU -->
+    <div id="sheet-sku4" class="sheet-container hidden">
+      <div class="bg-[#141B2D] p-4 rounded-xl mb-3 flex items-center justify-between text-xs border border-slate-700/60">
+        <div>
+          <span class="font-bold text-white text-sm">Figure 13: Lockstep Safety Microcontroller (ISO 26262 ASIL-D)</span>
+          <p class="text-slate-400 text-[11px]">Direct 1:1 Vector Sheet extracted from Whitepaper Page 37. Dual DGridRiscV cores with 2-cycle skew delay, hardware comparators, and fault detection latency curves.</p>
+        </div>
+        <a href="assets/figures/fig13_lockstep_mcu.png" target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold flex items-center gap-1.5 transition">
+          <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Full 300+ DPI
+        </a>
+      </div>
+      <div class="sheet-card p-3 sm:p-5 overflow-hidden">
+        <img src="assets/figures/fig13_lockstep_mcu.png" alt="Figure 13 Lockstep MCU Official Sheet" class="w-full h-auto rounded-lg shadow-inner">
+      </div>
+    </div>
+
+    <!-- SKU 9: CAR ZONAL GATEWAY -->
+    <div id="sheet-sku9" class="sheet-container hidden">
+      <div class="bg-[#141B2D] p-4 rounded-xl mb-3 flex items-center justify-between text-xs border border-slate-700/60">
+        <div>
+          <span class="font-bold text-white text-sm">Figure 18: Car Zonal Controller & Software Defined Vehicle Gateway</span>
+          <p class="text-slate-400 text-[11px]">Direct 1:1 Vector Sheet extracted from Whitepaper Page 47. ASIL-D safety island, EVITA HSM, 16 smart electronic fuses, and gateway latency waveforms.</p>
+        </div>
+        <a href="assets/figures/fig18_car_zonal_gateway.png" target="_blank" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold flex items-center gap-1.5 transition">
+          <i data-lucide="zoom-in" class="w-3.5 h-3.5"></i> View Full 300+ DPI
+        </a>
+      </div>
+      <div class="sheet-card p-3 sm:p-5 overflow-hidden">
+        <img src="assets/figures/fig18_car_zonal_gateway.png" alt="Figure 18 Car Zonal Official Sheet" class="w-full h-auto rounded-lg shadow-inner">
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    function showSheet(id) {
+      document.querySelectorAll('.sheet-container').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('header button').forEach(el => {
+        el.className = "px-3 py-2 rounded-lg text-xs bg-slate-800 text-slate-300 hover:text-white transition";
+      });
+
+      const target = document.getElementById(`sheet-${id}`);
+      const btn = document.getElementById(`btn-${id}`);
+
+      if (target) target.classList.remove('hidden');
+      if (btn) {
+        btn.className = "chip-tab-active px-3 py-2 rounded-lg text-xs transition";
+      }
+    }
+  </script>
+</body>
+</html>

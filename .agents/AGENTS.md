@@ -26,5 +26,21 @@ When the user invokes `/strategy-consulting` with an organization name (e.g., `/
 When running any research, consulting, or intelligence sprint, you MUST adhere to the following execution pipeline:
 
 1. **Strict OSINT Enforcement:** NEVER hallucinate data. You must always use real web scraping/OSINT searches (e.g., Reddit, HackerNews, G2) to ground your findings in reality. If the search yields no data, halt and prompt the user.
-2. **Review Gate (Deliverables):** Do NOT automatically compile the final .pptx deck. First, generate the Markdown report and the indings.json mapping. Pause and ask the user for approval or edits. ONLY compile the .pptx once the user approves the JSON/Markdown.
+2. **Autonomous Deliverables Pipeline:** User has authorized autonomous execution. Proceed to compile the Markdown, JSON mapping, PPTX slide deck, and web knowledge artifacts directly using sound engineering judgement.
 3. **Universal Context Mapping:** EVERY consulting artifact (Markdown, JSON, PPTX) must begin with an explicit "OSINT Source Map & Methodology" section/slide. This must explain *why* specific communities or data sources were targeted by mapping them directly to the company's value proposition.
+
+## DeepGrid Architecture Compounding Protocol
+When the user asks to analyze, visualize, or document any DeepGrid Semi SKU, subsystem, or platform architecture (or invokes `/deepgrid-architecture` or compounds `/deepgrid-mature-silicon` with `/architecture-to-everything`):
+
+1. **Authentic Vector Grounding:** ALWAYS pull physical and electrical parameters directly from `.agent/skills/deepgrid-sku-compendium` and `deepgrid-mature-silicon`. Never hallucinate silicon nodes, voltages, or standards.
+2. **The 5-Artifact Contract:** You MUST produce all 5 deliverables for the requested system:
+   - `<slug>-architecture.drawio`: Component-flow diagram (strictly no swimlanes, numbered directional buses).
+   - `<slug>-architecture.md`: Exhaustive engineering spec (DAP-2020 Make-II, AEC-Q100, MIL-STD-810H).
+   - `<slug>-architecture.pptx`: 10-slide executive PowerPoint presentation compiled via `python-pptx`.
+   - `<slug>-deck.html`: Instant browser-rendered 16:9 vector slide deck with keyboard navigation (<kbd>→</kbd>/<kbd>←</kbd>/<kbd>Space</kbd>).
+   - `<slug>-workflow.html`: Self-contained interactive telemetry cockpit with fault injection pills.
+3. **Automatic Browser Activation & Explorer Reveal (Cross-Platform):** Because standalone PowerPoint viewers may not be registered on the user's PATH, ALWAYS navigate the user's active browser window to `<slug>-deck.html` (via Chrome DevTools MCP or OS-specific launcher). Highlight `<slug>-architecture.pptx` in File Explorer:
+   - **Windows Native:** `explorer.exe /select,"<slug>-architecture.pptx"`
+   - **WSL:** `explorer.exe /select,"$(wslpath -w <slug>-architecture.pptx)"` (never pass raw Linux `/mnt/...` paths directly).
+   - In both environments, ensure generated scripts use `pathlib.Path` and write UTF-8 encoded files with standard LF line endings.
+

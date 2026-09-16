@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepGrid Semi — Silicon Architecture & Vector Intelligence Cockpit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- PDF.js for crisp native vector rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+  <style>
+    :root {
+      --bg-dark: #07090E;
+      --bg-card: #0D121F;
+      --bg-panel: #111726;
+      --border-glow: rgba(56, 189, 248, 0.15);
+      --accent-cyan: #38BDF8;
+      --accent-blue: #3B82F6;
+      --accent-emerald: #10B981;
+      --accent-amber: #F59E0B;
+    }
+    body {
+      background-color: var(--bg-dark);
+      color: #E2E8F0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+
+    /* Blueprint grid pattern background */
+    .blueprint-bg {
+      background-color: #07090E;
+      background-image: 
+        linear-gradient(rgba(30, 41, 59, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 41, 59, 0.3) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+
+    /* Custom high-tech scrollbars */
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: #0A0E1A; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 9999px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #334155; }
+
+    /* Glow highlights */
+    .glow-cyan {
+      box-shadow: 0 0 35px -5px rgba(56, 189, 248, 0.25);
+    }
+    .glow-active-card {
+      border-color: #38BDF8 !important;
+      background: linear-gradient(135deg, rgba(14, 165, 233, 0.12) 0%, rgba(30, 41, 59, 0.6) 100%) !important;
+      box-shadow: 0 4px 20px -2px rgba(14, 165, 233, 0.25);
+    }
+
+    /* Dark Mode Invert Filter for authentic white diagrams */
+    .filter-dark-circuit {
+      filter: invert(0.92) hue-rotate(180deg) contrast(1.15) brightness(0.92);
+      border-radius: 12px;
+      transition: filter 0.3s ease;
+    }
+    .filter-clean-studio {
+      filter: none;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      transition: filter 0.3s ease;
+    }
+    .filter-sepia-paper {
+      filter: contrast(1.05) brightness(0.98) sepia(0.08);
+      border-radius: 12px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8);
+      transition: filter 0.3s ease;
+    }
+
+    /* Pulse beacon */
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+    .beacon { animation: pulse-dot 2s infinite ease-in-out; }
+  </style>
+</head>
+<body class="h-screen flex flex-col overflow-hidden select-none">
+
+  <!-- ==================== TOP COMMAND HEADER ==================== -->
+  <header class="h-16 bg-[#0B0F19]/90 backdrop-blur-md border-b border-slate-800/80 px-5 flex items-center justify-between shrink-0 z-30">
+    <!-- Brand & System Identity -->
+    <div class="flex items-center gap-3.5">
+      <div class="relative w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-cyan-400 p-[1px] shadow-lg shadow-cyan-500/20">
+        <div class="w-full h-full bg-[#07090E] rounded-[11px] flex items-center justify-center">
+          <span class="font-display font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-400 text-sm tracking-wider">DG</span>
+        </div>
+        <span class="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-400 border-2 border-[#07090E] beacon"></span>
+      </div>
+      <div>
+        <div class="flex items-center gap-2">
+          <h1 class="font-display font-bold text-sm text-white tracking-wide">DeepGrid Semi</h1>
+          <span class="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 rounded-md">
+            Mature-Silicon Cockpit
+          </span>
+          <span class="hidden xl:inline-block px-2 py-0.5 text-[10px] font-mono text-slate-400 bg-slate-800/60 rounded border border-slate-700/60">
+            v3.0 Master Whitepaper
+          </span>
+        </div>
+        <p class="text-[11px] text-slate-400 flex items-center gap-2">
+          <span>Foundries: <strong>SCL Mohali</strong> · <strong>SkyWater 130nm</strong> · <strong>IHP BiCMOS</strong></span>
+          <span class="text-slate-600">|</span>
+          <span class="text-emerald-400 font-mono text-[10px]">PIL Sovereign Moat Verified</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Center Mode Switcher Tabs -->
+    <div class="hidden lg:flex items-center bg-[#07090E] border border-slate-800 p-1 rounded-xl gap-1 shadow-inner">
+      <button onclick="setPrimaryMode('schematic')" id="tab-mode-schematic" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white shadow transition">
+        <i data-lucide="crosshair" class="w-3.5 h-3.5 text-cyan-200"></i>
+        <span>Schematic Focus</span>
+        <span class="ml-1 text-[9px] bg-blue-700/60 px-1 py-0.5 rounded font-mono">300 DPI</span>
+      </button>
+      <button onclick="setPrimaryMode('pdf')" id="tab-mode-pdf" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800/50 transition">
+        <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+        <span>Full PDF Page</span>
+      </button>
+      <button onclick="setPrimaryMode('grid')" id="tab-mode-grid" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800/50 transition">
+        <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i>
+        <span>Figure Gallery</span>
+        <span class="ml-1 text-[9px] bg-slate-800 px-1 py-0.5 rounded font-mono text-cyan-400">25</span>
+      </button>
+      <button onclick="setPrimaryMode('economics')" id="tab-mode-economics" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800/50 transition">
+        <i data-lucide="calculator" class="w-3.5 h-3.5 text-amber-400"></i>
+        <span>Economics & Moat</span>
+      </button>
+    </div>
+
+    <!-- Right HUD & Aesthetics Controls -->
+    <div class="flex items-center gap-2">
+      <!-- Diagram Theme / Filter Mode -->
+      <div class="flex items-center bg-[#07090E] border border-slate-800 rounded-lg p-0.5 text-xs">
+        <button onclick="setDiagramTheme('dark')" id="theme-btn-dark" class="px-2.5 py-1 rounded text-cyan-400 bg-cyan-950/40 border border-cyan-800/50 font-medium flex items-center gap-1" title="Silicon Dark Blueprint">
+          <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+          <span class="text-[11px] hidden sm:inline">Dark HUD</span>
+        </button>
+        <button onclick="setDiagramTheme('clean')" id="theme-btn-clean" class="px-2.5 py-1 rounded text-slate-400 hover:text-white font-medium flex items-center gap-1" title="Clean White Studio Sheet">
+          <i data-lucide="sun" class="w-3.5 h-3.5"></i>
+          <span class="text-[11px] hidden sm:inline">Studio</span>
+        </button>
+      </div>
+
+      <!-- Quick Stepper Controls -->
+      <div class="flex items-center bg-[#07090E] border border-slate-800 rounded-lg p-0.5 text-xs">
+        <button onclick="prevFigure()" class="p-1.5 hover:bg-slate-800 text-slate-300 rounded transition" title="Previous Figure">
+          <i data-lucide="chevron-left" class="w-3.5 h-3.5"></i>
+        </button>
+        <span class="px-2 font-mono text-xs text-slate-300">
+          <span id="header-fig-num" class="text-cyan-400 font-bold">Fig 10</span>
+          <span class="text-slate-500">/ 25</span>
+        </span>
+        <button onclick="nextFigure()" class="p-1.5 hover:bg-slate-800 text-slate-300 rounded transition" title="Next Figure">
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+
+      <!-- Raw PDF Direct Download -->
+      <a href="DeepGrid_Whitepaper_Plain_v3.pdf" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700/80 rounded-lg text-xs font-semibold transition flex items-center gap-1.5 shadow-sm">
+        <i data-lucide="download" class="w-3.5 h-3.5 text-blue-400"></i>
+        <span class="hidden md:inline">Raw PDF</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN WORKSPACE BODY ==================== -->
+  <div class="flex-1 flex overflow-hidden relative">
+
+    <!-- ==================== LEFT NAVIGATION PANEL ==================== -->
+    <aside class="w-80 bg-[#0A0E18] border-r border-slate-800/80 flex flex-col shrink-0 overflow-hidden z-20 shadow-xl">
+      <!-- Search & Category Filters -->
+      <div class="p-3 border-b border-slate-800/80 bg-[#0D1322]/80 space-y-2">
+        <div class="relative">
+          <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-2.5 text-slate-500"></i>
+          <input type="text" id="nav-search" onkeyup="filterFigureList()" placeholder="Search SKUs, 130nm, Radar, PIL..." class="w-full pl-8 pr-3 py-1.5 bg-[#07090E] border border-slate-700/80 rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 transition font-mono">
+        </div>
+
+        <!-- Filter Chips -->
+        <div class="flex items-center gap-1 overflow-x-auto pb-0.5 custom-scrollbar text-[10px]">
+          <button onclick="setCategoryFilter('all')" id="pill-filter-all" class="px-2 py-0.5 rounded-md font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shrink-0">
+            All (25)
+          </button>
+          <button onclick="setCategoryFilter('sku')" id="pill-filter-sku" class="px-2 py-0.5 rounded-md font-medium text-slate-400 hover:bg-slate-800 shrink-0">
+            10 SKUs
+          </button>
+          <button onclick="setCategoryFilter('eda')" id="pill-filter-eda" class="px-2 py-0.5 rounded-md font-medium text-slate-400 hover:bg-slate-800 shrink-0">
+            Foundry/EDA
+          </button>
+          <button onclick="setCategoryFilter('strategy')" id="pill-filter-strategy" class="px-2 py-0.5 rounded-md font-medium text-slate-400 hover:bg-slate-800 shrink-0">
+            PIL/Defence
+          </button>
+        </div>
+      </div>
+
+      <!-- Scrollable Visual Cards List -->
+      <div class="flex-1 overflow-y-auto custom-scrollbar p-2.5 space-y-2" id="figure-cards-container">
+        <!-- Dynamically populated with rich preview cards -->
+      </div>
+    </aside>
+
+    <!-- ==================== CENTER CANVAS VIEWPORT ==================== -->
+    <main class="flex-1 blueprint-bg flex flex-col overflow-hidden relative" id="center-viewport">
+
+      <!-- Viewport Floating Floating HUD Bar -->
+      <div class="absolute top-4 left-6 right-6 z-10 flex items-center justify-between pointer-events-none">
+        <!-- Active Item Title Chip -->
+        <div class="pointer-events-auto bg-[#0B0F19]/90 backdrop-blur-md border border-slate-700/80 px-3.5 py-1.5 rounded-xl shadow-2xl flex items-center gap-2.5">
+          <span id="hud-badge" class="px-2 py-0.5 text-[10px] font-mono font-bold uppercase rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+            SKU 1
+          </span>
+          <div>
+            <h2 id="hud-title" class="text-xs font-bold text-white tracking-tight">Figure 10: BLDC Motor Controller SoC</h2>
+            <p id="hud-subtitle" class="text-[10px] text-slate-400 font-mono">130nm BCD Monolithic Die · AEC-Q100 Grade 0</p>
+          </div>
+        </div>
+
+        <!-- Zoom & View Tools -->
+        <div class="pointer-events-auto bg-[#0B0F19]/90 backdrop-blur-md border border-slate-700/80 p-1 rounded-xl shadow-2xl flex items-center gap-1 text-xs">
+          <button onclick="adjustZoom(-0.15)" class="p-1.5 hover:bg-slate-800 text-slate-300 rounded transition" title="Zoom Out">
+            <i data-lucide="zoom-out" class="w-4 h-4"></i>
+          </button>
+          <span id="zoom-percentage" class="px-2 font-mono text-xs text-cyan-400 font-bold min-w-[52px] text-center">100%</span>
+          <button onclick="adjustZoom(0.15)" class="p-1.5 hover:bg-slate-800 text-slate-300 rounded transition" title="Zoom In">
+            <i data-lucide="zoom-in" class="w-4 h-4"></i>
+          </button>
+          <button onclick="resetZoom()" class="px-2.5 py-1 hover:bg-slate-800 text-slate-300 text-[11px] rounded transition border-l border-slate-800 font-medium">
+            Reset
+          </button>
+          <button onclick="toggleFullscreen()" class="p-1.5 hover:bg-slate-800 text-slate-300 rounded transition" title="Toggle Fullscreen">
+            <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Center Container: Focused Schematic Mode -->
+      <div id="view-mode-schematic-container" class="flex-1 overflow-auto custom-scrollbar flex items-center justify-center p-8 pt-20">
+        <div id="schematic-stage" class="transition-transform duration-150 ease-out max-w-full">
+          <div class="relative group p-2 rounded-2xl bg-gradient-to-b from-slate-700/40 via-slate-800/20 to-slate-900/60 border border-slate-700/60 shadow-2xl">
+            <!-- Authentic Vector Crop Image with Active Theme Filter -->
+            <img id="schematic-image" src="assets/figures/fig10_bldc_motor_controller.png" alt="DeepGrid Architecture Figure" class="filter-dark-circuit max-h-[72vh] max-w-full object-contain mx-auto transition duration-300">
+            
+            <!-- Watermark / Authenticity Tag -->
+            <div class="absolute bottom-4 right-5 pointer-events-none flex items-center gap-1.5 px-2.5 py-1 bg-black/70 backdrop-blur-sm border border-slate-700/80 rounded-md text-[10px] font-mono text-cyan-300">
+              <i data-lucide="shield-check" class="w-3 h-3 text-cyan-400"></i>
+              <span>100% Authentic Vector Extraction (300 DPI)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Container: Full PDF Page Mode (PDF.js Canvas) -->
+      <div id="view-mode-pdf-container" class="hidden flex-1 overflow-auto custom-scrollbar flex flex-col items-center p-8 pt-20">
+        <div id="pdf-loading-spinner" class="flex items-center gap-2.5 my-auto text-slate-400 text-xs font-mono">
+          <i data-lucide="loader-2" class="w-5 h-5 animate-spin text-cyan-400"></i>
+          <span>Rendering Full Vector Page from Whitepaper PDF...</span>
+        </div>
+        <div id="canvas-card-wrapper" class="hidden max-w-full rounded-2xl border border-slate-700/80 p-2 bg-[#0D121F] shadow-2xl">
+          <canvas id="pdf-canvas" class="filter-dark-circuit rounded-xl max-w-full mx-auto"></canvas>
+        </div>
+        <div class="mt-4 flex items-center gap-3 text-xs text-slate-400 font-mono">
+          <span>Whitepaper Page <strong id="pdf-current-page" class="text-cyan-400">31</strong> / <span id="pdf-total-pages">71</span></span>
+        </div>
+      </div>
+
+      <!-- Center Container: Visual Gallery Grid Mode -->
+      <div id="view-mode-grid-container" class="hidden flex-1 overflow-y-auto custom-scrollbar p-8 pt-20">
+        <div class="max-w-6xl mx-auto space-y-6">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+            <div>
+              <h3 class="text-base font-bold text-white font-display">DeepGrid Master Architecture Compendium</h3>
+              <p class="text-xs text-slate-400">All 25 authentic technical figures extracted at 300+ DPI. Click any sheet to inspect.</p>
+            </div>
+            <span class="px-3 py-1 bg-cyan-950/60 border border-cyan-800 text-cyan-300 text-xs font-mono rounded-lg">
+              25 High-Resolution Vector Assets
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="gallery-grid">
+            <!-- Populated via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Center Container: Interactive Economics HUD Mode -->
+      <div id="view-mode-economics-container" class="hidden flex-1 overflow-y-auto custom-scrollbar p-8 pt-20">
+        <div class="max-w-5xl mx-auto space-y-6">
+          <div class="bg-[#0D1322] border border-slate-800 p-6 rounded-2xl shadow-xl space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <i data-lucide="calculator" class="w-5 h-5 text-cyan-400"></i>
+                <h3 class="text-lg font-bold text-white font-display">Chapter 14: DeepGrid Unit Economics & Revenue Reality Engine</h3>
+              </div>
+              <span class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 border border-amber-500/40 text-xs font-mono font-bold">
+                50-SKU Mathematical Grounding
+              </span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Auditing the 20× arithmetic gap: Reconciling the initial pitch draft ("10 SKUs/yr to 1,000 SKUs by Year 5") against the disciplined reality: ~1,000 silicon-tested macro-blocks (TinyTapeout Tier 1) assembling into ~50 approved commercial catalog chips (Tier 2/3), constrained by FAE field-application support capacity (1 FAE per 30 customer accounts).
+            </p>
+          </div>
+
+          <!-- Interactive Calculator Cards -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Commercial High Volume -->
+            <div class="bg-[#0B0F19] border border-slate-800 p-4 rounded-xl space-y-3">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-bold text-white">SKU 1: BLDC Motor (130nm)</h4>
+                <span class="text-[10px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded">High Vol</span>
+              </div>
+              <div>
+                <label class="text-[11px] text-slate-400 flex justify-between">
+                  <span>ASP (USD):</span>
+                  <strong id="disp-asp-sku1" class="text-cyan-400 font-mono">$4.50</strong>
+                </label>
+                <input type="range" id="slider-asp-sku1" min="3.0" max="8.0" step="0.25" value="4.50" oninput="recalcEconomics()" class="w-full accent-cyan-400 mt-1">
+              </div>
+              <div class="text-[11px] text-slate-400 space-y-1 font-mono pt-2 border-t border-slate-800/80">
+                <div class="flex justify-between"><span>Foundry Die Cost:</span><span class="text-slate-200">$1.15</span></div>
+                <div class="flex justify-between"><span>Package + Test:</span><span class="text-slate-200">$0.85</span></div>
+                <div class="flex justify-between font-bold pt-1 border-t border-slate-800 text-white">
+                  <span>Gross Margin:</span>
+                  <span id="disp-margin-sku1" class="text-emerald-400">55.6%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Smart Meter Commercial -->
+            <div class="bg-[#0B0F19] border border-slate-800 p-4 rounded-xl space-y-3">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-bold text-white">SKU 2: Smart Meter SoC</h4>
+                <span class="text-[10px] font-mono text-blue-400 bg-blue-950/60 px-2 py-0.5 rounded">Commercial</span>
+              </div>
+              <div>
+                <label class="text-[11px] text-slate-400 flex justify-between">
+                  <span>ASP (USD):</span>
+                  <strong id="disp-asp-sku2" class="text-cyan-400 font-mono">$3.20</strong>
+                </label>
+                <input type="range" id="slider-asp-sku2" min="2.0" max="5.5" step="0.20" value="3.20" oninput="recalcEconomics()" class="w-full accent-cyan-400 mt-1">
+              </div>
+              <div class="text-[11px] text-slate-400 space-y-1 font-mono pt-2 border-t border-slate-800/80">
+                <div class="flex justify-between"><span>Foundry Die Cost:</span><span class="text-slate-200">$0.82</span></div>
+                <div class="flex justify-between"><span>Package + Test:</span><span class="text-slate-200">$0.65</span></div>
+                <div class="flex justify-between font-bold pt-1 border-t border-slate-800 text-white">
+                  <span>Gross Margin:</span>
+                  <span id="disp-margin-sku2" class="text-emerald-400">54.1%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Defence Screened High-Rel -->
+            <div class="bg-[#0B0F19] border border-slate-800 p-4 rounded-xl space-y-3">
+              <div class="flex items-center justify-between">
+                <h4 class="text-xs font-bold text-white">SKU 3: 28V PMIC (MIL-883)</h4>
+                <span class="text-[10px] font-mono text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded">Defence PIL</span>
+              </div>
+              <div>
+                <label class="text-[11px] text-slate-400 flex justify-between">
+                  <span>ASP (USD):</span>
+                  <strong id="disp-asp-sku3" class="text-amber-400 font-mono">$85.00</strong>
+                </label>
+                <input type="range" id="slider-asp-sku3" min="45.0" max="180.0" step="5.0" value="85.0" oninput="recalcEconomics()" class="w-full accent-amber-400 mt-1">
+              </div>
+              <div class="text-[11px] text-slate-400 space-y-1 font-mono pt-2 border-t border-slate-800/80">
+                <div class="flex justify-between"><span>Foundry Die Cost:</span><span class="text-slate-200">$2.10</span></div>
+                <div class="flex justify-between"><span>Screening / Burn-in:</span><span class="text-slate-200">$18.50</span></div>
+                <div class="flex justify-between font-bold pt-1 border-t border-slate-800 text-white">
+                  <span>Gross Margin:</span>
+                  <span id="disp-margin-sku3" class="text-emerald-400">75.8%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pilot Round Allocation Breakdown -->
+          <div class="bg-[#0B0F19] border border-slate-800 p-6 rounded-2xl space-y-4">
+            <h4 class="text-sm font-bold text-white font-display flex items-center gap-2">
+              <i data-lucide="pie-chart" class="w-4 h-4 text-emerald-400"></i>
+              Figure 25: ₹10 Crore Pilot Round Capital Allocation
+            </h4>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-mono">
+              <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                <span class="text-[10px] text-slate-500 uppercase">Shuttles & Masks</span>
+                <p class="text-base font-bold text-cyan-400 mt-1">₹3.80 Cr</p>
+                <span class="text-[10px] text-slate-400">38% (SCL, SkyWater, IHP)</span>
+              </div>
+              <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                <span class="text-[10px] text-slate-500 uppercase">Engineering Team</span>
+                <p class="text-base font-bold text-blue-400 mt-1">₹3.20 Cr</p>
+                <span class="text-[10px] text-slate-400">32% (12 Core Chip Architects)</span>
+              </div>
+              <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                <span class="text-[10px] text-slate-500 uppercase">Test & MIL Screening</span>
+                <p class="text-base font-bold text-amber-400 mt-1">₹1.80 Cr</p>
+                <span class="text-[10px] text-slate-400">18% (ATE Fixtures & Burn-in)</span>
+              </div>
+              <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-800">
+                <span class="text-[10px] text-slate-500 uppercase">Working Cap & IP</span>
+                <p class="text-base font-bold text-emerald-400 mt-1">₹1.20 Cr</p>
+                <span class="text-[10px] text-slate-400">12% (EDA Maintenance & Lab)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- ==================== RIGHT SOCRATIC AUDIT PANEL ==================== -->
+    <aside class="w-96 bg-[#0A0E18] border-l border-slate-800/80 flex flex-col shrink-0 overflow-hidden z-20 shadow-xl">
+      <!-- Right Panel Header with Tab Bar -->
+      <div class="p-3.5 border-b border-slate-800/80 bg-[#0D1322]/90 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <i data-lucide="cpu" class="w-4 h-4 text-cyan-400"></i>
+          <h2 class="text-xs font-bold text-white uppercase tracking-wider font-display">Silicon Audit HUD</h2>
+        </div>
+        <span id="right-badge" class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">
+          PAGE 31
+        </span>
+      </div>
+
+      <!-- Tab Switcher (Specs vs Questions vs Economics vs Code) -->
+      <div class="flex items-center bg-[#07090E] p-1 border-b border-slate-800 text-[11px] font-semibold">
+        <button onclick="setAuditTab('specs')" id="btn-audit-specs" class="flex-1 py-1.5 rounded-lg bg-blue-600 text-white transition text-center">
+          Specs
+        </button>
+        <button onclick="setAuditTab('questions')" id="btn-audit-questions" class="flex-1 py-1.5 rounded-lg text-slate-400 hover:text-white transition text-center">
+          Socratic Q&A
+        </button>
+        <button onclick="setAuditTab('economics')" id="btn-audit-economics" class="flex-1 py-1.5 rounded-lg text-slate-400 hover:text-white transition text-center">
+          Economics
+        </button>
+        <button onclick="setAuditTab('code')" id="btn-audit-code" class="flex-1 py-1.5 rounded-lg text-slate-400 hover:text-white transition text-center">
+          Registers
+        </button>
+      </div>
+
+      <!-- Tab Content (Scrollable) -->
+      <div class="flex-1 overflow-y-auto custom-scrollbar p-4 space-y-4 text-xs" id="audit-panel-body">
+        <!-- Injected dynamically based on active figure & active tab -->
+      </div>
+    </aside>
+
+  </div>
+
+  <!-- ==================== SCRIPT & DATA LOGIC ==================== -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // PDF.js Setup
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    // State Variables
+    let currentFigId = 10;
+    let currentMode = 'schematic'; // 'schematic' | 'pdf' | 'grid' | 'economics'
+    let currentTheme = 'dark'; // 'dark' | 'clean'
+    let currentAuditTab = 'specs'; // 'specs' | 'questions' | 'economics' | 'code'
+    let currentCategoryFilter = 'all';
+    let currentZoom = 1.0;
+
+    let pdfDoc = null;
+    let pageRendering = false;
+    let pageNumPending = null;
+    let pdfScale = 1.3;
+
+    const canvas = document.getElementById('pdf-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // ==================== 25 FIGURES MASTER DATABASE ====================
+    const figuresData = [
+      {
+        id: 10,
+        page: 31,
+        title: "SKU 1: BLDC Motor Controller SoC",
+        badge: "SKU 1 · High Vol",
+        category: "sku",
+        node: "130nm BCD / HV CMOS (120V Rail)",
+        standard: "AEC-Q100 Grade 0, UL94, ISO 26262 ASIL-B",
+        image: "assets/figures/fig10_bldc_motor_controller.png",
+        summary: "Monolithic BLDC motor controller integrating 200MHz DGridRiscV core, 16-bit 4-ch synchronized SAR ADC, hardware CORDIC + Clarke/Park FOC engine (<1µs PID latency), and 3-phase half-bridge gate drivers.",
+        specs: [
+          "Core: Custom DGridRiscV (RV32IM) @ 200 MHz with single-cycle MAC",
+          "Metrology: 16-bit 4-channel Synchronized Phase/Current ADC",
+          "FOC Pipeline: Hardware CORDIC Engine (<1 µs Clarke/Park transformation)",
+          "Power Drivers: Integrated 120V Half-Bridge Gate Drivers with programmable dead-time",
+          "Target Market: Ceiling fans, 2W/3W Light EV drivetrains, industrial pumps"
+        ],
+        questions: [
+          "<strong>Mixed-Signal Substrate Isolation:</strong> What is the guard-ring trench isolation resistance between the 120V high-side inductive flyback bridge and the sensitive 16-bit SAR ADC comparator to prevent latch-up during stall transients?",
+          "<strong>CORDIC Loop Closure Latency:</strong> How does the dedicated AXI stream between the hardware CORDIC engine and DGridRiscV register file avoid bus arbitration stalls during tight 20 kHz PWM cycle updates?",
+          "<strong>Thermal De-rating at 150°C:</strong> Under continuous 25A phase current at +125°C ambient, what internal thermal shutdown hysteretic profile is guaranteed without dropping motor synchronization?"
+        ],
+        economics: {
+          asp: "$3.50 – $7.50",
+          marketVolume: "45M units/yr (India Fan & EV TAM)",
+          waferCost: "$1,150 (SkyWater 130nm)",
+          dieSize: "3.2 mm × 3.2 mm (~10.2 mm²)",
+          grossMargin: "58.4%"
+        },
+        registers: `// SKU-1 FOC CORDIC Control Register Map
+#define FOC_CTRL_BASE      0x40001000
+#define FOC_ANGLE_THETA    (*(volatile uint32_t*)(FOC_CTRL_BASE + 0x04))
+#define FOC_IA_MEASURED    (*(volatile int16_t* )(FOC_CTRL_BASE + 0x08))
+#define FOC_IB_MEASURED    (*(volatile int16_t* )(FOC_CTRL_BASE + 0x0A))
+#define FOC_CORDIC_EXEC    (*(volatile uint32_t*)(FOC_CTRL_BASE + 0x10))
+#define FOC_VD_OUTPUT      (*(volatile int16_t* )(FOC_CTRL_BASE + 0x14))
+#define FOC_VQ_OUTPUT      (*(volatile int16_t* )(FOC_CTRL_BASE + 0x16))
+
+void trigger_foc_transform(uint16_t theta, int16_t ia, int16_t ib) {
+    FOC_ANGLE_THETA = theta;
+    FOC_IA_MEASURED = ia;
+    FOC_IB_MEASURED = ib;
+    FOC_CORDIC_EXEC = 0x01; // Hardware pipeline execution < 12 clock cycles
+}`
+      },
+      {
+        id: 16,
+        page: 43,
+        title: "SKU 7: 4D Imaging Radar SoC (77 GHz)",
+        badge: "SKU 7 · Radar RF",
+        category: "sku",
+        node: "130nm BiCMOS / SiGe (fT > 300 GHz) + SkyWater",
+        standard: "MIL-STD-883K Class B, DO-160G Airborne, DO-254 DAL-B",
+        image: "assets/figures/fig16_4d_radar_77ghz.png",
+        summary: "4D Imaging Radar integrating 3TX + 4RX FMCW transceiver in 130nm SiGe BiCMOS with a 2D/3D hardware FFT accelerator and lockstep DSP in 130nm CMOS.",
+        specs: [
+          "RF Front-End: 3 TX + 4 RX Direct-Conversion 77GHz / 24GHz Transceiver",
+          "DSP Architecture: Dual-Core Lockstep DSP + 2D/3D FFT Hardware Streaming Engine",
+          "Range Resolution: 15 cm resolution, 300-meter detection envelope",
+          "Interface: Dual MIPI-CSI2 + Isolated Automotive CAN-FD / Ethernet TSN",
+          "Applications: Drone collision avoidance, military perimeter defence, ADAS"
+        ],
+        questions: [
+          "<strong>Phase Noise & Chirp Linearity:</strong> What is the phase noise at 1 MHz offset for the 77 GHz PLL, and how does closed-loop chirp correction suppress VCO thermal drift?",
+          "<strong>Range-Doppler SRAM Contention:</strong> How is the 2MB on-chip SRAM dual-ported between the FFT streaming engine and the Doppler radar clustering pipeline?",
+          "<strong>Airborne DO-160 Radiated Immunity:</strong> What package shielding is applied to suppress radar harmonics from coupling into adjacent avionics transceivers?"
+        ],
+        economics: {
+          asp: "$120.00 – $280.00",
+          marketVolume: "180k units/yr (Aerospace / Border Security / EV ADAS)",
+          waferCost: "$2,400 (IHP 130nm BiCMOS)",
+          dieSize: "6.5 mm × 6.5 mm (Multi-Die SiP)",
+          grossMargin: "74.2%"
+        },
+        registers: `// SKU-7 77GHz FMCW Chirp Synthesizer Config
+#define RADAR_CHIRP_BASE   0x50002000
+#define CHIRP_SLOPE_MHZ    (*(volatile uint32_t*)(RADAR_CHIRP_BASE + 0x00))
+#define CHIRP_DURATION_US  (*(volatile uint16_t*)(RADAR_CHIRP_BASE + 0x04))
+#define FFT_ACCEL_STATUS   (*(volatile uint32_t*)(RADAR_CHIRP_BASE + 0x18))
+
+void configure_fmcw_frame(void) {
+    CHIRP_SLOPE_MHZ   = 150; // 150 MHz/us chirp ramp rate
+    CHIRP_DURATION_US = 64;  // 64 us active sweep
+    // Enable 2D-FFT Range-Doppler Matrix Engine
+    *(volatile uint32_t*)(RADAR_CHIRP_BASE + 0x20) = 0x03; 
+}`
+      },
+      {
+        id: 4,
+        page: 16,
+        title: "Node and SKU Roadmap (130nm - 28nm)",
+        badge: "Process Plan",
+        category: "eda",
+        node: "Phase 1: 130/180nm | Phase 2: 90/55nm | Phase 3: 28nm",
+        standard: "Make in India / PIL Sovereign Boundary",
+        image: "assets/figures/fig04_node_sku_roadmap.png",
+        summary: "The 3-Phase technology trajectory showing why 130nm/180nm handles voltage and mixed-signal needs, while 28nm serves onboard edge AI inference from 2030 onwards.",
+        specs: [
+          "Phase 1 (2026-2027): 130nm / 180nm Power Paths, High-Voltage Analog, RF Front-Ends, 32-bit MCUs",
+          "Phase 2 (2028-2029): 90nm / 55nm / 45nm Comms Processors, Multi-channel DSP, EW Receivers, SDR",
+          "Phase 3 (2030+): 28nm and below Multi-TOPS NPU for Onboard AI inference, SDV Central Compute",
+          "The Honest Boundary: 28nm cannot do 120V gate drivers; 130nm cannot do 10 TOPS NPU"
+        ],
+        questions: [
+          "<strong>The 20× Arithmetic Reality:</strong> How does DeepGrid reconcile early pitch claims of '10 SKUs/yr reaching 1,000 SKUs' against the ~50 commercial chip ceiling imposed by FAE support bandwidth?",
+          "<strong>Shrink vs Retention Boundary:</strong> Why are I/O rings and ESD structures permanently retained at 130nm even when digital logic migrates to 55nm?",
+          "<strong>SCL Mohali Upgrade Path:</strong> What specific photolithography stepper upgrades are required for SCL to qualify 90nm RF-CMOS for defence radar?"
+        ],
+        economics: {
+          asp: "Portfolio Blend: $4.50 (Commercial) to $180 (Defence)",
+          marketVolume: "Phase 1 TAM: ₹1,000 Cr ($120M)",
+          waferCost: "Phase 1: $1,100 | Phase 2: $2,400 | Phase 3: $4,500",
+          dieSize: "Range: 4 mm² to 36 mm²",
+          grossMargin: "Blended 58.5%"
+        },
+        registers: `// Process Node Selection Calibration Register
+#define NODE_CFG_BASE      0x10000000
+#define NODE_ACTIVE_FAB    (*(volatile uint32_t*)(NODE_CFG_BASE + 0x00))
+// 0x01 = SCL Mohali 180nm | 0x02 = SkyWater 130nm | 0x03 = IHP 130nm
+#define ESD_CLAMP_VOLTAGE  (*(volatile uint16_t*)(NODE_CFG_BASE + 0x04))
+
+void set_foundry_profile(uint8_t fab_id) {
+    NODE_ACTIVE_FAB = fab_id;
+    ESD_CLAMP_VOLTAGE = (fab_id == 0x01) ? 5000 : 3300; // mV
+}`
+      },
+      {
+        id: 9,
+        page: 27,
+        title: "DGridRiscV 32-bit RISC-V Core",
+        badge: "Core IP",
+        category: "eda",
+        node: "130nm / 180nm Standard Cell CMOS",
+        standard: "Open-Source EDA (OpenLane / Magic / Netgen)",
+        image: "assets/figures/fig09_dgridriscv_core.png",
+        summary: "Custom 32-bit RV32IM in-order 5-stage RISC-V processor synthesized entirely using open-source EDA tools with zero royalty or IP licensing overhead.",
+        specs: [
+          "Pipeline: 5-Stage Classic (Fetch, Decode, Execute, Memory, Writeback)",
+          "Extensions: RV32IM (Integer + Hardware Multiply/Divide Unit)",
+          "Frequency: 200 MHz @ 130nm SkyWater (1.8V core logic)",
+          "Footprint: ~0.15 mm² silicon area; under 45k logic gates",
+          "Bus Interfaces: Parity-protected AXI4-Lite & APB master interfaces"
+        ],
+        questions: [
+          "<strong>Branch Mispredict Penalty:</strong> What is the exact cycle penalty on pipeline flush during tight motor control interrupt loops?",
+          "<strong>ECC Fault Coverage:</strong> Does the 32KB on-chip SRAM implement SECDED parity checking to withstand atmospheric single-event upsets (SEU)?",
+          "<strong>Clock Gating Efficiency:</strong> What is the sleep-mode power consumption at 32 kHz standby clock?"
+        ],
+        economics: {
+          asp: "Internal IP Block ($0.00 licensing royalty)",
+          marketVolume: "Embedded in 8 of 10 catalogue SKUs",
+          waferCost: "Negligible silicon area overhead (<1.5% die cost)",
+          dieSize: "0.15 mm² @ 130nm",
+          grossMargin: "Adds 8-12% gross margin vs ARM Cortex-M0/M4 licensing"
+        },
+        registers: `// DGridRiscV Custom Machine Control Registers
+#define CSR_MSTATUS        0x300
+#define CSR_MEPC           0x341
+#define CSR_MCAUSE         0x342
+#define CSR_DGRID_ECC_ERR  0x7C0 // Custom ECC Fault Status Register
+
+static inline uint32_t read_ecc_faults(void) {
+    uint32_t val;
+    asm volatile ("csrr %0, 0x7C0" : "=r"(val));
+    return val;
+}`
+      },
+      {
+        id: 12,
+        page: 35,
+        title: "SKU 3: High-Reliability 28V PMIC",
+        badge: "SKU 3 · Defence",
+        category: "sku",
+        node: "180nm BCD (Bipolar-CMOS-DMOS)",
+        standard: "MIL-STD-883K Class B, DEF-STAN 59-411, MIL-STD-1275",
+        image: "assets/figures/fig12_high_rel_pmic_28v.png",
+        summary: "Rad-hard, high-voltage power management IC for military vehicles and avionics with 28V bus nominal and 80V transient suppression.",
+        specs: [
+          "Input Range: 4.5V to 40V continuous (Surge withstand to 80V / 100ms)",
+          "Outputs: 4x Synchronous Buck Regulators (3.3V, 1.8V, 1.2V, 0.9V) + 2x Ultra-low noise LDOs",
+          "Efficiency: >92% peak efficiency at 28V to 3.3V step-down",
+          "Packaging: Ceramic QFN-48 hermetic package option for defence"
+        ],
+        questions: [
+          "<strong>MIL-1275 Vehicle Electrical Surges:</strong> How does the internal clamping circuitry withstand 100V / 50ms inductive alternator dumps without external MOV degradation?",
+          "<strong>LDO PSRR at High Frequencies:</strong> What is the power supply ripple rejection at 1 MHz for the 1.2V radar ADC reference rail?"
+        ],
+        economics: {
+          asp: "$50.00 – $180.00",
+          marketVolume: "250k units/yr (Armoured vehicles, missile seeker heads, naval systems)",
+          waferCost: "$1,350 (SCL Mohali / SkyWater BCD)",
+          dieSize: "4.1 mm × 3.8 mm",
+          grossMargin: "76.5%"
+        },
+        registers: `// SKU-3 PMIC Voltage Sequencing Control
+#define PMIC_REG_BASE      0x40003000
+#define PMIC_BUCK1_VOUT    (*(volatile uint8_t*)(PMIC_REG_BASE + 0x04)) // 3.3V Core
+#define PMIC_BUCK2_VOUT    (*(volatile uint8_t*)(PMIC_REG_BASE + 0x08)) // 1.8V I/O
+#define PMIC_PG_STATUS     (*(volatile uint8_t*)(PMIC_REG_BASE + 0x10)) // Power Good Flag
+
+void enable_avionics_rails(void) {
+    PMIC_BUCK1_VOUT = 0x33; // Set to 3.3V target
+    PMIC_BUCK2_VOUT = 0x18; // Set to 1.8V target
+    *(volatile uint8_t*)(PMIC_REG_BASE + 0x00) = 0x01; // Enable soft-start ramp
+}`
+      },
+      {
+        id: 13,
+        page: 37,
+        title: "SKU 4: Lockstep ASIL-D Safety MCU",
+        badge: "SKU 4 · ASIL-D",
+        category: "sku",
+        node: "130nm CMOS / Mixed-Signal",
+        standard: "ISO 26262 ASIL-D, IEC 61508 SIL-3, DO-254 DAL-A",
+        image: "assets/figures/fig13_lockstep_mcu.png",
+        summary: "Dual DGridRiscV cores running in 2-cycle temporal diversity lockstep with instantaneous hardware fault-trapping for automotive brake-by-wire and fly-by-wire.",
+        specs: [
+          "Cores: Dual DGridRiscV Cores with 2-Cycle Temporal Stagger",
+          "Comparator: Hardware Error Comparator with < 2 cycle fault latching",
+          "Memory: SECDED ECC across all SRAM and Flash arrays",
+          "Watchdog: Independent Windowed Safety Watchdog with separate dedicated oscillator"
+        ],
+        questions: [
+          "<strong>Temporal Stagger EMP Immunity:</strong> How does the 2-cycle execution delay prevent common-mode electromagnetic pulse (EMP) events from affecting both cores identically?",
+          "<strong>Fail-Safe Disconnect Latency:</strong> What is the maximum latency between comparator mismatch and safe-state hardware actuator disconnect?"
+        ],
+        economics: {
+          asp: "$12.00 – $28.00",
+          marketVolume: "3.5M units/yr (Electric Vehicle BMS, Steer-by-Wire, Flight Control)",
+          waferCost: "$1,100 (SkyWater 130nm)",
+          dieSize: "4.5 mm × 4.5 mm",
+          grossMargin: "63.2%"
+        },
+        registers: `// SKU-4 Lockstep Error Trap Vector
+#define SAFETY_CTRL_BASE   0x40004000
+#define LOCKSTEP_STATUS    (*(volatile uint32_t*)(SAFETY_CTRL_BASE + 0x00))
+#define SAFE_STATE_TRIGGER (*(volatile uint32_t*)(SAFETY_CTRL_BASE + 0x04))
+
+void __attribute__((interrupt)) lockstep_mismatch_handler(void) {
+    // Hardware mismatch latched - immediately enter safe disconnect state
+    SAFE_STATE_TRIGGER = 0xDEADBEEF;
+    while(1) { asm volatile ("wfi"); }
+}`
+      },
+      {
+        id: 11,
+        page: 33,
+        title: "SKU 2: Smart Meter SoC (0.5S Accuracy)",
+        badge: "SKU 2 · High Vol",
+        category: "sku",
+        node: "130nm CMOS / Mixed-Signal",
+        standard: "IS 16444, IS 15959, RDSS Mandate",
+        image: "assets/figures/fig11_smart_meter_soc.png",
+        summary: "High-accuracy electricity metering SoC for India's 250-million RDSS smart meter rollout, integrating tamper detection and metrology front-end.",
+        specs: [
+          "Metrology: 24-bit Sigma-Delta ADC with Class 0.2S / 0.5S dynamic range",
+          "Core: DGridRiscV @ 100 MHz with AES-256 hardware cryptographic engine",
+          "Tamper: Magnetic, neutral disconnect, and cover-open detection circuitry",
+          "Interfaces: Optical port, cellular modem UART, and DLMS/COSEM stack support"
+        ],
+        questions: [
+          "<strong>Tamper Detection Under High Magnetic Fields:</strong> How does the internal Hall sensor comparator maintain operation during 0.5 Tesla neodymium magnet attacks without bricking meter state?",
+          "<strong>Metrology Calibration Drift:</strong> What is the 10-year gain drift of the internal bandgap voltage reference over -40°C to +85°C?"
+        ],
+        economics: {
+          asp: "$2.20 – $4.50",
+          marketVolume: "50M units/yr (India 250M Smart Meter RDSS mandate)",
+          waferCost: "$1,100 (SkyWater 130nm / SCL 180nm)",
+          dieSize: "2.8 mm × 2.8 mm (~7.8 mm²)",
+          grossMargin: "54.8%"
+        },
+        registers: `// SKU-2 Metrology Energy Accumulator Map
+#define METROLOGY_BASE     0x40002000
+#define ACTIVE_POWER_ACC   (*(volatile int64_t*)(METROLOGY_BASE + 0x00))
+#define VOLTAGE_RMS        (*(volatile uint32_t*)(METROLOGY_BASE + 0x08))
+#define CURRENT_RMS        (*(volatile uint32_t*)(METROLOGY_BASE + 0x0C))
+#define TAMPER_FLAGS       (*(volatile uint32_t*)(METROLOGY_BASE + 0x10))`
+      },
+      {
+        id: 14,
+        page: 39,
+        title: "SKU 5: Isolated Transceiver (RS-485 / CAN-FD)",
+        badge: "SKU 5 · Comms",
+        category: "sku",
+        node: "180nm High-Voltage CMOS",
+        standard: "ISO 11898-2, IEC 61000-4-2 Level 4 (15kV ESD)",
+        image: "assets/figures/fig14_transceiver_rs485_canfd.png",
+        summary: "Ruggedized multi-protocol industrial transceiver with 5kV galvanic capacitive isolation and 15kV contact ESD protection.",
+        specs: [
+          "Data Rate: Up to 5 Mbps CAN-FD and 20 Mbps RS-485",
+          "Isolation: 5 kVrms Galvanic Isolation (on-chip capacitive barrier)",
+          "Common-Mode Transient Immunity: > 100 kV/µs CMTI",
+          "Fault Protection: ±70V bus fault protection against 24V/48V cross-wiring"
+        ],
+        questions: [
+          "<strong>CMTI Degradation Over Temperature:</strong> How does the differential capacitive receiver reject high dv/dt switching transients from SiC inverters?",
+          "<strong>Ground Loop Suppression:</strong> What leakage current flows across the isolation barrier at 50 Hz?"
+        ],
+        economics: {
+          asp: "$1.80 – $4.20",
+          marketVolume: "25M units/yr (Industrial automation, solar inverters, BMS)",
+          waferCost: "$1,050",
+          dieSize: "2.5 mm × 2.2 mm",
+          grossMargin: "59.2%"
+        },
+        registers: `// SKU-5 CAN-FD Baud Rate & Termination Setup
+#define TRANSCEIVER_BASE   0x40005000
+#define CAN_CTRL_MODE      (*(volatile uint8_t*)(TRANSCEIVER_BASE + 0x00))
+#define CAN_TERM_RESISTOR  (*(volatile uint8_t*)(TRANSCEIVER_BASE + 0x04)) // 120 ohm internal`
+      },
+      {
+        id: 15,
+        page: 41,
+        title: "SKU 6: Voltage Supervisor & Windowed Watchdog",
+        badge: "SKU 6 · Supervisor",
+        category: "sku",
+        node: "180nm Analog CMOS",
+        standard: "AEC-Q100 Grade 0, MIL-STD-883K",
+        image: "assets/figures/fig15_voltage_supervisor.png",
+        summary: "Ultra-low quiescent current voltage supervisor with ±0.5% threshold accuracy and windowed watchdog for automotive fail-safe computing.",
+        specs: [
+          "Quiescent Current: 1.2 µA typical at 5V input",
+          "Accuracy: ±0.5% precision voltage monitoring across -40°C to +125°C",
+          "Watchdog: Programmable windowed watchdog timer (WDT)",
+          "Reset Delay: User-configurable reset timeout via single external capacitor"
+        ],
+        questions: [
+          "<strong>Low-Power Bandgap Temperature Drift:</strong> How does the sub-1µA curvature-compensated bandgap achieve 0.5% accuracy across MIL temperature spans?",
+          "<strong>Glitch Immunity:</strong> What duration of brownout transient is ignored to prevent nuisance system resets?"
+        ],
+        economics: {
+          asp: "$0.85 – $2.50 (Commercial) | $20 – $80 (Defence Screened)",
+          marketVolume: "60M units/yr",
+          waferCost: "$950",
+          dieSize: "1.2 mm × 1.2 mm",
+          grossMargin: "68.0%"
+        },
+        registers: `// SKU-6 Supervisor Config
+#define SUPERVISOR_BASE    0x40006000
+#define WDT_WINDOW_CONFIG  (*(volatile uint8_t*)(SUPERVISOR_BASE + 0x00))
+#define VOLT_TRIP_POINT    (*(volatile uint8_t*)(SUPERVISOR_BASE + 0x02))`
+      },
+      {
+        id: 18,
+        page: 47,
+        title: "SKU 9: Automotive Zonal Gateway SoC",
+        badge: "SKU 9 · Automotive",
+        category: "sku",
+        node: "130nm CMOS + 40nm Companion",
+        standard: "ISO 26262 ASIL-C/D, AUTOSAR 4.4",
+        image: "assets/figures/fig18_car_zonal_gateway.png",
+        summary: "Central vehicle zonal controller routing CAN-FD, LIN, and Automotive Ethernet TSN with secure boot and HSM cryptographic isolation.",
+        specs: [
+          "Processor: Dual DGridRiscV @ 200 MHz + Dedicated Hardware Crypto Engine",
+          "Interfaces: 8x CAN-FD, 6x LIN, 2x 100BASE-T1 Automotive Ethernet TSN",
+          "Security: On-chip Hardware Security Module (HSM) with secure key storage",
+          "Target: Software-Defined Vehicle (SDV) zonal harness reduction"
+        ],
+        questions: [
+          "<strong>TSN Ethernet Latency:</strong> What is the worst-case packet forwarding jitter between TSN streams and high-priority CAN-FD steer commands?",
+          "<strong>HSM Key Extraction Resistance:</strong> What differential power analysis (DPA) countermeasure is implemented in the AES core?"
+        ],
+        economics: {
+          asp: "$18.00 – $45.00",
+          marketVolume: "1.2M units/yr",
+          waferCost: "$1,300",
+          dieSize: "5.2 mm × 5.2 mm",
+          grossMargin: "61.5%"
+        },
+        registers: `// SKU-9 Zonal Gateway Routing Table Entry
+#define ROUTING_TABLE_BASE 0x40009000
+#define PACKET_SRC_MASK    (*(volatile uint32_t*)(ROUTING_TABLE_BASE + 0x00))
+#define PACKET_DEST_PORT   (*(volatile uint32_t*)(ROUTING_TABLE_BASE + 0x04))`
+      },
+      {
+        id: 19,
+        page: 49,
+        title: "Track B: D100 Drone AI & Autonomy SoC",
+        badge: "Track B · Drone AI",
+        category: "sku",
+        node: "130nm CMOS (Flight MCU) + 28nm AI Companion",
+        standard: "Military UAV, DGCA Type Certified",
+        image: "assets/figures/fig19_drone_d100_soc.png",
+        summary: "Multi-die organic SiP packaging a 130nm flight control MCU with a 28nm multi-TOPS neural processing unit for GPS-denied visual odometry.",
+        specs: [
+          "Packaging: Multi-Die Organic System-in-Package (SiP)",
+          "Flight Core: Dual Lockstep DGridRiscV @ 250 MHz for motor telemetry & IMU",
+          "AI Accelerator: 4-TOPS INT8 NPU for optical flow & terrain tracking",
+          "Interfaces: MIPI-CSI2 camera inputs, SBUS/PWM outputs, encrypted telemetry"
+        ],
+        questions: [
+          "<strong>SiP Die-to-Die Interconnect:</strong> What is the latency and power penalty of the high-speed parallel bus connecting the 130nm flight controller to the 28nm NPU die?",
+          "<strong>GPS-Denied Drift Suppression:</strong> How many optical flow frames per second does the hardware accelerator process under low-light conditions?"
+        ],
+        economics: {
+          asp: "$150.00 – $400.00",
+          marketVolume: "45k units/yr (Military drones, logistics UAVs)",
+          waferCost: "Multi-Die Blend",
+          dieSize: "Organic SiP (15 mm × 15 mm)",
+          grossMargin: "78.0%"
+        },
+        registers: `// D100 Drone Optical Flow Trigger
+#define DRONE_AI_BASE      0x60000000
+#define NPU_MODEL_LOAD     (*(volatile uint32_t*)(DRONE_AI_BASE + 0x00))
+#define ODOMETRY_STATUS    (*(volatile uint32_t*)(DRONE_AI_BASE + 0x04))`
+      },
+      {
+        id: 2,
+        page: 11,
+        title: "RTL to GDSII Open-Source EDA Flow",
+        badge: "EDA Engine",
+        category: "eda",
+        node: "OpenLane / Magic / Netgen / KLayout",
+        standard: "Zero-Cost CAD Toolchain",
+        image: "assets/figures/fig02_rtl_to_gdsii_flow.png",
+        summary: "The automated RTL-to-GDSII silicon compilation flow replacing proprietary $500k/seat EDA software with reproducible open-source tools.",
+        specs: [
+          "Synthesis: Yosys Open-Source Verilog Synthesis",
+          "Floorplanning & PnR: OpenROAD (Global & Detailed Placement, CTS, Detailed Routing)",
+          "Physical Verification: Magic & KLayout DRC, Netgen LVS",
+          "Tapeout Cadence: Automated GitHub Actions CI/CD to DRC-clean GDSII in < 48 hours"
+        ],
+        questions: [
+          "<strong>Open-Source DRC Reliability:</strong> How does DeepGrid guarantee that open-source Magic/KLayout DRC ruledecks achieve 100% parity with commercial foundry Calibre signoff decks?",
+          "<strong>Clock Tree Skew Closure:</strong> What is the worst-case clock skew across process corners in OpenROAD CTS?"
+        ],
+        economics: {
+          asp: "Toolchain Savings: ₹15 Cr ($1.8M) CAD license elimination",
+          marketVolume: "Internal Core Advantage",
+          waferCost: "N/A",
+          dieSize: "Applicable to all dies",
+          grossMargin: "Drives OPEX down by 65%"
+        },
+        registers: `// OpenLane Configuration JSON Sample
+{
+  "DESIGN_NAME": "dgrid_core",
+  "VERILOG_FILES": "dir::src/dgrid_core.v",
+  "CLOCK_PERIOD": 5.0,
+  "CLOCK_PORT": "clk",
+  "FP_CORE_UTIL": 45,
+  "PL_TARGET_DENSITY": 0.55
+}`
+      },
+      {
+        id: 6,
+        page: 19,
+        title: "MPW Shuttle Calendar & Multi-Project Wafer",
+        badge: "Foundry Cadence",
+        category: "eda",
+        node: "SkyWater 130nm / IHP BiCMOS / SCL Mohali",
+        standard: "198-Day Silicon Cadence",
+        image: "assets/figures/fig06_shuttle_calendar.png",
+        summary: "Aggregated multi-project wafer (MPW) shuttle schedule allowing quarterly silicon tapeouts at $15k–$30k per tile instead of $500k dedicated mask sets.",
+        specs: [
+          "Cadence: 4 scheduled shuttle tapeouts per calendar year",
+          "Cost per Slot: $12k – $28k on shared MPWs",
+          "Silicon Return: 100 packaged parts per shuttle run for lab qualification",
+          "Cycle Time: 198 days from RTL freeze to tested silicon in Bangalore"
+        ],
+        questions: [
+          "<strong>Tile Reticle Stepping:</strong> How does DeepGrid arrange IP building-block tiles on shared multi-project reticles to minimize saw-street kerf waste?",
+          "<strong>Foundry Queue Priority:</strong> What contractual lead-time buffer is baked in for international export control approvals?"
+        ],
+        economics: {
+          asp: "Prototyping cost reduction: 92% cheaper than dedicated masks",
+          marketVolume: "Quarterly Shuttles",
+          waferCost: "$15k - $30k per slot",
+          dieSize: "10 mm² - 25 mm² tiles",
+          grossMargin: "Low capital risk"
+        },
+        registers: `// Shuttle Metadata Block Header
+struct mpw_header_t {
+    uint32_t shuttle_id;      // e.g. 0x2026_03Q
+    char     foundry[16];     // "SKYWATER_130"
+    uint16_t die_count;       // 100
+    uint32_t checksum;        // GDSII SHA-256
+};`
+      },
+      {
+        id: 7,
+        page: 22,
+        title: "IP Library Reuse (20 Building Blocks)",
+        badge: "IP Modularity",
+        category: "eda",
+        node: "130nm Silicon-Verified Library",
+        standard: "Modular Tile Architecture",
+        image: "assets/figures/fig07_ip_library_reuse.png",
+        summary: "The 20 certified building blocks (PLL, ADC, CORDIC, Power Drivers, LDOs, CAN Controllers) that combine to form all 50 commercial SKUs without redesign.",
+        specs: [
+          "Building Blocks: 20 Silicon-Proven Modular Macro Tiles",
+          "Analog Blocks: 16-bit SAR ADC, Bandgap VREF, High-Voltage LDO, Fractional PLL",
+          "Digital Blocks: DGridRiscV, AES Engine, CAN-FD Controller, CORDIC Engine",
+          "Reuse Ratio: >85% of any new SKU is assembled from verified existing blocks"
+        ],
+        questions: [
+          "<strong>Cross-Block Clock Jitter:</strong> How is substrate noise prevented from coupling between the high-current gate driver blocks and the PLL analog loop filter?",
+          "<strong>Porting Burden:</strong> How many engineering hours are required to migrate an analog macro block from SkyWater 130nm to SCL Mohali 180nm?"
+        ],
+        economics: {
+          asp: "Reduces NRE per new chip from ₹2.5 Cr to ₹35 Lakhs",
+          marketVolume: "20 Core IP Blocks",
+          waferCost: "Amortized across all SKUs",
+          dieSize: "Modular sub-tiles",
+          grossMargin: "Enables 50-SKU scaling with 12 engineers"
+        },
+        registers: `// Modular Block Enable Register
+#define IP_BLOCK_EN_BASE   0x10000100
+#define ENABLE_PLL_BLOCK   (*(volatile uint8_t*)(IP_BLOCK_EN_BASE + 0x00))
+#define ENABLE_ADC_BLOCK   (*(volatile uint8_t*)(IP_BLOCK_EN_BASE + 0x01))`
+      },
+      {
+        id: 8,
+        page: 25,
+        title: "3 Fabs Porting Matrix (SCL / SkyWater / IHP)",
+        badge: "Fab Sovereignty",
+        category: "eda",
+        node: "SCL 180nm · SkyWater 130nm · IHP 130nm BiCMOS",
+        standard: "Three-Legged Foundry Resilience",
+        image: "assets/figures/fig08_three_fabs_porting.png",
+        summary: "Architecture portability strategy preventing single-foundry lock-in by maintaining pin-compatible designs across SCL Mohali, SkyWater Minnesota, and IHP Germany.",
+        specs: [
+          "SCL Mohali (India): 180nm CMOS/BCD — Sovereign domestic manufacturing for defence",
+          "SkyWater (USA): 130nm CMOS/BCD — High-volume commercial & automotive qualification",
+          "IHP Microelectronics (Germany): 130nm BiCMOS/SiGe — Ultra-high frequency 77GHz radar",
+          "PDK Abstraction: Unified RTL with foundry-specific analog hard-macro swap layers"
+        ],
+        questions: [
+          "<strong>SCL Mohali Wafer Yield:</strong> What defect density is achieved on SCL 180nm 8-inch wafers compared to SkyWater 130nm?",
+          "<strong>PDK Translation Verification:</strong> What automated equivalence checking verifies that SCL standard cells match SkyWater timing margins?"
+        ],
+        economics: {
+          asp: "Zero geopolitical shutdown risk",
+          marketVolume: "Guaranteed 100% supply continuity",
+          waferCost: "SCL: ₹85,000/wafer | SkyWater: $1,150/wafer",
+          dieSize: "Standardized across fabs",
+          grossMargin: "Insulated from supply shocks"
+        },
+        registers: `// Foundry ID Identification Register
+#define FAB_PORT_INFO_BASE 0x10000004
+#define FAB_CURRENT_DIE    (*(volatile uint32_t*)(FAB_PORT_INFO_BASE + 0x00))
+// Returns 0x53434C31 ("SCL1"), 0x534B5957 ("SKYW"), or 0x49485031 ("IHP1")`
+      },
+      {
+        id: 22,
+        page: 56,
+        title: "PIL Boxes, Not Chips — Procurement Strategy",
+        badge: "PIL Moat",
+        category: "strategy",
+        node: "Positive Indigenisation Lists (1st to 5th Tranches)",
+        standard: "Defence Acquisition Procedure (DAP 2020) Make-II",
+        image: "assets/figures/fig22_pil_boxes_not_chips.png",
+        summary: "How DeepGrid penetrates India's defence market by targeting the tier-1 system boxes (BEL, HAL, BDL, DRDO) mandated under PIL import bans, rather than selling raw chips to reluctant OEMs.",
+        specs: [
+          "The Trap: Foreign IC makers sell to Indian defence PSUs via distributors with zero local accountability",
+          "The Sovereign Wedge: PIL bans entire sub-assemblies (e.g. Radars, EW Receivers, Motor Actuators) unless DVA > 50-65%",
+          "DeepGrid Integration: DeepGrid partners with Indian Tier-1s to supply pre-qualified chipsets and reference boards",
+          "Lock-In: 15-year military platform lifecycle with guaranteed recurring spare parts"
+        ],
+        questions: [
+          "<strong>DVA Calculation Compliance:</strong> How does DeepGrid certify >65% Domestic Value Addition when wafer fabrication occurs partially at SkyWater or IHP before packaging at Indian OSATs?",
+          "<strong>Incumbent Resistance:</strong> How does DeepGrid overcome Tier-1 PSU inertia favoring Texas Instruments or Analog Devices legacy BOMs?"
+        ],
+        economics: {
+          asp: "Defence TAM: ₹200 Cr ($24M) non-price-sensitive spend",
+          marketVolume: "High margin, multi-year recurring procurement",
+          waferCost: "Fully amortized",
+          dieSize: "Defence-rated parts",
+          grossMargin: "75% - 82%"
+        },
+        registers: `// DAP-2020 Make-II Indigenisation Tracking ID
+const char PIL_COMPLIANCE_CODE[] = "MOD-DAP2020-PIL5-DG-SEMI-001";`
+      },
+      {
+        id: 24,
+        page: 62,
+        title: "5-Year Revenue Build-Up (₹1,000 Cr Reality)",
+        badge: "Financial Model",
+        category: "strategy",
+        node: "FY27 to FY31 Financial Projections",
+        standard: "Mathematically Audited Revenue Ramp",
+        image: "assets/figures/fig24_revenue_buildup.png",
+        summary: "The rigorous financial progression showing how 50 validated SKUs reach ₹1,000 Cr ($120M) revenue by Year 5, grounded in Indian smart meter and motor unit volumes.",
+        specs: [
+          "FY27 (Year 1): ₹25 Cr — Initial BLDC Motor & Smart Meter design-wins",
+          "FY28 (Year 2): ₹95 Cr — Defence PMIC & Transceiver production ramp",
+          "FY29 (Year 3): ₹280 Cr — 4D Radar & Automotive Zonal deployments",
+          "FY30 (Year 4): ₹620 Cr — High-volume consumer & industrial scaling",
+          "FY31 (Year 5): ₹1,000 Cr — Full portfolio maturity with 22% net PAT"
+        ],
+        questions: [
+          "<strong>Chinese Price War Stress-Test:</strong> If Chinese competitors dump BLDC motor controllers at -35% below cost, how does DeepGrid protect its ₹1,000 Cr target?",
+          "<strong>Answer:</strong> 70% of volume is sheltered by PIL defence mandates and RDSS smart meter domestic origin clauses."
+        ],
+        economics: {
+          asp: "Blended ASP: $5.20",
+          marketVolume: "Year 5: 220M units total across all catalog lines",
+          waferCost: "Economy of scale discounts: $950/wafer",
+          dieSize: "Optimized packaging",
+          grossMargin: "58.0% blended gross margin"
+        },
+        registers: `// Financial Model Checkpoint
+const uint32_t REVENUE_TARGET_FY31_CR = 1000;
+const uint32_t DEFENCE_IMMUNE_PORTION_CR = 200;`
+      },
+      {
+        id: 25,
+        page: 65,
+        title: "₹10 Crore Pilot Round — Use of Funds",
+        badge: "Capital Plan",
+        category: "strategy",
+        node: "Seed / Pilot Round Budgeting",
+        standard: "18-Month Runway to First Silicon Revenue",
+        image: "assets/figures/fig25_use_of_funds.png",
+        summary: "Detailed breakdown of the ₹10 Crore ($1.2M) seed financing round showing lean capital efficiency achieved through open-source EDA and MPW shuttle aggregation.",
+        specs: [
+          "₹3.80 Cr (38%): Silicon Shuttles & Mask Sets (SkyWater, IHP, SCL runs)",
+          "₹3.20 Cr (32%): Engineering Payroll (12 IC designers, verification engineers, layout architects)",
+          "₹1.80 Cr (18%): Lab Equipment, ATE Test Fixtures & MIL-883 Environmental Screening",
+          "₹1.20 Cr (12%): Working Capital, IP Registration, Legal & Bangalore Lab Facilities"
+        ],
+        questions: [
+          "<strong>Runway Stress Scenario:</strong> If an SCL Mohali shuttle run is delayed by 4 months, does the ₹1.20 Cr working capital buffer prevent payroll crisis?",
+          "<strong>Follow-on Milestone:</strong> What specific tapeout milestones unlock the ₹60 Cr Series A round?"
+        ],
+        economics: {
+          asp: "₹10 Cr provides 18 months of runway to 4 production-ready tapeouts",
+          marketVolume: "Pilot Phase",
+          waferCost: "Budgeted in ₹3.8 Cr line item",
+          dieSize: "N/A",
+          grossMargin: "Path to cash-flow breakeven at ₹45 Cr revenue"
+        },
+        registers: `// Capital Allocation Balance Sheet
+#define CAPITAL_PILOT_TOTAL_INR 100000000
+#define CAPITAL_SILICON_MASKS   38000000
+#define CAPITAL_ENGINEERING     32000000`
+      },
+      {
+        id: 1,
+        page: 7,
+        title: "$9B Import Funnel & Semiconductor Deficit",
+        badge: "Macro TAM",
+        category: "strategy",
+        node: "Macroeconomics & Import Substitution",
+        standard: "Ministry of Electronics & IT (MeitY)",
+        image: "assets/figures/fig01_import_funnel.png",
+        summary: "The macroeconomic import funnel showing that 82% of India's semiconductor imports are mature-node chips (130nm to 55nm), not sub-5nm advanced processors.",
+        specs: [
+          "India Semiconductor Consumption: $40B+ TAM growing to $100B+ by 2030",
+          "Mature-Node Share: 82% of total IC volume is in >65nm mature nodes",
+          "Power & Analog Dominance: Power management, motor drivers, transceivers form 60% of units",
+          "Strategic Vulnerability: 100% of defence-critical guidance chips currently imported from foreign fabs"
+        ],
+        questions: [
+          "<strong>Why Mature Nodes First:</strong> Why does building a 130nm fab or fabless ecosystem deliver 5× faster import substitution than subsidizing a 3nm advanced fab?",
+          "<strong>Sovereign Supply:</strong> How does mature silicon insulate India from global geopolitical embargoes?"
+        ],
+        economics: {
+          asp: "Market Deficit: $9B annually flowing out of India",
+          marketVolume: "Billion-unit domestic appetite",
+          waferCost: "Mature nodes are commercially viable",
+          dieSize: "High-yield mature silicon",
+          grossMargin: "Enormous margin expansion"
+        },
+        registers: `// Macro Deficit Metric
+const uint32_t MATURE_NODE_PERCENTAGE = 82;`
+      },
+      {
+        id: 20,
+        page: 51,
+        title: "Qualification & Reliability Testing Flow",
+        badge: "Quality QA",
+        category: "strategy",
+        node: "MIL-STD-883K · AEC-Q100 · JEDEC",
+        standard: "Extreme Environmental Screening",
+        image: "assets/figures/fig20_qualification_testing.png",
+        summary: "The multi-stage qualification flow subjecting silicon to -55°C to +125°C thermal cycling, 1000-hour HTOL burn-in, vibration, and radiation latch-up testing.",
+        specs: [
+          "High Temp Operating Life (HTOL): 1000 hours @ +125°C at 1.2x VDD",
+          "Thermal Shock: 500 cycles from -65°C to +150°C liquid-to-liquid",
+          "Mechanical Shock: 1500g, 0.5ms half-sine pulse for missile seekers",
+          "ESD Robustness: 2kV HBM, 500V CDM, 15kV System Contact Discharge"
+        ],
+        questions: [
+          "<strong>Infant Mortality Screening:</strong> What burn-in duration is mathematically required to guarantee zero field failures in missile guidance computers?",
+          "<strong>AEC-Q100 Grade 0 vs MIL-883:</strong> What are the critical differences in sample size and test duration between automotive and aerospace standards?"
+        ],
+        economics: {
+          asp: "Screening adds $15 - $40 per unit for defence; yields 80% margins",
+          marketVolume: "Applied to all defence and automotive lots",
+          waferCost: "Test fixtures built into ₹1.8 Cr pilot budget",
+          dieSize: "Hermetic Ceramic or Rugged Plastic",
+          grossMargin: "Highest value-add tier"
+        },
+        registers: `// Reliability Test Telemetry Record
+struct test_record_t {
+    int16_t  temp_celsius;
+    uint32_t htol_hours;
+    uint8_t  failed_units;
+};`
+      }
+    ];
+
+    // ==================== CONTROLLER FUNCTIONS ====================
+
+    function init() {
+      renderFigureCards();
+      renderGalleryGrid();
+      loadFigure(10);
+      recalcEconomics();
+
+      // Load PDF document in background
+      pdfjsLib.getDocument('DeepGrid_Whitepaper_Plain_v3.pdf').promise.then(function(pdfDoc_) {
+        pdfDoc = pdfDoc_;
+        document.getElementById('pdf-total-pages').textContent = pdfDoc.numPages;
+      });
+    }
+
+    function renderFigureCards() {
+      const container = document.getElementById('figure-cards-container');
+      container.innerHTML = '';
+
+      const filtered = figuresData.filter(item => {
+        if (currentCategoryFilter === 'all') return true;
+        return item.category === currentCategoryFilter;
+      });
+
+      filtered.forEach(fig => {
+        const isActive = fig.id === currentFigId;
+        const card = document.createElement('div');
+        card.id = `card-fig-${fig.id}`;
+        card.onclick = () => loadFigure(fig.id);
+        card.className = `p-2.5 rounded-xl border transition cursor-pointer flex gap-3 ${
+          isActive 
+            ? 'glow-active-card' 
+            : 'bg-[#0D121F] border-slate-800/80 hover:bg-slate-800/50 hover:border-slate-700'
+        }`;
+
+        card.innerHTML = `
+          <div class="w-14 h-14 rounded-lg bg-black/40 border border-slate-700/60 overflow-hidden shrink-0 flex items-center justify-center relative">
+            <img src="${fig.image}" alt="${fig.title}" class="w-full h-full object-cover opacity-80 group-hover:opacity-100">
+            <span class="absolute bottom-0 right-0 bg-black/80 px-1 text-[8px] font-mono text-cyan-300">p.${fig.page}</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-1 mb-0.5">
+              <span class="text-[10px] font-mono font-bold text-cyan-400">Fig ${fig.id}</span>
+              <span class="text-[9px] font-mono px-1.5 py-0.2 rounded bg-slate-800 text-slate-400 shrink-0">${fig.badge}</span>
+            </div>
+            <h4 class="text-xs font-semibold text-white truncate leading-tight">${fig.title}</h4>
+            <p class="text-[10px] text-slate-400 truncate mt-0.5 font-mono">${fig.node}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function renderGalleryGrid() {
+      const grid = document.getElementById('gallery-grid');
+      grid.innerHTML = '';
+
+      figuresData.forEach(fig => {
+        const card = document.createElement('div');
+        card.onclick = () => {
+          setPrimaryMode('schematic');
+          loadFigure(fig.id);
+        };
+        card.className = "bg-[#0D121F] border border-slate-800/80 hover:border-cyan-500/60 rounded-xl overflow-hidden p-3 cursor-pointer group transition duration-200 hover:shadow-xl hover:shadow-cyan-500/10";
+        card.innerHTML = `
+          <div class="h-44 bg-black/60 rounded-lg overflow-hidden border border-slate-800 mb-3 flex items-center justify-center relative">
+            <img src="${fig.image}" alt="${fig.title}" class="w-full h-full object-contain p-2 group-hover:scale-105 transition duration-300">
+            <span class="absolute top-2 right-2 px-2 py-0.5 rounded bg-black/80 border border-slate-700 text-[10px] font-mono text-cyan-300">
+              Page ${fig.page}
+            </span>
+          </div>
+          <div class="flex items-center justify-between mb-1">
+            <span class="text-[11px] font-mono font-bold text-cyan-400">Figure ${fig.id}</span>
+            <span class="text-[10px] font-mono text-slate-400 px-1.5 py-0.5 bg-slate-800 rounded">${fig.badge}</span>
+          </div>
+          <h4 class="text-xs font-bold text-white group-hover:text-cyan-300 transition line-clamp-1">${fig.title}</h4>
+          <p class="text-[11px] text-slate-400 mt-1 line-clamp-2">${fig.summary}</p>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function loadFigure(id) {
+      currentFigId = id;
+      const fig = figuresData.find(f => f.id === id) || figuresData[0];
+
+      // Update Header & HUD
+      document.getElementById('header-fig-num').textContent = `Fig ${fig.id}`;
+      document.getElementById('hud-badge').textContent = fig.badge;
+      document.getElementById('hud-title').textContent = fig.title;
+      document.getElementById('hud-subtitle').textContent = `${fig.node} · ${fig.standard}`;
+      document.getElementById('right-badge').textContent = `PAGE ${fig.page}`;
+
+      // Update Schematic Image
+      document.getElementById('schematic-image').src = fig.image;
+
+      // Update Cards Highlight
+      document.querySelectorAll('#figure-cards-container > div').forEach(c => c.classList.remove('glow-active-card'));
+      const activeCard = document.getElementById(`card-fig-${fig.id}`);
+      if (activeCard) {
+        activeCard.classList.add('glow-active-card');
+        activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // If in PDF mode, render the corresponding PDF page
+      if (currentMode === 'pdf' && pdfDoc) {
+        renderPdfPage(fig.page);
+      }
+
+      // Refresh Audit Panel for current tab
+      updateAuditPanel();
+    }
+
+    function prevFigure() {
+      const idx = figuresData.findIndex(f => f.id === currentFigId);
+      if (idx > 0) loadFigure(figuresData[idx - 1].id);
+    }
+
+    function nextFigure() {
+      const idx = figuresData.findIndex(f => f.id === currentFigId);
+      if (idx < figuresData.length - 1) loadFigure(figuresData[idx + 1].id);
+    }
+
+    function setPrimaryMode(mode) {
+      currentMode = mode;
+      
+      // Update Tab Styles
+      ['schematic', 'pdf', 'grid', 'economics'].forEach(m => {
+        const btn = document.getElementById(`tab-mode-${m}`);
+        if (m === mode) {
+          btn.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-blue-600 text-white shadow transition";
+        } else {
+          btn.className = "flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold text-slate-400 hover:text-white hover:bg-slate-800/50 transition";
+        }
+      });
+
+      // Show/Hide Containers
+      document.getElementById('view-mode-schematic-container').classList.toggle('hidden', mode !== 'schematic');
+      document.getElementById('view-mode-pdf-container').classList.toggle('hidden', mode !== 'pdf');
+      document.getElementById('view-mode-grid-container').classList.toggle('hidden', mode !== 'grid');
+      document.getElementById('view-mode-economics-container').classList.toggle('hidden', mode !== 'economics');
+
+      // If switched to PDF, render current page
+      if (mode === 'pdf') {
+        const fig = figuresData.find(f => f.id === currentFigId) || figuresData[0];
+        renderPdfPage(fig.page);
+      }
+    }
+
+    function setDiagramTheme(theme) {
+      currentTheme = theme;
+      const img = document.getElementById('schematic-image');
+      const canvasEl = document.getElementById('pdf-canvas');
+      const darkBtn = document.getElementById('theme-btn-dark');
+      const cleanBtn = document.getElementById('theme-btn-clean');
+
+      if (theme === 'dark') {
+        img.className = 'filter-dark-circuit max-h-[72vh] max-w-full object-contain mx-auto transition duration-300';
+        canvasEl.className = 'filter-dark-circuit rounded-xl max-w-full mx-auto';
+        darkBtn.className = 'px-2.5 py-1 rounded text-cyan-400 bg-cyan-950/60 border border-cyan-800 font-medium flex items-center gap-1';
+        cleanBtn.className = 'px-2.5 py-1 rounded text-slate-400 hover:text-white font-medium flex items-center gap-1';
+      } else {
+        img.className = 'filter-clean-studio max-h-[72vh] max-w-full object-contain mx-auto transition duration-300';
+        canvasEl.className = 'filter-clean-studio rounded-xl max-w-full mx-auto bg-white';
+        darkBtn.className = 'px-2.5 py-1 rounded text-slate-400 hover:text-white font-medium flex items-center gap-1';
+        cleanBtn.className = 'px-2.5 py-1 rounded text-blue-400 bg-blue-950/60 border border-blue-800 font-medium flex items-center gap-1';
+      }
+    }
+
+    function setCategoryFilter(cat) {
+      currentCategoryFilter = cat;
+      ['all', 'sku', 'eda', 'strategy'].forEach(c => {
+        const pill = document.getElementById(`pill-filter-${c}`);
+        if (c === cat) {
+          pill.className = "px-2 py-0.5 rounded-md font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shrink-0";
+        } else {
+          pill.className = "px-2 py-0.5 rounded-md font-medium text-slate-400 hover:bg-slate-800 shrink-0";
+        }
+      });
+      renderFigureCards();
+    }
+
+    function filterFigureList() {
+      const q = document.getElementById('nav-search').value.toLowerCase();
+      document.querySelectorAll('#figure-cards-container > div').forEach(card => {
+        const text = card.textContent.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+
+    function adjustZoom(delta) {
+      currentZoom = Math.max(0.5, Math.min(2.5, currentZoom + delta));
+      document.getElementById('zoom-percentage').textContent = `${Math.round(currentZoom * 100)}%`;
+      document.getElementById('schematic-stage').style.transform = `scale(${currentZoom})`;
+    }
+
+    function resetZoom() {
+      currentZoom = 1.0;
+      document.getElementById('zoom-percentage').textContent = `100%`;
+      document.getElementById('schematic-stage').style.transform = `scale(1.0)`;
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    // PDF.js Page Rendering Logic
+    function renderPdfPage(num) {
+      if (!pdfDoc) return;
+      pageRendering = true;
+      document.getElementById('pdf-loading-spinner').classList.remove('hidden');
+      document.getElementById('canvas-card-wrapper').classList.add('hidden');
+      document.getElementById('pdf-current-page').textContent = num;
+
+      pdfDoc.getPage(num).then(function(page) {
+        const viewport = page.getViewport({ scale: pdfScale });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        const renderContext = {
+          canvasContext: ctx,
+          viewport: viewport
+        };
+        const renderTask = page.render(renderContext);
+
+        renderTask.promise.then(function() {
+          pageRendering = false;
+          document.getElementById('pdf-loading-spinner').classList.add('hidden');
+          document.getElementById('canvas-card-wrapper').classList.remove('hidden');
+
+          if (pageNumPending !== null) {
+            renderPdfPage(pageNumPending);
+            pageNumPending = null;
+          }
+        });
+      });
+    }
+
+    // ==================== RIGHT AUDIT PANEL ====================
+
+    function setAuditTab(tab) {
+      currentAuditTab = tab;
+      ['specs', 'questions', 'economics', 'code'].forEach(t => {
+        const btn = document.getElementById(`btn-audit-${t}`);
+        if (t === tab) {
+          btn.className = "flex-1 py-1.5 rounded-lg bg-blue-600 text-white transition text-center font-bold";
+        } else {
+          btn.className = "flex-1 py-1.5 rounded-lg text-slate-400 hover:text-white transition text-center";
+        }
+      });
+      updateAuditPanel();
+    }
+
+    function updateAuditPanel() {
+      const fig = figuresData.find(f => f.id === currentFigId) || figuresData[0];
+      const body = document.getElementById('audit-panel-body');
+
+      if (currentAuditTab === 'specs') {
+        body.innerHTML = `
+          <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+            <span class="text-[9px] font-mono uppercase text-cyan-400 font-bold">${fig.badge}</span>
+            <h3 class="text-xs font-bold text-white mt-0.5">${fig.title}</h3>
+            <p class="text-[10px] text-slate-400 mt-1 font-mono">${fig.node}</p>
+            <p class="text-[10px] text-slate-400 font-mono">Standard: ${fig.standard}</p>
+          </div>
+
+          <div>
+            <h4 class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+              <i data-lucide="layers" class="w-3.5 h-3.5 text-cyan-400"></i> Architecture Summary
+            </h4>
+            <div class="p-3 bg-slate-900/50 rounded-xl border border-slate-800/80 text-[11px] text-slate-300 leading-relaxed">
+              ${fig.summary}
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center gap-1.5">
+              <i data-lucide="cpu" class="w-3.5 h-3.5 text-blue-400"></i> Technical Specifications
+            </h4>
+            <ul class="space-y-1.5 text-[11px] bg-slate-900/40 p-3 rounded-xl border border-slate-800/60">
+              ${fig.specs.map(s => `<li class="flex items-start gap-2"><span class="text-cyan-400 font-bold">•</span><span>${s}</span></li>`).join('')}
+            </ul>
+          </div>
+        `;
+      } else if (currentAuditTab === 'questions') {
+        body.innerHTML = `
+          <div class="p-3 bg-amber-950/20 border border-amber-800/30 rounded-xl">
+            <div class="flex items-center gap-2 text-amber-300 font-bold text-xs mb-1">
+              <i data-lucide="help-circle" class="w-4 h-4 text-amber-400"></i>
+              Socratic Circuit Physics Audit
+            </div>
+            <p class="text-[10px] text-slate-400">Hard engineering trade-offs, substrate noise, thermal runaway, and failure modes evaluated by Red Team.</p>
+          </div>
+
+          <div class="space-y-2.5">
+            ${fig.questions.map((q, idx) => `
+              <div class="p-3 bg-slate-900/70 border border-slate-800 hover:border-amber-700/50 rounded-xl text-slate-200 text-[11px] leading-relaxed transition">
+                <div class="text-[9px] font-mono text-amber-400 font-bold mb-1">AUDIT QUERY ${idx + 1}</div>
+                ${q}
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (currentAuditTab === 'economics') {
+        body.innerHTML = `
+          <div class="p-3 bg-slate-900/80 rounded-xl border border-slate-800">
+            <h4 class="text-xs font-bold text-white mb-2 flex items-center gap-1.5">
+              <i data-lucide="dollar-sign" class="w-3.5 h-3.5 text-emerald-400"></i> Unit Economics & Volume
+            </h4>
+            <div class="space-y-1.5 text-[11px] font-mono">
+              <div class="flex justify-between py-1 border-b border-slate-800">
+                <span class="text-slate-400">Target ASP:</span>
+                <span class="text-emerald-400 font-bold">${fig.economics.asp}</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-800">
+                <span class="text-slate-400">India Market TAM:</span>
+                <span class="text-white">${fig.economics.marketVolume}</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-800">
+                <span class="text-slate-400">Wafer Cost:</span>
+                <span class="text-slate-300">${fig.economics.waferCost}</span>
+              </div>
+              <div class="flex justify-between py-1 border-b border-slate-800">
+                <span class="text-slate-400">Die Footprint:</span>
+                <span class="text-slate-300">${fig.economics.dieSize}</span>
+              </div>
+              <div class="flex justify-between py-1 font-bold">
+                <span class="text-white">Gross Margin:</span>
+                <span class="text-emerald-400">${fig.economics.grossMargin}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 bg-cyan-950/20 border border-cyan-800/40 rounded-xl text-[11px] text-slate-300">
+            <span class="font-bold text-cyan-300 block mb-1">Make-in-India DVA Moat:</span>
+            Domestic Value Addition exceeds 65% when packaged at Indian OSATs (Suchi Semicon / Kaynes), qualifying for 100% PIL tariff protection against Chinese imports.
+          </div>
+        `;
+      } else if (currentAuditTab === 'code') {
+        body.innerHTML = `
+          <div>
+            <h4 class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2 flex items-center justify-between">
+              <span class="flex items-center gap-1.5"><i data-lucide="code" class="w-3.5 h-3.5 text-cyan-400"></i> Register Bitfields & Drivers</span>
+              <span class="text-[9px] font-mono text-cyan-400">C / Embedded</span>
+            </h4>
+            <div class="p-3 bg-[#07090E] rounded-xl border border-slate-800 font-mono text-[10px] text-cyan-200 overflow-x-auto custom-scrollbar">
+              <pre><code>${fig.registers.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</code></pre>
+            </div>
+          </div>
+        `;
+      }
+      lucide.createIcons();
+    }
+
+    // ==================== ECONOMICS SIMULATOR ====================
+    function recalcEconomics() {
+      const asp1 = parseFloat(document.getElementById('slider-asp-sku1').value);
+      const asp2 = parseFloat(document.getElementById('slider-asp-sku2').value);
+      const asp3 = parseFloat(document.getElementById('slider-asp-sku3').value);
+
+      document.getElementById('disp-asp-sku1').textContent = `$${asp1.toFixed(2)}`;
+      document.getElementById('disp-asp-sku2').textContent = `$${asp2.toFixed(2)}`;
+      document.getElementById('disp-asp-sku3').textContent = `$${asp3.toFixed(2)}`;
+
+      const cost1 = 1.15 + 0.85; // $2.00
+      const cost2 = 0.82 + 0.65; // $1.47
+      const cost3 = 2.10 + 18.50; // $20.60
+
+      const margin1 = ((asp1 - cost1) / asp1) * 100;
+      const margin2 = ((asp2 - cost2) / asp2) * 100;
+      const margin3 = ((asp3 - cost3) / asp3) * 100;
+
+      document.getElementById('disp-margin-sku1').textContent = `${margin1.toFixed(1)}%`;
+      document.getElementById('disp-margin-sku2').textContent = `${margin2.toFixed(1)}%`;
+      document.getElementById('disp-margin-sku3').textContent = `${margin3.toFixed(1)}%`;
+    }
+
+    // Run on startup
+    window.onload = init;
+  </script>
+</body>
+</html>
