@@ -49,6 +49,9 @@ app: FastAPI = get_fast_api_app(
 app.title = "customer-support-agent"
 app.description = "API for interacting with the Agent customer-support-agent"
 
+from app.quiet_context import quiet_context_router
+app.include_router(quiet_context_router)
+
 
 @app.post("/feedback")
 def collect_feedback(feedback: Feedback) -> dict[str, str]:
