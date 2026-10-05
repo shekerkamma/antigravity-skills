@@ -60,6 +60,17 @@ The `gemini-cli-skills/` directory contains the following example:
 * **Function**: This skill interprets ambiguous Google Cloud commands by first consulting the official documentation via the Developer Knowledge MCP Server, then using the `ask_user` tool to provide a validated response.
 * **Key File**: `SKILL.md`
 
+## Claude Code Skills
+
+Claude Code loads project skills from `.claude/skills`, the only skills a cloud session can see. Skills kept only in `~/.claude/skills` on your own machine stay local until you port them into the repo:
+
+```bash
+./port_cli_skills_to_repo_wsl.sh --dry-run   # list what would be copied
+./port_cli_skills_to_repo_wsl.sh --push      # copy, commit on a new branch, push
+```
+
+The script resolves symlinks, drops `.git`, `node_modules`, virtualenvs, caches, `.env` and key files, and skips (and names) any skill that appears to contain a secret. It leaves a repo skill alone when it differs from your local copy unless you pass `--force`, and `--also-agents` mirrors the ported skills into `.agents/skills`.
+
 ## License
 
 Apache 2.0
